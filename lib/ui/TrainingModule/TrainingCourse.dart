@@ -10,13 +10,13 @@ class TrainingCourse extends StatefulWidget {
 }
 
 class _TrainingCourseState extends State<TrainingCourse> {
-
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   ApiInterface _apiInterface = ApiInterface();
 
   static List<TrainingCourseModel> newdata = new List();
-  TrainingCourseDataSource _trainingCourseDataSource = TrainingCourseDataSource(newdata);
+  TrainingCourseDataSource _trainingCourseDataSource =
+      TrainingCourseDataSource(newdata);
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +36,13 @@ class _TrainingCourseState extends State<TrainingCourse> {
               ),
             ),
             FutureBuilder(
-              future: _apiInterface.trainingCourseResponseData(TrainingProviderCourseRequest(
+              future: _apiInterface
+                  .trainingCourseResponseData(TrainingProviderCourseRequest(
                 action: 1,
               )),
-              builder: (BuildContext context, AsyncSnapshot<TrainingCourseResponse> snapshot) {
-                if(snapshot.hasData) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<TrainingCourseResponse> snapshot) {
+                if (snapshot.hasData) {
                   TrainingCourseResponse _myResponseData = snapshot.data;
                   _trainingCourseDataSource =
                       TrainingCourseDataSource(_myResponseData.data);
@@ -50,7 +52,10 @@ class _TrainingCourseState extends State<TrainingCourse> {
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     header: Text(""),
                     columns: [
                       DataColumn(
@@ -146,25 +151,22 @@ class _TrainingCourseState extends State<TrainingCourse> {
                     ],
                     source: _trainingCourseDataSource,
                   );
-
                 } else {
                   return Column(
                     children: <Widget>[
                       Center(
                           child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(15, 5, 5, 5),
-                              ),
-                              CircularProgressIndicator(),
-                              Padding(
-                                padding: EdgeInsets.all(5),
-                              ),
-                              Text("Loading please wait..."),
-                            ],
-                          )
-                      ),
-
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(15, 5, 5, 5),
+                          ),
+                          CircularProgressIndicator(),
+                          Padding(
+                            padding: EdgeInsets.all(5),
+                          ),
+                          Text("Loading please wait..."),
+                        ],
+                      )),
                       PaginatedDataTable(
                         columnSpacing: 15,
                         horizontalMargin: 15,
@@ -269,7 +271,6 @@ class _TrainingCourseState extends State<TrainingCourse> {
                     ],
                   );
                 }
-
               },
             ),
           ],

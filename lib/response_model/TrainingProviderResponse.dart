@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-TrainingProviderResponse trainingProviderResponseFromJson(String str) => TrainingProviderResponse.fromJson(json.decode(str));
+TrainingProviderResponse trainingProviderResponseFromJson(String str) =>
+    TrainingProviderResponse.fromJson(json.decode(str));
 
-String trainingProviderResponseToJson(TrainingProviderResponse data) => json.encode(data.toJson());
+String trainingProviderResponseToJson(TrainingProviderResponse data) =>
+    json.encode(data.toJson());
 
 class TrainingProviderResponse {
   bool status;
@@ -15,17 +17,19 @@ class TrainingProviderResponse {
     this.data,
   });
 
-  factory TrainingProviderResponse.fromJson(Map<String, dynamic> json) => TrainingProviderResponse(
-    status: json["status"],
-    message: json["message"],
-    data: List<TrainingProviderModel>.from(json["data"].map((x) => TrainingProviderModel.fromJson(x))),
-  );
+  factory TrainingProviderResponse.fromJson(Map<String, dynamic> json) =>
+      TrainingProviderResponse(
+        status: json["status"],
+        message: json["message"],
+        data: List<TrainingProviderModel>.from(
+            json["data"].map((x) => TrainingProviderModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class TrainingProviderModel {
@@ -53,29 +57,30 @@ class TrainingProviderModel {
     this.employeeNo,
   });
 
-  factory TrainingProviderModel.fromJson(Map<String, dynamic> json) => TrainingProviderModel(
-    providerNo: json["Provider No_"],
-    providerName: json["Provider Name"],
-    address1: json["Address 1"],
-    address2: json["Address 2"],
-    postCode: json["Post Code"],
-    city: json["City"],
-    country: json["Country"],
-    phoneNo: json["Phone No_"],
-    providerType: json["Provider Type"],
-    employeeNo: json["Employee No_"],
-  );
+  factory TrainingProviderModel.fromJson(Map<String, dynamic> json) =>
+      TrainingProviderModel(
+        providerNo: json["Provider No_"],
+        providerName: json["Provider Name"],
+        address1: json["Address 1"],
+        address2: json["Address 2"],
+        postCode: json["Post Code"],
+        city: json["City"],
+        country: json["Country"],
+        phoneNo: json["Phone No_"],
+        providerType: json["Provider Type"],
+        employeeNo: json["Employee No_"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "Provider No_": providerNo,
-    "Provider Name": providerName,
-    "Address 1": address1,
-    "Address 2": address2,
-    "Post Code": postCode,
-    "City": city,
-    "Country": country,
-    "Phone No_": phoneNo,
-    "Provider Type": providerType,
-    "Employee No_": employeeNo,
-  };
+        "Provider No_": providerNo,
+        "Provider Name": providerName,
+        "Address 1": address1,
+        "Address 2": address2,
+        "Post Code": postCode,
+        "City": city,
+        "Country": country,
+        "Phone No_": phoneNo,
+        "Provider Type": providerType,
+        "Employee No_": employeeNo,
+      };
 }

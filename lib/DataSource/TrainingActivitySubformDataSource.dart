@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/TrainingActivitySubformResponse.dart';
 
 class TrainingActivitySubformDataSource extends DataTableSource {
-
   List<TrainingActivitySubformModel> data = List();
 
   TrainingActivitySubformDataSource(this.data);
@@ -13,7 +12,8 @@ class TrainingActivitySubformDataSource extends DataTableSource {
   int selectedRow = -1;
 
   bool rowSelect = false;
-  static TrainingActivitySubformModel selectedRowData = TrainingActivitySubformModel();
+  static TrainingActivitySubformModel selectedRowData =
+      TrainingActivitySubformModel();
 
   void selectAll(bool checked) {
     for (TrainingActivitySubformModel trainingActSubformMod in data)
@@ -52,11 +52,16 @@ class TrainingActivitySubformDataSource extends DataTableSource {
             value: trainingActivitySubformModel.attended == 1 ? true : false,
             onChanged: null)),
         DataCell(Checkbox(
-            value: trainingActivitySubformModel.certificateIssued == 1 ? true : false,
+            value: trainingActivitySubformModel.certificateIssued == 1
+                ? true
+                : false,
             onChanged: null)),
         DataCell(Text(trainingActivitySubformModel.departmentCode)),
         DataCell(Checkbox(
-            value: trainingActivitySubformModel.confirmationAssessmentFilled == 1 ? true : false,
+            value:
+                trainingActivitySubformModel.confirmationAssessmentFilled == 1
+                    ? true
+                    : false,
             onChanged: null)),
         DataCell(Text(trainingActivitySubformModel.comments)),
       ],
@@ -71,5 +76,4 @@ class TrainingActivitySubformDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

@@ -15,6 +15,12 @@ class Employee extends StatefulWidget {
 class _EmployeeState extends State<Employee> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 3600000), () {
+      setState(() {
+        Navigator.pop(context);
+      });
+    });
+
     return DefaultTabController(
       length: 5,
       child: new Scaffold(

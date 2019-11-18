@@ -18,7 +18,7 @@ class _LeaveApprovalState extends State<LeaveApproval> {
   static List<LeaveApprovalModel> newdata = new List();
 
   LeaveApprovalDataSource _leaveApprovalDataSource =
-  LeaveApprovalDataSource(newdata);
+      LeaveApprovalDataSource(newdata);
 
   Future<LeaveApprovalResponse> updateResponse;
 
@@ -45,10 +45,10 @@ class _LeaveApprovalState extends State<LeaveApproval> {
     empNo = sharedPreferences.getString(Util.userName);*/
 
     LeaveApprovalRequest leaveApprovalRequest = LeaveApprovalRequest(
-            action: "1", empApproverId: MyDrawer.EmpNo, status: "1");
+        action: "1", empApproverId: MyDrawer.empNo, status: "1");
 
     updateResponse =
-            _apiInterface.leaveApprovalResponseData(leaveApprovalRequest);
+        _apiInterface.leaveApprovalResponseData(leaveApprovalRequest);
   }
 
   void getEmployeeNo() async {
@@ -74,9 +74,9 @@ class _LeaveApprovalState extends State<LeaveApproval> {
                     child: new Text(
                       "Pending Leave List",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -135,18 +135,21 @@ class _LeaveApprovalState extends State<LeaveApproval> {
             FutureBuilder(
               future: updateResponse,
               builder: (BuildContext context,
-                      AsyncSnapshot<LeaveApprovalResponse> snapshot) {
+                  AsyncSnapshot<LeaveApprovalResponse> snapshot) {
                 if (snapshot.hasData) {
                   LeaveApprovalResponse _myResponseData = snapshot.data;
                   _leaveApprovalDataSource =
-                          LeaveApprovalDataSource(_myResponseData.data);
+                      LeaveApprovalDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _leaveApprovalDataSource.selectAll,
                     header: new Text(""),
                     columns: [
@@ -154,135 +157,135 @@ class _LeaveApprovalState extends State<LeaveApproval> {
                         label: new Text(
                           "Document No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Entry No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Table Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Document Type",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Document Code",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sequence",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sender Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Emp Appr Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Appr Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "From Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "To Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Modified By",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Rejection Comment",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Cancellation Comment",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -317,135 +320,135 @@ class _LeaveApprovalState extends State<LeaveApproval> {
                             label: new Text(
                               "Document No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Entry No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Table Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Document Type",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Document Code",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sequence",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sender Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Emp Appr Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Appr Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "From Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "To Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Modified By",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Rejection Comment",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Cancellation Comment",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -470,32 +473,31 @@ class _LeaveApprovalState extends State<LeaveApproval> {
           FlatButton(
             onPressed: () async {
               Navigator.pop(context);
-              LeaveApprovalResponse leaveApprovalResponse =
-              await _apiInterface.leaveApprovalResponseData(
-                      LeaveApprovalRequest(
-                        action: "3",
-                        status: "2",
-                        modifiedBy: MyDrawer.EmpNo,
-                        senderId: LeaveApprovalDataSource.selectedRowData.senderId,
-                        empApproverId:
-                        LeaveApprovalDataSource.selectedRowData.employeeApproverId,
-                        entryNo:
-                        LeaveApprovalDataSource.selectedRowData.entryNo.toString(),
-                        tableName: LeaveApprovalDataSource.selectedRowData.tableName,
-                        documentType:
-                        "${docType.indexOf(LeaveApprovalDataSource.selectedRowData.documentType)}",
-                        documentNo: LeaveApprovalDataSource.selectedRowData.documentNo
-                                .toString(),
-                        sequenceNo: LeaveApprovalDataSource.selectedRowData.sequenceNo
-                                .toString(),
-                        approverId: LeaveApprovalDataSource.selectedRowData.approverId,
-                        fromDate: LeaveApprovalDataSource.selectedRowData.fromDate,
-                        toDate: LeaveApprovalDataSource.selectedRowData.toDate,
-                        rejectionComment:
-                        LeaveApprovalDataSource.selectedRowData.commentRejection,
-                        cancellationComment:
-                        LeaveApprovalDataSource.selectedRowData.commentCancellation,
-                      ));
+              LeaveApprovalResponse leaveApprovalResponse = await _apiInterface
+                  .leaveApprovalResponseData(LeaveApprovalRequest(
+                action: "3",
+                status: "2",
+                modifiedBy: MyDrawer.empNo,
+                senderId: LeaveApprovalDataSource.selectedRowData.senderId,
+                empApproverId:
+                    LeaveApprovalDataSource.selectedRowData.employeeApproverId,
+                entryNo:
+                    LeaveApprovalDataSource.selectedRowData.entryNo.toString(),
+                tableName: LeaveApprovalDataSource.selectedRowData.tableName,
+                documentType:
+                    "${docType.indexOf(LeaveApprovalDataSource.selectedRowData.documentType)}",
+                documentNo: LeaveApprovalDataSource.selectedRowData.documentNo
+                    .toString(),
+                sequenceNo: LeaveApprovalDataSource.selectedRowData.sequenceNo
+                    .toString(),
+                approverId: LeaveApprovalDataSource.selectedRowData.approverId,
+                fromDate: LeaveApprovalDataSource.selectedRowData.fromDate,
+                toDate: LeaveApprovalDataSource.selectedRowData.toDate,
+                rejectionComment:
+                    LeaveApprovalDataSource.selectedRowData.commentRejection,
+                cancellationComment:
+                    LeaveApprovalDataSource.selectedRowData.commentCancellation,
+              ));
 
               if (leaveApprovalResponse.status) {
                 Fluttertoast.showToast(
@@ -514,13 +516,13 @@ class _LeaveApprovalState extends State<LeaveApproval> {
                 );*/
                 setState(() {
                   LeaveApprovalRequest leaveApprovalRequest =
-                  LeaveApprovalRequest(
+                      LeaveApprovalRequest(
                           action: "1",
-                          empApproverId: MyDrawer.EmpNo,
+                          empApproverId: MyDrawer.empNo,
                           status: "1");
 
-                  updateResponse = _apiInterface.leaveApprovalResponseData(
-                          leaveApprovalRequest);
+                  updateResponse = _apiInterface
+                      .leaveApprovalResponseData(leaveApprovalRequest);
                 });
               } else {
                 Fluttertoast.showToast(
@@ -594,7 +596,7 @@ class _LeaveApprovalState extends State<LeaveApproval> {
           FlatButton(
             onPressed: () async {
               if (rejectionCommentControler.text.isEmpty ||
-                      rejectionCommentControler.text == " ") {
+                  rejectionCommentControler.text == " ") {
                 var alert = AlertDialog(
                   content: Text("Please enter rejection comment..."),
                   actions: <Widget>[
@@ -614,32 +616,31 @@ class _LeaveApprovalState extends State<LeaveApproval> {
                 );
               } else {
                 Navigator.pop(context);
-                RejCanPostResponse leaveRejCanResp =
-                await _apiInterface.leaveRejCanResponseData(
-                        LeaveApprovalRequest(
-                          action: "4",
-                          status: "3",
-                          modifiedBy: MyDrawer.EmpNo,
-                          senderId: LeaveApprovalDataSource.selectedRowData.senderId,
-                          empApproverId: LeaveApprovalDataSource
-                                  .selectedRowData.employeeApproverId,
-                          entryNo: LeaveApprovalDataSource.selectedRowData.entryNo
-                                  .toString(),
-                          tableName: LeaveApprovalDataSource.selectedRowData.tableName,
-                          documentType:
-                          "${docType.indexOf(LeaveApprovalDataSource.selectedRowData.documentType)}",
-                          documentNo: LeaveApprovalDataSource.selectedRowData.documentNo
-                                  .toString(),
-                          sequenceNo: LeaveApprovalDataSource.selectedRowData.sequenceNo
-                                  .toString(),
-                          approverId:
-                          LeaveApprovalDataSource.selectedRowData.approverId,
-                          fromDate: LeaveApprovalDataSource.selectedRowData.fromDate,
-                          toDate: LeaveApprovalDataSource.selectedRowData.toDate,
-                          rejectionComment: rejectionCommentControler.text,
-                          cancellationComment: LeaveApprovalDataSource
-                                  .selectedRowData.commentCancellation,
-                        ));
+                RejCanPostResponse leaveRejCanResp = await _apiInterface
+                    .leaveRejCanResponseData(LeaveApprovalRequest(
+                  action: "4",
+                  status: "3",
+                  modifiedBy: MyDrawer.empNo,
+                  senderId: LeaveApprovalDataSource.selectedRowData.senderId,
+                  empApproverId: LeaveApprovalDataSource
+                      .selectedRowData.employeeApproverId,
+                  entryNo: LeaveApprovalDataSource.selectedRowData.entryNo
+                      .toString(),
+                  tableName: LeaveApprovalDataSource.selectedRowData.tableName,
+                  documentType:
+                      "${docType.indexOf(LeaveApprovalDataSource.selectedRowData.documentType)}",
+                  documentNo: LeaveApprovalDataSource.selectedRowData.documentNo
+                      .toString(),
+                  sequenceNo: LeaveApprovalDataSource.selectedRowData.sequenceNo
+                      .toString(),
+                  approverId:
+                      LeaveApprovalDataSource.selectedRowData.approverId,
+                  fromDate: LeaveApprovalDataSource.selectedRowData.fromDate,
+                  toDate: LeaveApprovalDataSource.selectedRowData.toDate,
+                  rejectionComment: rejectionCommentControler.text,
+                  cancellationComment: LeaveApprovalDataSource
+                      .selectedRowData.commentCancellation,
+                ));
 
                 if (leaveRejCanResp.status) {
                   var alert = AlertDialog(
@@ -661,13 +662,13 @@ class _LeaveApprovalState extends State<LeaveApproval> {
                   );
                   setState(() {
                     LeaveApprovalRequest leaveApprovalRequest =
-                    LeaveApprovalRequest(
+                        LeaveApprovalRequest(
                             action: "1",
-                            empApproverId: MyDrawer.EmpNo,
+                            empApproverId: MyDrawer.empNo,
                             status: "1");
 
-                    updateResponse = _apiInterface.leaveApprovalResponseData(
-                            leaveApprovalRequest);
+                    updateResponse = _apiInterface
+                        .leaveApprovalResponseData(leaveApprovalRequest);
                   });
                 } else {
                   Fluttertoast.showToast(

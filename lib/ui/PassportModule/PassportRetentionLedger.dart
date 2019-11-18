@@ -5,18 +5,18 @@ import 'package:hrpayroll/response_model/PassportRetentionLedgerResponse.dart';
 
 class PassportRetentionLedger extends StatefulWidget {
   @override
-  _PassportRetentionLedgerState createState() => _PassportRetentionLedgerState();
+  _PassportRetentionLedgerState createState() =>
+      _PassportRetentionLedgerState();
 }
 
 class _PassportRetentionLedgerState extends State<PassportRetentionLedger> {
-
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   ApiInterface _apiInterface = ApiInterface();
 
   static List<PassportRetentionLedgerModel> newdata = new List();
   PassportRetentionLedgerDataSource _passportRetentionLedgerDataSource =
-  PassportRetentionLedgerDataSource(newdata);
+      PassportRetentionLedgerDataSource(newdata);
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,9 @@ class _PassportRetentionLedgerState extends State<PassportRetentionLedger> {
             ),
             FutureBuilder(
               future: _apiInterface.passportRetentionLedgerResponseData(),
-              builder: (BuildContext context, AsyncSnapshot<PassportRetentionLedgerResponse> snapshot) {
-                if(snapshot.hasData) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<PassportRetentionLedgerResponse> snapshot) {
+                if (snapshot.hasData) {
                   PassportRetentionLedgerResponse _myResponseData =
                       snapshot.data;
                   _passportRetentionLedgerDataSource =
@@ -49,7 +50,10 @@ class _PassportRetentionLedgerState extends State<PassportRetentionLedger> {
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     header: Text(""),
                     columns: [
                       DataColumn(

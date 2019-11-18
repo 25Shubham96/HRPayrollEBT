@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/TrainingActivityResponse.dart';
+import 'package:intl/intl.dart';
 
 class TrainingActivityDataSource extends DataTableSource {
-
   List<TrainingActivityModel> data = List();
 
   TrainingActivityDataSource(this.data);
@@ -12,6 +12,8 @@ class TrainingActivityDataSource extends DataTableSource {
 
   bool rowSelect = false;
   static TrainingActivityModel selectedRowData = TrainingActivityModel();
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (TrainingActivityModel trainingActMod in data)
@@ -46,9 +48,9 @@ class TrainingActivityDataSource extends DataTableSource {
         DataCell(Text(trainingActivityModel.status)),
         DataCell(Text(trainingActivityModel.trainingProvider)),
         DataCell(Text(trainingActivityModel.courseId)),
-        DataCell(Text(trainingActivityModel.courseStartDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(trainingActivityModel.courseStartDate)))),
         DataCell(Text(trainingActivityModel.courseStartTime)),
-        DataCell(Text(trainingActivityModel.courseEndDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(trainingActivityModel.courseEndDate)))),
         DataCell(Text(trainingActivityModel.courseEndTime)),
         DataCell(Text(trainingActivityModel.joiningInstructionDocument)),
         DataCell(Text(trainingActivityModel.trainingProviderName)),
@@ -65,5 +67,4 @@ class TrainingActivityDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

@@ -9,13 +9,13 @@ class ClosedTrainingList extends StatefulWidget {
 }
 
 class _ClosedTrainingListState extends State<ClosedTrainingList> {
-
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   ApiInterface _apiInterface = ApiInterface();
 
   static List<ClosedTrainingListModel> newdata = new List();
-  ClosedTrainingListDataSource _closedTrainingListDataSource = ClosedTrainingListDataSource(newdata);
+  ClosedTrainingListDataSource _closedTrainingListDataSource =
+      ClosedTrainingListDataSource(newdata);
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +36,22 @@ class _ClosedTrainingListState extends State<ClosedTrainingList> {
             ),
             FutureBuilder(
               future: _apiInterface.closedTrainingListResponseData(),
-              builder: (BuildContext context, AsyncSnapshot<ClosedTrainingListResponse> snapshot) {
-                if(snapshot.hasData) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<ClosedTrainingListResponse> snapshot) {
+                if (snapshot.hasData) {
                   ClosedTrainingListResponse _myResponseData = snapshot.data;
-                  _closedTrainingListDataSource = ClosedTrainingListDataSource(_myResponseData.data);
+                  _closedTrainingListDataSource =
+                      ClosedTrainingListDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     header: Text(""),
                     columns: [
                       DataColumn(
@@ -137,20 +142,19 @@ class _ClosedTrainingListState extends State<ClosedTrainingList> {
                   return Column(
                     children: <Widget>[
                       Center(
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(15, 5, 5, 5),
-                              ),
-                              CircularProgressIndicator(),
-                              Padding(
-                                padding: EdgeInsets.all(5),
-                              ),
-                              Text("Loading please wait..."),
-                            ],
-                          )
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(15, 5, 5, 5),
+                            ),
+                            CircularProgressIndicator(),
+                            Padding(
+                              padding: EdgeInsets.all(5),
+                            ),
+                            Text("Loading please wait..."),
+                          ],
+                        ),
                       ),
-
                       PaginatedDataTable(
                         columnSpacing: 15,
                         horizontalMargin: 15,

@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-TrainingReqResponse trainingReqResponseFromJson(String str) => TrainingReqResponse.fromJson(json.decode(str));
+TrainingReqResponse trainingReqResponseFromJson(String str) =>
+    TrainingReqResponse.fromJson(json.decode(str));
 
-String trainingReqResponseToJson(TrainingReqResponse data) => json.encode(data.toJson());
+String trainingReqResponseToJson(TrainingReqResponse data) =>
+    json.encode(data.toJson());
 
 class TrainingReqResponse {
   bool status;
@@ -15,17 +17,19 @@ class TrainingReqResponse {
     this.data,
   });
 
-  factory TrainingReqResponse.fromJson(Map<String, dynamic> json) => TrainingReqResponse(
-    status: json["status"],
-    message: json["message"],
-    data: List<TrainingRequestModel>.from(json["data"].map((x) => TrainingRequestModel.fromJson(x))),
-  );
+  factory TrainingReqResponse.fromJson(Map<String, dynamic> json) =>
+      TrainingReqResponse(
+        status: json["status"],
+        message: json["message"],
+        data: List<TrainingRequestModel>.from(
+            json["data"].map((x) => TrainingRequestModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class TrainingRequestModel {
@@ -55,29 +59,30 @@ class TrainingRequestModel {
     this.department,
   });
 
-  factory TrainingRequestModel.fromJson(Map<String, dynamic> json) => TrainingRequestModel(
-    requestNo: json["Request No_"],
-    requestedBy: json["Requested By"],
-    contactNo: json["Contact No_"],
-    requestType: json["Request Type"],
-    trainingCourseTitle: json["Training Course Title"],
-    comments: json["Comments"],
-    contactName: json["Contact Name"],
-    trainingCourse: json["Training Course"],
-    status: json["Status"],
-    department: json["Department"],
-  );
+  factory TrainingRequestModel.fromJson(Map<String, dynamic> json) =>
+      TrainingRequestModel(
+        requestNo: json["Request No_"],
+        requestedBy: json["Requested By"],
+        contactNo: json["Contact No_"],
+        requestType: json["Request Type"],
+        trainingCourseTitle: json["Training Course Title"],
+        comments: json["Comments"],
+        contactName: json["Contact Name"],
+        trainingCourse: json["Training Course"],
+        status: json["Status"],
+        department: json["Department"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "Request No_": requestNo,
-    "Requested By": requestedBy,
-    "Contact No_": contactNo,
-    "Request Type": requestType,
-    "Training Course Title": trainingCourseTitle,
-    "Comments": comments,
-    "Contact Name": contactName,
-    "Training Course": trainingCourse,
-    "Status": status,
-    "Department": department,
-  };
+        "Request No_": requestNo,
+        "Requested By": requestedBy,
+        "Contact No_": contactNo,
+        "Request Type": requestType,
+        "Training Course Title": trainingCourseTitle,
+        "Comments": comments,
+        "Contact Name": contactName,
+        "Training Course": trainingCourse,
+        "Status": status,
+        "Department": department,
+      };
 }

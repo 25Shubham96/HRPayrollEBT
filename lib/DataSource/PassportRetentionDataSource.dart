@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/PassportRetentionResponse.dart';
+import 'package:intl/intl.dart';
 
 class PassportRetentionDataSource extends DataTableSource {
-
   List<PassportRetentionModel> data = List();
 
   PassportRetentionDataSource(this.data);
@@ -12,6 +12,8 @@ class PassportRetentionDataSource extends DataTableSource {
 
   bool rowSelect = false;
   static PassportRetentionModel selectedRowData = PassportRetentionModel();
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (PassportRetentionModel passRetenMod in data)
@@ -40,8 +42,8 @@ class PassportRetentionDataSource extends DataTableSource {
           prevIndex = index;
         }
       },
-      cells: <DataCell> [
-        DataCell(Text(passportRetentionModel.dateOfReceipt)),
+      cells: <DataCell>[
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(passportRetentionModel.dateOfReceipt)))),
         DataCell(Text(passportRetentionModel.transactionId)),
         DataCell(Text(passportRetentionModel.requestType)),
         DataCell(Text(passportRetentionModel.employeeId)),
@@ -54,7 +56,7 @@ class PassportRetentionDataSource extends DataTableSource {
         DataCell(Text(passportRetentionModel.commentRemarks)),
         DataCell(Text(passportRetentionModel.transactionType)),
         DataCell(Text(passportRetentionModel.userId)),
-        DataCell(Text(passportRetentionModel.expectedReceiptDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(passportRetentionModel.expectedReceiptDate)))),
       ],
     );
   }
@@ -67,5 +69,4 @@ class PassportRetentionDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

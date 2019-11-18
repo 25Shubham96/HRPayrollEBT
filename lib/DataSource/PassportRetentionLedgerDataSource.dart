@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/PassportRetentionLedgerResponse.dart';
+import 'package:intl/intl.dart';
 
 class PassportRetentionLedgerDataSource extends DataTableSource {
-
   List<PassportRetentionLedgerModel> data = new List();
 
   PassportRetentionLedgerDataSource(this.data);
 
   int selectedCount = 0;
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   @override
   DataRow getRow(int index) {
@@ -15,8 +17,8 @@ class PassportRetentionLedgerDataSource extends DataTableSource {
 
     return DataRow.byIndex(
       index: index,
-      cells: <DataCell> [
-        DataCell(Text(passportRetentionLedgerModel.dateOfReceipt)),
+      cells: <DataCell>[
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(passportRetentionLedgerModel.dateOfReceipt)))),
         DataCell(Text(passportRetentionLedgerModel.transactionId)),
         DataCell(Text(passportRetentionLedgerModel.requestType)),
         DataCell(Text(passportRetentionLedgerModel.employeeId)),
@@ -33,8 +35,7 @@ class PassportRetentionLedgerDataSource extends DataTableSource {
         DataCell(Checkbox(
             value: passportRetentionLedgerModel.released == 1 ? true : false,
             onChanged: null)),
-        DataCell(Text(passportRetentionLedgerModel.expectedReceiptDate)),
-
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(passportRetentionLedgerModel.expectedReceiptDate)))),
       ],
     );
   }
@@ -47,5 +48,4 @@ class PassportRetentionLedgerDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

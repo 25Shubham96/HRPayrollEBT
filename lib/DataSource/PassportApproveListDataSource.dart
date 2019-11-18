@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/PassportApproveListResponse.dart';
 
 class PassportApproveListDataSource extends DataTableSource {
-
   List<PassportApproveListModel> data = List();
 
   PassportApproveListDataSource(this.data);
@@ -40,7 +39,7 @@ class PassportApproveListDataSource extends DataTableSource {
           prevIndex = index;
         }
       },
-      cells: <DataCell> [
+      cells: <DataCell>[
         DataCell(Text(passportApproveListModel.tableName)),
         DataCell(Text(passportApproveListModel.documentType)),
         DataCell(Text(passportApproveListModel.transactionId)),
@@ -63,5 +62,4 @@ class PassportApproveListDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

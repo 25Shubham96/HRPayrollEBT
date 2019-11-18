@@ -4,6 +4,7 @@ import 'package:hrpayroll/ui/TrainingModule/TrainingActivity.dart';
 import 'package:hrpayroll/ui/TrainingModule/TrainingApproveList.dart';
 import 'package:hrpayroll/ui/TrainingModule/TrainingCourse.dart';
 import 'package:hrpayroll/ui/TrainingModule/TrainingRequest.dart';
+
 import '../MyDrawer.dart';
 import 'TrainingProvider.dart';
 
@@ -15,6 +16,12 @@ class Training extends StatefulWidget {
 class _TrainingState extends State<Training> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 3600000), () {
+      setState(() {
+        Navigator.pop(context);
+      });
+    });
+
     return DefaultTabController(
       length: 6,
       child: new Scaffold(

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/ClosedTrainingListResponse.dart';
+import 'package:intl/intl.dart';
 
 class ClosedTrainingListDataSource extends DataTableSource {
-
   List<ClosedTrainingListModel> data = new List();
 
   ClosedTrainingListDataSource(this.data);
 
   int selectedCount = 0;
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   @override
   DataRow getRow(int index) {
@@ -20,8 +22,8 @@ class ClosedTrainingListDataSource extends DataTableSource {
         DataCell(Text(closedTrainingListModel.status)),
         DataCell(Text(closedTrainingListModel.trainingProvider)),
         DataCell(Text(closedTrainingListModel.courseId)),
-        DataCell(Text(closedTrainingListModel.courseStartDate)),
-        DataCell(Text(closedTrainingListModel.courseEndDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(closedTrainingListModel.courseStartDate)))),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(closedTrainingListModel.courseEndDate)))),
         DataCell(Text(closedTrainingListModel.trainingProviderName)),
         DataCell(Text(closedTrainingListModel.courseDescription)),
       ],
@@ -36,5 +38,4 @@ class ClosedTrainingListDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

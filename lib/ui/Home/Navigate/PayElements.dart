@@ -26,7 +26,7 @@ class PayElements extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: MyAppBar.getAppBar("Pay Element List (${EmpNo})"),
+      appBar: MyAppBar.getAppBar("Pay Element List ($EmpNo)"),
       body: Scrollbar(
         child: ListView(
           children: <Widget>[

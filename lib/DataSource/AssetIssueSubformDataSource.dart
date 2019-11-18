@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/AssetIssueSubformResponse.dart';
 
 class AssetIssueSubformDataSource extends DataTableSource {
-
   List<AssetIssueSubformModel> data = List();
 
   AssetIssueSubformDataSource(this.data);
@@ -66,5 +65,4 @@ class AssetIssueSubformDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

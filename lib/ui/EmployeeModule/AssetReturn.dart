@@ -19,7 +19,6 @@ class AssetReturn extends StatefulWidget {
 }
 
 class _AssetReturnState extends State<AssetReturn> {
-
   static final List<String> ownerValue = ["Company", "Third Party"];
 
   static List<String> empNo;
@@ -43,7 +42,8 @@ class _AssetReturnState extends State<AssetReturn> {
   static TextEditingController issueDateController = TextEditingController();
   static TextEditingController empNameController = TextEditingController();
   static TextEditingController issuedByNameController = TextEditingController();
-  static TextEditingController cancelCommentController = TextEditingController();
+  static TextEditingController cancelCommentController =
+      TextEditingController();
 
   static TextEditingController assetNameController = TextEditingController();
   static TextEditingController assetTypeController = TextEditingController();
@@ -53,7 +53,8 @@ class _AssetReturnState extends State<AssetReturn> {
   static TextEditingController modelController = TextEditingController();
   static TextEditingController ownerNameController = TextEditingController();
   static TextEditingController currAssetLocController = TextEditingController();
-  static TextEditingController postedPurOrderNoController = TextEditingController();
+  static TextEditingController postedPurOrderNoController =
+      TextEditingController();
 
   Future<AssetIssueResponse> updateTableResponse;
   ApiInterface _apiInterface1 = ApiInterface();
@@ -104,7 +105,7 @@ class _AssetReturnState extends State<AssetReturn> {
     );
     setState(() {
       updateTableResponse =
-              _apiInterface1.assetIssueResponseData(assetIssueRequest);
+          _apiInterface1.assetIssueResponseData(assetIssueRequest);
     });
 
     getSharedPrefs();
@@ -124,9 +125,9 @@ class _AssetReturnState extends State<AssetReturn> {
                     child: new Text(
                       "Asset Return List",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -206,14 +207,16 @@ class _AssetReturnState extends State<AssetReturn> {
             ),
             FutureBuilder(
               future: updateTableResponse,
-              builder: (BuildContext context, AsyncSnapshot<AssetIssueResponse> snapshot){
-                if(snapshot.hasData) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<AssetIssueResponse> snapshot) {
+                if (snapshot.hasData) {
                   AssetIssueResponse _myResponseData = snapshot.data;
 
                   List<AssetIssueModel> filterData = List();
 
-                  for(AssetIssueModel assetIssueModel in _myResponseData.data) {
-                    if(assetIssueModel.issue == 1)
+                  for (AssetIssueModel assetIssueModel
+                      in _myResponseData.data) {
+                    if (assetIssueModel.issue == 1)
                       filterData.add(assetIssueModel);
                   }
 
@@ -224,7 +227,10 @@ class _AssetReturnState extends State<AssetReturn> {
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (filterData.length < 10 && filterData.length > 0) ? filterData.length : _rowsPerPage,
+                    rowsPerPage:
+                        (filterData.length < 10 && filterData.length > 0)
+                            ? filterData.length
+                            : _rowsPerPage,
                     onSelectAll: _assetIssueDataSource.selectAll,
                     header: Text(""),
                     columns: [
@@ -232,54 +238,54 @@ class _AssetReturnState extends State<AssetReturn> {
                         label: new Text(
                           "Issue No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Issue Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee ID",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Issued by ID",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Issued by Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -315,54 +321,54 @@ class _AssetReturnState extends State<AssetReturn> {
                             label: new Text(
                               "Issue No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Issue Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee ID",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Issued by ID",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Issued by Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -399,7 +405,7 @@ class _AssetReturnState extends State<AssetReturn> {
       actions: <Widget>[
         FlatButton(
           onPressed: () async {
-            if(issueDateController.text == "") {
+            if (issueDateController.text == "") {
               Fluttertoast.showToast(
                 msg: "Please enter the issue date",
                 toastLength: Toast.LENGTH_LONG,
@@ -408,28 +414,26 @@ class _AssetReturnState extends State<AssetReturn> {
             } else {
               Navigator.pop(context);
               AssetIssueResponse assetIssueResponse =
-              await _apiInterface2.assetIssueResponseData(
-                      AssetIssueRequest(
-                        action: 2,
-                        issueNo: issueNoController.text,
-                        issueDate: issueDateController.text,
-                        employeeId: selectedEmp,
-                        employeeName: empNameController.text,
-                        requestedBy: selectedIssuedBy,
-                        requestedByName: issuedByNameController.text,
-                        issue: 0,
-                        retun: 1,
-                      )
-              );
+                  await _apiInterface2.assetIssueResponseData(AssetIssueRequest(
+                action: 2,
+                issueNo: issueNoController.text,
+                issueDate: issueDateController.text,
+                employeeId: selectedEmp,
+                employeeName: empNameController.text,
+                requestedBy: selectedIssuedBy,
+                requestedByName: issuedByNameController.text,
+                issue: 0,
+                retun: 1,
+              ));
 
-              if(assetIssueResponse.status) {
+              if (assetIssueResponse.status) {
                 AssetIssueRequest assetIssueRequest = AssetIssueRequest(
                   action: 1,
                   retun: 1,
                 );
                 setState(() {
                   updateTableResponse =
-                          _apiInterface1.assetIssueResponseData(assetIssueRequest);
+                      _apiInterface1.assetIssueResponseData(assetIssueRequest);
                 });
               }
               Fluttertoast.showToast(
@@ -445,25 +449,27 @@ class _AssetReturnState extends State<AssetReturn> {
                 },
               );*/
 
-              for(AssetIssueSubformModel assetIssueSubformModel in dataSubform) {
+              for (AssetIssueSubformModel assetIssueSubformModel
+                  in dataSubform) {
                 AssetIssueSubformResponse assetIssueSubformResponse =
-                await _apiInterface6.assetIssueSubformResponseData(
-                        AssetIssueSubformRequest(
-                          action: 2,
-                          issueNo: issueNoController.text,
-                          assetNo: selectedAssetNo,
-                          assetName: assetIssueSubformModel.assetName,
-                          assetType: assetIssueSubformModel.assetType,
-                          value: assetIssueSubformModel.value.toString(),
-                          owner: assetIssueSubformModel.owner,
-                          ownerName: assetIssueSubformModel.ownerName,
-                          manufacturer: assetIssueSubformModel.manufacturar,
-                          model: assetIssueSubformModel.model,
-                          currentAssetLocation: assetIssueSubformModel.currentAssetLocation,
-                          postedPurchaseOrder: assetIssueSubformModel.postedPurchaseOrderNo,
-                        )
-                );
-                if(!assetIssueSubformResponse.status){
+                    await _apiInterface6
+                        .assetIssueSubformResponseData(AssetIssueSubformRequest(
+                  action: 2,
+                  issueNo: issueNoController.text,
+                  assetNo: selectedAssetNo,
+                  assetName: assetIssueSubformModel.assetName,
+                  assetType: assetIssueSubformModel.assetType,
+                  value: assetIssueSubformModel.value.toString(),
+                  owner: assetIssueSubformModel.owner,
+                  ownerName: assetIssueSubformModel.ownerName,
+                  manufacturer: assetIssueSubformModel.manufacturar,
+                  model: assetIssueSubformModel.model,
+                  currentAssetLocation:
+                      assetIssueSubformModel.currentAssetLocation,
+                  postedPurchaseOrder:
+                      assetIssueSubformModel.postedPurchaseOrderNo,
+                ));
+                if (!assetIssueSubformResponse.status) {
                   Fluttertoast.showToast(
                     msg: "Subform insertion failed",
                     toastLength: Toast.LENGTH_LONG,
@@ -483,10 +489,13 @@ class _AssetReturnState extends State<AssetReturn> {
         ),
       ],
     );
-    showDialog(context: context, builder: (BuildContext context) {
-      return alert;
-    });
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
   }
+
   void onEditPress(BuildContext context) {
     editClicked = true;
 
@@ -502,7 +511,8 @@ class _AssetReturnState extends State<AssetReturn> {
         actions: <Widget>[
           FlatButton(
             onPressed: () async {
-              if (issueDateController.text == ""/* || (postCheck == 1 && (assetIssueStatus[assetNo.indexOf(selectedAssetNo)]) == "1")*/) {
+              if (issueDateController.text ==
+                  "" /* || (postCheck == 1 && (assetIssueStatus[assetNo.indexOf(selectedAssetNo)]) == "1")*/) {
                 Fluttertoast.showToast(
                   msg: "One or more blank entries",
                   toastLength: Toast.LENGTH_LONG,
@@ -514,13 +524,12 @@ class _AssetReturnState extends State<AssetReturn> {
                   editClicked = false;
                 });
 
-                if(postCheck == 1){
-                  AssetIssueResponse assetIssueResponse =
-                  await _apiInterface2.assetIssueResponseData(
-                          AssetIssueRequest(
-                            action: 4,
-                            issueNo: issueNoController.text,
-                          ));
+                if (postCheck == 1) {
+                  AssetIssueResponse assetIssueResponse = await _apiInterface2
+                      .assetIssueResponseData(AssetIssueRequest(
+                    action: 4,
+                    issueNo: issueNoController.text,
+                  ));
 
                   if (assetIssueResponse.status) {
                     AssetIssueRequest assetIssueRequest = AssetIssueRequest(
@@ -528,25 +537,23 @@ class _AssetReturnState extends State<AssetReturn> {
                       retun: 1,
                     );
                     setState(() {
-                      updateTableResponse =
-                              _apiInterface1.assetIssueResponseData(
-                                      assetIssueRequest);
+                      updateTableResponse = _apiInterface1
+                          .assetIssueResponseData(assetIssueRequest);
                     });
                   }
                 } else {
-                  AssetIssueResponse assetIssueResponse =
-                  await _apiInterface2.assetIssueResponseData(
-                          AssetIssueRequest(
-                            action: 3,
-                            issueNo: issueNoController.text,
-                            issueDate: issueDateController.text,
-                            employeeId: selectedEmp,
-                            employeeName: empNameController.text,
-                            requestedBy: selectedIssuedBy,
-                            requestedByName: issuedByNameController.text,
-                            issue: 0,
-                            retun: 1,
-                          ));
+                  AssetIssueResponse assetIssueResponse = await _apiInterface2
+                      .assetIssueResponseData(AssetIssueRequest(
+                    action: 3,
+                    issueNo: issueNoController.text,
+                    issueDate: issueDateController.text,
+                    employeeId: selectedEmp,
+                    employeeName: empNameController.text,
+                    requestedBy: selectedIssuedBy,
+                    requestedByName: issuedByNameController.text,
+                    issue: 0,
+                    retun: 1,
+                  ));
 
                   if (assetIssueResponse.status) {
                     AssetIssueRequest assetIssueRequest = AssetIssueRequest(
@@ -554,9 +561,8 @@ class _AssetReturnState extends State<AssetReturn> {
                       retun: 1,
                     );
                     setState(() {
-                      updateTableResponse =
-                              _apiInterface1.assetIssueResponseData(
-                                      assetIssueRequest);
+                      updateTableResponse = _apiInterface1
+                          .assetIssueResponseData(assetIssueRequest);
                     });
                   }
                   Fluttertoast.showToast(
@@ -574,46 +580,47 @@ class _AssetReturnState extends State<AssetReturn> {
                   );*/
                 }
 
-                for(AssetIssueSubformModel assetIssueSubformModel in dataSubform) {
+                for (AssetIssueSubformModel assetIssueSubformModel
+                    in dataSubform) {
                   AssetIssueSubformResponse assetIssueSubformResponse =
-                  await _apiInterface6.assetIssueSubformResponseData(
+                      await _apiInterface6.assetIssueSubformResponseData(
                           AssetIssueSubformRequest(
-                            action: 2,
-                            issueNo: issueNoController.text,
-                            lineNo: assetIssueSubformModel.lineNo.toString(),
-                            assetNo: selectedAssetNo,
-                            assetName: assetIssueSubformModel.assetName,
-                            assetType: assetIssueSubformModel.assetType,
-                            value: assetIssueSubformModel.value.toString(),
-                            owner: assetIssueSubformModel.owner,
-                            ownerName: assetIssueSubformModel.ownerName,
-                            manufacturer: assetIssueSubformModel.manufacturar,
-                            model: assetIssueSubformModel.model,
-                            currentAssetLocation: assetIssueSubformModel.currentAssetLocation,
-                            postedPurchaseOrder: assetIssueSubformModel.postedPurchaseOrderNo,
-                          )
-                  );
-                  if(postCheck == 1) {
+                    action: 2,
+                    issueNo: issueNoController.text,
+                    lineNo: assetIssueSubformModel.lineNo.toString(),
+                    assetNo: selectedAssetNo,
+                    assetName: assetIssueSubformModel.assetName,
+                    assetType: assetIssueSubformModel.assetType,
+                    value: assetIssueSubformModel.value.toString(),
+                    owner: assetIssueSubformModel.owner,
+                    ownerName: assetIssueSubformModel.ownerName,
+                    manufacturer: assetIssueSubformModel.manufacturar,
+                    model: assetIssueSubformModel.model,
+                    currentAssetLocation:
+                        assetIssueSubformModel.currentAssetLocation,
+                    postedPurchaseOrder:
+                        assetIssueSubformModel.postedPurchaseOrderNo,
+                  ));
+                  if (postCheck == 1) {
                     IssueReturnLedgerResponse issueReturnLedgerResponse =
-                    await _apiInterface3.issueReturnLedgerResponseData(
+                        await _apiInterface3.issueReturnLedgerResponseData(
                             IssueReturnLedgerRequest(
-                              action: 2,
-                              issueDate: issueDateController.text,
-                              issueNo: issueNoController.text,
-                              lineNo: assetIssueSubformModel.lineNo,
-                            )
-                    );
+                      action: 2,
+                      issueDate: issueDateController.text,
+                      issueNo: issueNoController.text,
+                      lineNo: assetIssueSubformModel.lineNo,
+                    ));
                   }
                 }
-                for(AssetIssueSubformModel trainingActSubMod in deleteEntries) {
+                for (AssetIssueSubformModel trainingActSubMod
+                    in deleteEntries) {
                   AssetIssueSubformResponse trainingActSubformResponse =
-                  await _apiInterface8.assetIssueSubformResponseData(
+                      await _apiInterface8.assetIssueSubformResponseData(
                           AssetIssueSubformRequest(
-                            action: 4,
-                            issueNo: issueNoController.text,
-                            lineNo: trainingActSubMod.lineNo.toString(),
-                          )
-                  );
+                    action: 4,
+                    issueNo: issueNoController.text,
+                    lineNo: trainingActSubMod.lineNo.toString(),
+                  ));
                 }
               }
             },
@@ -659,8 +666,8 @@ class _AssetReturnState extends State<AssetReturn> {
         },
       );
     }
-
   }
+
   void onRemovePress(BuildContext context) {
     var issueNo = AssetIssueDataSource.selectedRowData.issueNo;
     if (_assetIssueDataSource.rowSelect) {
@@ -671,11 +678,10 @@ class _AssetReturnState extends State<AssetReturn> {
             onPressed: () async {
               Navigator.pop(context);
               AssetIssueResponse assetIssueResponse =
-              await _apiInterface2.assetIssueResponseData(
-                      AssetIssueRequest(
-                        action: 4,
-                        issueNo: issueNo,
-                      ));
+                  await _apiInterface2.assetIssueResponseData(AssetIssueRequest(
+                action: 4,
+                issueNo: issueNo,
+              ));
 
               if (assetIssueResponse.status) {
                 AssetIssueRequest assetIssueRequest = AssetIssueRequest(
@@ -684,7 +690,7 @@ class _AssetReturnState extends State<AssetReturn> {
                 );
                 setState(() {
                   updateTableResponse =
-                          _apiInterface1.assetIssueResponseData(assetIssueRequest);
+                      _apiInterface1.assetIssueResponseData(assetIssueRequest);
                 });
               }
 
@@ -703,26 +709,24 @@ class _AssetReturnState extends State<AssetReturn> {
               );*/
 
               AssetIssueSubformResponse assetIssueSubformResponse =
-              await _apiInterface7.assetIssueSubformResponseData(
-                      AssetIssueSubformRequest(
-                        action: 1,
-                        issueNo: issueNo,
-                      )
-              );
+                  await _apiInterface7
+                      .assetIssueSubformResponseData(AssetIssueSubformRequest(
+                action: 1,
+                issueNo: issueNo,
+              ));
 
-              if(assetIssueSubformResponse.status){
-                for(AssetIssueSubformModel assetIssueSubMod in assetIssueSubformResponse.data) {
+              if (assetIssueSubformResponse.status) {
+                for (AssetIssueSubformModel assetIssueSubMod
+                    in assetIssueSubformResponse.data) {
                   AssetIssueSubformResponse assetIssueSubformResponse =
-                  await _apiInterface6.assetIssueSubformResponseData(
+                      await _apiInterface6.assetIssueSubformResponseData(
                           AssetIssueSubformRequest(
-                            action: 4,
-                            issueNo: issueNo,
-                            lineNo: assetIssueSubMod.lineNo.toString(),
-                          )
-                  );
+                    action: 4,
+                    issueNo: issueNo,
+                    lineNo: assetIssueSubMod.lineNo.toString(),
+                  ));
                 }
               }
-
             },
             child: Text("Yes"),
           ),
@@ -768,12 +772,12 @@ class DialogContent extends StatefulWidget {
 }
 
 class _DialogContentState extends State<DialogContent> {
-
   ApiInterface _apiInterface4 = ApiInterface();
   ApiInterface _apiInterface5 = ApiInterface();
 
   static List<AssetIssueSubformModel> dupCurrSubformData = List();
-  AssetIssueSubformDataSource _assetIssueSubformDataSource = AssetIssueSubformDataSource(dupCurrSubformData);
+  AssetIssueSubformDataSource _assetIssueSubformDataSource =
+      AssetIssueSubformDataSource(dupCurrSubformData);
 
   Widget iconWidgetDown = Icon(Icons.keyboard_arrow_down);
   Widget iconWidgetUp = Icon(Icons.keyboard_arrow_up);
@@ -786,21 +790,27 @@ class _DialogContentState extends State<DialogContent> {
 
   int _rowsPerPage = 2;
 
-  void getIssueNo() async{
-    NoSeriesResponse issueNoResponse = await _apiInterface5.issueNoReasponseData();
+  var formatter = new DateFormat('MM/dd/yyyy');
+
+  DateTime issueDate = DateTime.now();
+
+  void getIssueNo() async {
+    NoSeriesResponse issueNoResponse =
+        await _apiInterface5.issueNoReasponseData();
 
     _AssetReturnState.issueNoController.text = issueNoResponse.message;
   }
 
-  void getSubformData() async{
-    AssetIssueSubformResponse _mySubformResponse =
-    await _apiInterface4.assetIssueSubformResponseData(
-            AssetIssueSubformRequest(
-              action: 1,
-              issueNo: _AssetReturnState.editClicked ? AssetIssueDataSource.selectedRowData.issueNo : "",
-            )
-    );
-    _assetIssueSubformDataSource = AssetIssueSubformDataSource(_mySubformResponse.data);
+  void getSubformData() async {
+    AssetIssueSubformResponse _mySubformResponse = await _apiInterface4
+        .assetIssueSubformResponseData(AssetIssueSubformRequest(
+      action: 1,
+      issueNo: _AssetReturnState.editClicked
+          ? AssetIssueDataSource.selectedRowData.issueNo
+          : "",
+    ));
+    _assetIssueSubformDataSource =
+        AssetIssueSubformDataSource(_mySubformResponse.data);
     _rowsPerPage = _mySubformResponse.data.length + 2;
 
     _AssetReturnState.dataSubform = _mySubformResponse.data;
@@ -810,24 +820,36 @@ class _DialogContentState extends State<DialogContent> {
   void initState() {
     super.initState();
     setState(() {
-      if(_AssetReturnState.editClicked)
-        _AssetReturnState.issueNoController.text = AssetIssueDataSource.selectedRowData.issueNo;
+      if (_AssetReturnState.editClicked)
+        _AssetReturnState.issueNoController.text =
+            AssetIssueDataSource.selectedRowData.issueNo;
       else
         getIssueNo();
 
-      _AssetReturnState.issueDateController.text = _AssetReturnState.editClicked ? AssetIssueDataSource.selectedRowData.issueDate : "";
-      _AssetReturnState.selectedEmp = _AssetReturnState.editClicked ? AssetIssueDataSource.selectedRowData.employeeNo : _AssetReturnState.empNo[0];
-      _AssetReturnState.empNameController.text = _AssetReturnState.editClicked ? AssetIssueDataSource.selectedRowData.employeeName : _AssetReturnState.empName[_AssetReturnState.empNo.indexOf(_AssetReturnState.selectedEmp)];
-      _AssetReturnState.selectedIssuedBy = _AssetReturnState.editClicked ? AssetIssueDataSource.selectedRowData.issuedBy : _AssetReturnState.empNo[0];
-      _AssetReturnState.issuedByNameController.text = _AssetReturnState.editClicked ? AssetIssueDataSource.selectedRowData.issuedByName : _AssetReturnState.empName[_AssetReturnState.empNo.indexOf(_AssetReturnState.selectedIssuedBy)];
+      _AssetReturnState.issueDateController.text = _AssetReturnState.editClicked
+          ? AssetIssueDataSource.selectedRowData.issueDate
+          : "";
+      _AssetReturnState.selectedEmp = _AssetReturnState.editClicked
+          ? AssetIssueDataSource.selectedRowData.employeeNo
+          : _AssetReturnState.empNo[0];
+      _AssetReturnState.empNameController.text = _AssetReturnState.editClicked
+          ? AssetIssueDataSource.selectedRowData.employeeName
+          : _AssetReturnState.empName[
+              _AssetReturnState.empNo.indexOf(_AssetReturnState.selectedEmp)];
+      _AssetReturnState.selectedIssuedBy = _AssetReturnState.editClicked
+          ? AssetIssueDataSource.selectedRowData.issuedBy
+          : _AssetReturnState.empNo[0];
+      _AssetReturnState.issuedByNameController.text =
+          _AssetReturnState.editClicked
+              ? AssetIssueDataSource.selectedRowData.issuedByName
+              : _AssetReturnState.empName[_AssetReturnState.empNo
+                  .indexOf(_AssetReturnState.selectedIssuedBy)];
 
+      if(_AssetReturnState.editClicked)
+        issueDate = DateFormat("yyyy-MM-dd").parse(_AssetReturnState.issueDateController.text);
       getSubformData();
     });
   }
-
-  var formatter = new DateFormat('MM/dd/yyyy');
-
-  DateTime issueDate = DateTime.now();
 
   Future<Null> _selectIssueDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -839,7 +861,8 @@ class _DialogContentState extends State<DialogContent> {
     if (picked != null)
       setState(() {
         issueDate = picked;
-        _AssetReturnState.issueDateController.text = formatter.format(issueDate);
+        _AssetReturnState.issueDateController.text =
+            formatter.format(issueDate);
       });
   }
 
@@ -854,19 +877,21 @@ class _DialogContentState extends State<DialogContent> {
                 FlatButton(
                   onPressed: () {
                     var alert = AlertDialog(
-                      content:
-                      Text("Are you sure you want to post the document for issuing asset?"),
+                      content: Text(
+                          "Are you sure you want to post the document for issuing asset?"),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
                             setState(() {
-                              if(_AssetReturnState.postCheck == 0 && _AssetReturnState.dataSubform.length > 0) {
+                              if (_AssetReturnState.postCheck == 0 &&
+                                  _AssetReturnState.dataSubform.length > 0) {
                                 _AssetReturnState.postCheck = 1;
                               } else {
-                                if(_AssetReturnState.dataSubform.length <= 0) {
+                                if (_AssetReturnState.dataSubform.length <= 0) {
                                   Fluttertoast.showToast(
-                                    msg: "Please select the asset to be returned, using Subform",
+                                    msg:
+                                        "Please select the asset to be returned, using Subform",
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.CENTER,
                                   );
@@ -878,7 +903,6 @@ class _DialogContentState extends State<DialogContent> {
                                   );
                                 }
                               }
-
                             });
                           },
                           child: Text("Yes"),
@@ -900,7 +924,10 @@ class _DialogContentState extends State<DialogContent> {
                   },
                   child: Row(
                     children: <Widget>[
-                      Icon(Icons.add, color: Colors.green,),
+                      Icon(
+                        Icons.add,
+                        color: Colors.green,
+                      ),
                       Text("Post")
                     ],
                   ),
@@ -909,18 +936,18 @@ class _DialogContentState extends State<DialogContent> {
             ),
             visible: _AssetReturnState.editClicked,
           ),
-
           ListTile(
             title: Text("General"),
             trailing: generalClick ? iconWidgetUp : iconWidgetDown,
             onTap: () {
               setState(() {
                 generalClick = !generalClick;
-                subformClick ? subformClick = !subformClick : subformClick = subformClick;
+                subformClick
+                    ? subformClick = !subformClick
+                    : subformClick = subformClick;
               });
             },
           ),
-
           Visibility(
             child: Container(
               child: Column(
@@ -944,7 +971,6 @@ class _DialogContentState extends State<DialogContent> {
                     },
                     enabled: _AssetReturnState.textFieldEnableStatus,
                   ),
-
                   Padding(padding: EdgeInsets.all(5)),
                   Row(
                     children: <Widget>[
@@ -969,7 +995,8 @@ class _DialogContentState extends State<DialogContent> {
                             setState(() {
                               _AssetReturnState.selectedEmp = newValue;
                               _AssetReturnState.empNameController.text =
-                              _AssetReturnState.empName[_AssetReturnState.empNo
+                                  _AssetReturnState.empName[_AssetReturnState
+                                      .empNo
                                       .indexOf(_AssetReturnState.selectedEmp)];
                             });
                           },
@@ -978,7 +1005,6 @@ class _DialogContentState extends State<DialogContent> {
                       )
                     ],
                   ),
-
                   TextField(
                     controller: _AssetReturnState.empNameController,
                     decoration: InputDecoration(
@@ -986,7 +1012,6 @@ class _DialogContentState extends State<DialogContent> {
                     ),
                     enabled: false,
                   ),
-
                   Padding(padding: EdgeInsets.all(5)),
                   Row(
                     children: <Widget>[
@@ -1011,8 +1036,9 @@ class _DialogContentState extends State<DialogContent> {
                             setState(() {
                               _AssetReturnState.selectedIssuedBy = newValue;
                               _AssetReturnState.empNameController.text =
-                              _AssetReturnState.empName[_AssetReturnState.empNo
-                                      .indexOf(_AssetReturnState.selectedIssuedBy)];
+                                  _AssetReturnState.empName[
+                                      _AssetReturnState.empNo.indexOf(
+                                          _AssetReturnState.selectedIssuedBy)];
                             });
                           },
                         ),
@@ -1020,7 +1046,6 @@ class _DialogContentState extends State<DialogContent> {
                       )
                     ],
                   ),
-
                   TextField(
                     controller: _AssetReturnState.issuedByNameController,
                     decoration: InputDecoration(
@@ -1033,18 +1058,18 @@ class _DialogContentState extends State<DialogContent> {
             ),
             visible: generalClick,
           ),
-
           ListTile(
             title: Text("Subform"),
             trailing: subformClick ? iconWidgetUp : iconWidgetDown,
             onTap: () {
               setState(() {
                 subformClick = !subformClick;
-                generalClick ? generalClick = !generalClick : generalClick = generalClick;
+                generalClick
+                    ? generalClick = !generalClick
+                    : generalClick = generalClick;
               });
             },
           ),
-
           Visibility(
             child: Container(
               child: Column(
@@ -1078,7 +1103,8 @@ class _DialogContentState extends State<DialogContent> {
                                   color: Colors.red,
                                 ),
                               ),
-                              new Padding(padding: new EdgeInsets.only(left: 5)),
+                              new Padding(
+                                  padding: new EdgeInsets.only(left: 5)),
                               Expanded(
                                 child: FlatButton(
                                   onPressed: () {
@@ -1100,7 +1126,8 @@ class _DialogContentState extends State<DialogContent> {
                                   color: Colors.red,
                                 ),
                               ),
-                              new Padding(padding: new EdgeInsets.only(left: 5)),
+                              new Padding(
+                                  padding: new EdgeInsets.only(left: 5)),
                               Expanded(
                                 child: FlatButton(
                                   onPressed: () {
@@ -1128,7 +1155,6 @@ class _DialogContentState extends State<DialogContent> {
                       ],
                     ),
                   ),
-
                   Center(
                     child: PaginatedDataTable(
                       columnSpacing: 15,
@@ -1143,90 +1169,90 @@ class _DialogContentState extends State<DialogContent> {
                           label: new Text(
                             "Asset Type",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Asset No.",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Asset Name",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Owner",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Value",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Manufacturer",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Model",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Owner Name",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Current Asset Location",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Posted Pur Order No.",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                       ],
@@ -1259,17 +1285,18 @@ class _DialogContentState extends State<DialogContent> {
       content: SubformDialogContent(),
       actions: <Widget>[
         FlatButton(
-          onPressed: () async{
-            if(_AssetReturnState.valueController.text != "" || _AssetReturnState.postedPurOrderNoController.text != "" || _AssetReturnState.assetTypeController.text != "") {
+          onPressed: () async {
+            if (_AssetReturnState.valueController.text != "" ||
+                _AssetReturnState.postedPurOrderNoController.text != "" ||
+                _AssetReturnState.assetTypeController.text != "") {
               currSubformData = _AssetReturnState.dataSubform;
 
-              if(currSubformData.length > 0) {
-
+              if (currSubformData.length > 0) {
                 int duplicateCheck = 0;
 
-                for(AssetIssueSubformModel subformModel in currSubformData) {
-
-                  if(subformModel.assetNo == _AssetReturnState.selectedAssetNo) {
+                for (AssetIssueSubformModel subformModel in currSubformData) {
+                  if (subformModel.assetNo ==
+                      _AssetReturnState.selectedAssetNo) {
                     Fluttertoast.showToast(
                       msg: "Duplicate entry not allowed",
                       toastLength: Toast.LENGTH_LONG,
@@ -1280,7 +1307,7 @@ class _DialogContentState extends State<DialogContent> {
                   }
                 }
 
-                if(duplicateCheck == 0) {
+                if (duplicateCheck == 0) {
                   currSubformData.add(AssetIssueSubformModel(
                     issueNo: _AssetReturnState.issueNoController.text,
                     assetNo: _AssetReturnState.selectedAssetNo,
@@ -1291,17 +1318,19 @@ class _DialogContentState extends State<DialogContent> {
                     ownerName: _AssetReturnState.ownerNameController.text,
                     manufacturar: _AssetReturnState.manufacturerController.text,
                     model: _AssetReturnState.modelController.text,
-                    currentAssetLocation: _AssetReturnState.currAssetLocController.text,
-                    postedPurchaseOrderNo: _AssetReturnState.postedPurOrderNoController.text,
+                    currentAssetLocation:
+                        _AssetReturnState.currAssetLocController.text,
+                    postedPurchaseOrderNo:
+                        _AssetReturnState.postedPurOrderNoController.text,
                   ));
                   setState(() {
                     _AssetReturnState.dataSubform = currSubformData;
-                    _assetIssueSubformDataSource = AssetIssueSubformDataSource(currSubformData);
+                    _assetIssueSubformDataSource =
+                        AssetIssueSubformDataSource(currSubformData);
                     _rowsPerPage = _AssetReturnState.dataSubform.length + 2;
                   });
                   Navigator.pop(context);
                 }
-
               } else {
                 Navigator.pop(context);
                 currSubformData.add(AssetIssueSubformModel(
@@ -1314,12 +1343,15 @@ class _DialogContentState extends State<DialogContent> {
                   ownerName: _AssetReturnState.ownerNameController.text,
                   manufacturar: _AssetReturnState.manufacturerController.text,
                   model: _AssetReturnState.modelController.text,
-                  currentAssetLocation: _AssetReturnState.currAssetLocController.text,
-                  postedPurchaseOrderNo: _AssetReturnState.postedPurOrderNoController.text,
+                  currentAssetLocation:
+                      _AssetReturnState.currAssetLocController.text,
+                  postedPurchaseOrderNo:
+                      _AssetReturnState.postedPurOrderNoController.text,
                 ));
                 setState(() {
                   _AssetReturnState.dataSubform = currSubformData;
-                  _assetIssueSubformDataSource = AssetIssueSubformDataSource(currSubformData);
+                  _assetIssueSubformDataSource =
+                      AssetIssueSubformDataSource(currSubformData);
                 });
               }
             } else {
@@ -1329,10 +1361,10 @@ class _DialogContentState extends State<DialogContent> {
                 gravity: ToastGravity.CENTER,
               );
             }
-
           },
           child: Text("Done"),
-        ),FlatButton(
+        ),
+        FlatButton(
           onPressed: () {
             Navigator.pop(context);
           },
@@ -1340,15 +1372,17 @@ class _DialogContentState extends State<DialogContent> {
         ),
       ],
     );
-    showDialog(context: context, builder: (BuildContext context) {
-      return alert;
-    });
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
   }
+
   void onSubformEditPress(BuildContext context) {
     subformEditClicked = true;
 
-    if(_assetIssueSubformDataSource.rowSelect) {
-
+    if (_assetIssueSubformDataSource.rowSelect) {
       var alert = AlertDialog(
         titlePadding: EdgeInsets.all(2),
         title: Center(
@@ -1359,22 +1393,25 @@ class _DialogContentState extends State<DialogContent> {
         actions: <Widget>[
           FlatButton(
             onPressed: () {
-              if (_AssetReturnState.valueController.text != "" || _AssetReturnState.postedPurOrderNoController.text != "" || _AssetReturnState.assetTypeController.text != "") {
+              if (_AssetReturnState.valueController.text != "" ||
+                  _AssetReturnState.postedPurOrderNoController.text != "" ||
+                  _AssetReturnState.assetTypeController.text != "") {
                 Fluttertoast.showToast(
                   msg: "Please enter the correct details",
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.CENTER,
                 );
-              }
-              else {
+              } else {
                 Navigator.pop(context);
                 setState(() {
                   _AssetReturnState
                           .dataSubform[_assetIssueSubformDataSource.selectedRow]
-                          .value = double.parse(_AssetReturnState.valueController.text);
+                          .value =
+                      double.parse(_AssetReturnState.valueController.text);
                   _AssetReturnState
                           .dataSubform[_assetIssueSubformDataSource.selectedRow]
-                          .postedPurchaseOrderNo = _AssetReturnState.postedPurOrderNoController.text;
+                          .postedPurchaseOrderNo =
+                      _AssetReturnState.postedPurOrderNoController.text;
                   subformEditClicked = false;
                 });
               }
@@ -1400,31 +1437,34 @@ class _DialogContentState extends State<DialogContent> {
       );
     }
   }
-  void onSubformRemovePress(BuildContext context) {
-    if(_assetIssueSubformDataSource.rowSelect) {
-      setState(() {
-        _AssetReturnState.dataSubform.removeAt(_assetIssueSubformDataSource.selectedRow);
-        _assetIssueSubformDataSource = AssetIssueSubformDataSource(_AssetReturnState.dataSubform);
 
-        currDeleteEntry.add(
-                AssetIssueSubformModel(
-                  issueNo: AssetIssueSubformDataSource.selectedRowData.issueNo,
-                  lineNo: AssetIssueSubformDataSource.selectedRowData.lineNo,
-                  assetNo: AssetIssueSubformDataSource.selectedRowData.assetNo,
-                  assetName: AssetIssueSubformDataSource.selectedRowData.assetName,
-                  assetType: AssetIssueSubformDataSource.selectedRowData.assetType,
-                  owner: AssetIssueSubformDataSource.selectedRowData.owner,
-                  ownerName: AssetIssueSubformDataSource.selectedRowData.ownerName,
-                  value: AssetIssueSubformDataSource.selectedRowData.value,
-                  manufacturar: AssetIssueSubformDataSource.selectedRowData.manufacturar,
-                  model: AssetIssueSubformDataSource.selectedRowData.model,
-                  currentAssetLocation: AssetIssueSubformDataSource.selectedRowData.currentAssetLocation,
-                  postedPurchaseOrderNo: AssetIssueSubformDataSource.selectedRowData.postedPurchaseOrderNo,
-                )
-        );
+  void onSubformRemovePress(BuildContext context) {
+    if (_assetIssueSubformDataSource.rowSelect) {
+      setState(() {
+        _AssetReturnState.dataSubform
+            .removeAt(_assetIssueSubformDataSource.selectedRow);
+        _assetIssueSubformDataSource =
+            AssetIssueSubformDataSource(_AssetReturnState.dataSubform);
+
+        currDeleteEntry.add(AssetIssueSubformModel(
+          issueNo: AssetIssueSubformDataSource.selectedRowData.issueNo,
+          lineNo: AssetIssueSubformDataSource.selectedRowData.lineNo,
+          assetNo: AssetIssueSubformDataSource.selectedRowData.assetNo,
+          assetName: AssetIssueSubformDataSource.selectedRowData.assetName,
+          assetType: AssetIssueSubformDataSource.selectedRowData.assetType,
+          owner: AssetIssueSubformDataSource.selectedRowData.owner,
+          ownerName: AssetIssueSubformDataSource.selectedRowData.ownerName,
+          value: AssetIssueSubformDataSource.selectedRowData.value,
+          manufacturar:
+              AssetIssueSubformDataSource.selectedRowData.manufacturar,
+          model: AssetIssueSubformDataSource.selectedRowData.model,
+          currentAssetLocation:
+              AssetIssueSubformDataSource.selectedRowData.currentAssetLocation,
+          postedPurchaseOrderNo:
+              AssetIssueSubformDataSource.selectedRowData.postedPurchaseOrderNo,
+        ));
 
         _AssetReturnState.deleteEntries = currDeleteEntry;
-
       });
     } else {
       var alert = AlertDialog(
@@ -1454,21 +1494,51 @@ class SubformDialogContent extends StatefulWidget {
 }
 
 class _SubformDialogContentState extends State<SubformDialogContent> {
-
   @override
   void initState() {
     super.initState();
     setState(() {
-      _AssetReturnState.selectedAssetNo = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.assetNo : _AssetReturnState.assetNo[0];
-      _AssetReturnState.assetNameController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.assetName : _AssetReturnState.assetName[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-      _AssetReturnState.assetTypeController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.assetType : _AssetReturnState.assetType[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-      _AssetReturnState.ownerController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.owner : _AssetReturnState.ownerValue[int.parse(_AssetReturnState.owner[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)])];
-      _AssetReturnState.valueController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.value : "";
-      _AssetReturnState.manufacturerController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.manufacturar : _AssetReturnState.manufacturar[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-      _AssetReturnState.modelController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.model : _AssetReturnState.model[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-      _AssetReturnState.ownerNameController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.ownerName : _AssetReturnState.ownerName[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-      _AssetReturnState.currAssetLocController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.currentAssetLocation : _AssetReturnState.currAssetLoc[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-      _AssetReturnState.postedPurOrderNoController.text = _AssetReturnState.editClicked ? AssetIssueSubformDataSource.selectedRowData.postedPurchaseOrderNo : "";
+      _AssetReturnState.selectedAssetNo = _AssetReturnState.editClicked
+          ? AssetIssueSubformDataSource.selectedRowData.assetNo
+          : _AssetReturnState.assetNo[0];
+      _AssetReturnState.assetNameController.text = _AssetReturnState.editClicked
+          ? AssetIssueSubformDataSource.selectedRowData.assetName
+          : _AssetReturnState.assetName[_AssetReturnState.assetNo
+              .indexOf(_AssetReturnState.selectedAssetNo)];
+      _AssetReturnState.assetTypeController.text = _AssetReturnState.editClicked
+          ? AssetIssueSubformDataSource.selectedRowData.assetType
+          : _AssetReturnState.assetType[_AssetReturnState.assetNo
+              .indexOf(_AssetReturnState.selectedAssetNo)];
+      _AssetReturnState.ownerController.text = _AssetReturnState.editClicked
+          ? AssetIssueSubformDataSource.selectedRowData.owner
+          : _AssetReturnState.ownerValue[int.parse(_AssetReturnState.owner[
+              _AssetReturnState.assetNo
+                  .indexOf(_AssetReturnState.selectedAssetNo)])];
+      _AssetReturnState.valueController.text = _AssetReturnState.editClicked
+          ? AssetIssueSubformDataSource.selectedRowData.value
+          : "";
+      _AssetReturnState.manufacturerController.text =
+          _AssetReturnState.editClicked
+              ? AssetIssueSubformDataSource.selectedRowData.manufacturar
+              : _AssetReturnState.manufacturar[_AssetReturnState.assetNo
+                  .indexOf(_AssetReturnState.selectedAssetNo)];
+      _AssetReturnState.modelController.text = _AssetReturnState.editClicked
+          ? AssetIssueSubformDataSource.selectedRowData.model
+          : _AssetReturnState.model[_AssetReturnState.assetNo
+              .indexOf(_AssetReturnState.selectedAssetNo)];
+      _AssetReturnState.ownerNameController.text = _AssetReturnState.editClicked
+          ? AssetIssueSubformDataSource.selectedRowData.ownerName
+          : _AssetReturnState.ownerName[_AssetReturnState.assetNo
+              .indexOf(_AssetReturnState.selectedAssetNo)];
+      _AssetReturnState.currAssetLocController.text =
+          _AssetReturnState.editClicked
+              ? AssetIssueSubformDataSource.selectedRowData.currentAssetLocation
+              : _AssetReturnState.currAssetLoc[_AssetReturnState.assetNo
+                  .indexOf(_AssetReturnState.selectedAssetNo)];
+      _AssetReturnState.postedPurOrderNoController.text = _AssetReturnState
+              .editClicked
+          ? AssetIssueSubformDataSource.selectedRowData.postedPurchaseOrderNo
+          : "";
     });
   }
 
@@ -1501,16 +1571,42 @@ class _SubformDialogContentState extends State<SubformDialogContent> {
                       setState(() {
                         _AssetReturnState.selectedAssetNo = newValue;
 
-                        for(int i = 0 ; i < _AssetReturnState.assetNo.length ; i ++) {
-                          if(_AssetReturnState.assetNo[i] == _AssetReturnState.selectedAssetNo) {
-                            if(_AssetReturnState.assetIssueStatus[i] == "0") {
-                              _AssetReturnState.assetNameController.text = _AssetReturnState.assetName[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-                              _AssetReturnState.assetTypeController.text = _AssetReturnState.assetType[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-                              _AssetReturnState.ownerController.text = _AssetReturnState.ownerValue[int.parse(_AssetReturnState.owner[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)])];
-                              _AssetReturnState.manufacturerController.text = _AssetReturnState.manufacturar[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-                              _AssetReturnState.modelController.text = _AssetReturnState.model[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-                              _AssetReturnState.ownerNameController.text = _AssetReturnState.ownerName[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
-                              _AssetReturnState.currAssetLocController.text = _AssetReturnState.currAssetLoc[_AssetReturnState.assetNo.indexOf(_AssetReturnState.selectedAssetNo)];
+                        for (int i = 0;
+                            i < _AssetReturnState.assetNo.length;
+                            i++) {
+                          if (_AssetReturnState.assetNo[i] ==
+                              _AssetReturnState.selectedAssetNo) {
+                            if (_AssetReturnState.assetIssueStatus[i] == "0") {
+                              _AssetReturnState.assetNameController.text =
+                                  _AssetReturnState.assetName[
+                                      _AssetReturnState.assetNo.indexOf(
+                                          _AssetReturnState.selectedAssetNo)];
+                              _AssetReturnState.assetTypeController.text =
+                                  _AssetReturnState.assetType[
+                                      _AssetReturnState.assetNo.indexOf(
+                                          _AssetReturnState.selectedAssetNo)];
+                              _AssetReturnState.ownerController.text =
+                                  _AssetReturnState
+                                      .ownerValue[int.parse(_AssetReturnState
+                                          .owner[
+                                      _AssetReturnState.assetNo.indexOf(
+                                          _AssetReturnState.selectedAssetNo)])];
+                              _AssetReturnState.manufacturerController.text =
+                                  _AssetReturnState.manufacturar[
+                                      _AssetReturnState.assetNo.indexOf(
+                                          _AssetReturnState.selectedAssetNo)];
+                              _AssetReturnState.modelController.text =
+                                  _AssetReturnState.model[
+                                      _AssetReturnState.assetNo.indexOf(
+                                          _AssetReturnState.selectedAssetNo)];
+                              _AssetReturnState.ownerNameController.text =
+                                  _AssetReturnState.ownerName[
+                                      _AssetReturnState.assetNo.indexOf(
+                                          _AssetReturnState.selectedAssetNo)];
+                              _AssetReturnState.currAssetLocController.text =
+                                  _AssetReturnState.currAssetLoc[
+                                      _AssetReturnState.assetNo.indexOf(
+                                          _AssetReturnState.selectedAssetNo)];
                             } else {
                               Fluttertoast.showToast(
                                 msg: "Asset is not issued select other",
@@ -1520,15 +1616,16 @@ class _SubformDialogContentState extends State<SubformDialogContent> {
                               _AssetReturnState.assetNameController.text = "";
                               _AssetReturnState.assetTypeController.text = "";
                               _AssetReturnState.ownerController.text = "";
-                              _AssetReturnState.manufacturerController.text = "";
+                              _AssetReturnState.manufacturerController.text =
+                                  "";
                               _AssetReturnState.modelController.text = "";
                               _AssetReturnState.ownerNameController.text = "";
-                              _AssetReturnState.currAssetLocController.text = "";
+                              _AssetReturnState.currAssetLocController.text =
+                                  "";
                             }
                             break;
                           }
                         }
-
                       });
                     },
                   ),

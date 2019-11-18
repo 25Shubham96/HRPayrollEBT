@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-AssetReqSubformResponse assetReqSubformResponseFromJson(String str) => AssetReqSubformResponse.fromJson(json.decode(str));
+AssetReqSubformResponse assetReqSubformResponseFromJson(String str) =>
+    AssetReqSubformResponse.fromJson(json.decode(str));
 
-String assetReqSubformResponseToJson(AssetReqSubformResponse data) => json.encode(data.toJson());
+String assetReqSubformResponseToJson(AssetReqSubformResponse data) =>
+    json.encode(data.toJson());
 
 class AssetReqSubformResponse {
   bool status;
@@ -15,17 +17,19 @@ class AssetReqSubformResponse {
     this.data,
   });
 
-  factory AssetReqSubformResponse.fromJson(Map<String, dynamic> json) => AssetReqSubformResponse(
-    status: json["status"],
-    message: json["message"],
-    data: List<AssetReqSubformModel>.from(json["data"].map((x) => AssetReqSubformModel.fromJson(x))),
-  );
+  factory AssetReqSubformResponse.fromJson(Map<String, dynamic> json) =>
+      AssetReqSubformResponse(
+        status: json["status"],
+        message: json["message"],
+        data: List<AssetReqSubformModel>.from(
+            json["data"].map((x) => AssetReqSubformModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class AssetReqSubformModel {
@@ -43,17 +47,18 @@ class AssetReqSubformModel {
     this.quantity,
   });
 
-  factory AssetReqSubformModel.fromJson(Map<String, dynamic> json) => AssetReqSubformModel(
-    requisitionNo: json["Requisition No_"],
-    lineNo: json["Line No_"],
-    assetType: json["Asset Type"],
-    quantity: json["Quantity"],
-  );
+  factory AssetReqSubformModel.fromJson(Map<String, dynamic> json) =>
+      AssetReqSubformModel(
+        requisitionNo: json["Requisition No_"],
+        lineNo: json["Line No_"],
+        assetType: json["Asset Type"],
+        quantity: json["Quantity"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "Requisition No_": requisitionNo,
-    "Line No_": lineNo,
-    "Asset Type": assetType,
-    "Quantity": quantity,
-  };
+        "Requisition No_": requisitionNo,
+        "Line No_": lineNo,
+        "Asset Type": assetType,
+        "Quantity": quantity,
+      };
 }

@@ -10,13 +10,13 @@ class IssueReturnLedger extends StatefulWidget {
 }
 
 class _IssueReturnLedgerState extends State<IssueReturnLedger> {
-
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   ApiInterface _apiInterface = ApiInterface();
 
   static List<IssueReturnLedgerModel> newdata = new List();
-  IssueReturnLedgerDataSource _issueReturnLedgerDataSource = IssueReturnLedgerDataSource(newdata);
+  IssueReturnLedgerDataSource _issueReturnLedgerDataSource =
+      IssueReturnLedgerDataSource(newdata);
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +36,13 @@ class _IssueReturnLedgerState extends State<IssueReturnLedger> {
               ),
             ),
             FutureBuilder(
-              future: _apiInterface.issueReturnLedgerResponseData(
-                  IssueReturnLedgerRequest(
-                    action: 1,
-                  )
-              ),
-              builder: (BuildContext context, AsyncSnapshot<IssueReturnLedgerResponse> snapshot) {
-                if(snapshot.hasData) {
+              future: _apiInterface
+                  .issueReturnLedgerResponseData(IssueReturnLedgerRequest(
+                action: 1,
+              )),
+              builder: (BuildContext context,
+                  AsyncSnapshot<IssueReturnLedgerResponse> snapshot) {
+                if (snapshot.hasData) {
                   IssueReturnLedgerResponse _myResponseData = snapshot.data;
                   _issueReturnLedgerDataSource =
                       IssueReturnLedgerDataSource(_myResponseData.data);
@@ -52,7 +52,10 @@ class _IssueReturnLedgerState extends State<IssueReturnLedger> {
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     header: Text(""),
                     columns: [
                       DataColumn(
@@ -220,23 +223,22 @@ class _IssueReturnLedgerState extends State<IssueReturnLedger> {
                     ],
                     source: _issueReturnLedgerDataSource,
                   );
-
                 } else {
                   return Column(
                     children: <Widget>[
                       Center(
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(15, 5, 5, 5),
-                              ),
-                              CircularProgressIndicator(),
-                              Padding(
-                                padding: EdgeInsets.all(5),
-                              ),
-                              Text("Loading please wait..."),
-                            ],
-                          ),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(15, 5, 5, 5),
+                            ),
+                            CircularProgressIndicator(),
+                            Padding(
+                              padding: EdgeInsets.all(5),
+                            ),
+                            Text("Loading please wait..."),
+                          ],
+                        ),
                       ),
                       PaginatedDataTable(
                         columnSpacing: 15,

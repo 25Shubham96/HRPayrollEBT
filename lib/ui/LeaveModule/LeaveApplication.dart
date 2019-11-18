@@ -30,10 +30,10 @@ class _LeaveApplicationState extends State<LeaveApplication> {
   static List<String> leaveDescription;
 
   static var selectedEmp = "",
-          selectedLeaveCode = "",
-          selectedLeaveDuration = "",
-          selectedStatus = "",
-          cancellationConfirm = false;
+      selectedLeaveCode = "",
+      selectedLeaveDuration = "",
+      selectedStatus = "",
+      cancellationConfirm = false;
 
   static TextEditingController empNameController = TextEditingController();
   static TextEditingController leaveDescripController = TextEditingController();
@@ -42,14 +42,14 @@ class _LeaveApplicationState extends State<LeaveApplication> {
   static TextEditingController totDaysController = TextEditingController();
   static TextEditingController leaveReasonController = TextEditingController();
   static TextEditingController contactDetailsController =
-  TextEditingController();
+      TextEditingController();
   static TextEditingController workingDayController = TextEditingController();
   static TextEditingController apprDateTimeController = TextEditingController();
   static TextEditingController rejectionCommentController =
-  TextEditingController();
+      TextEditingController();
   static TextEditingController applDateController = TextEditingController();
   static TextEditingController cancelCommentController =
-  TextEditingController();
+      TextEditingController();
 
   Future<LeaveApplicationResponse> updateTableResponse;
   ApiInterface _apiInterface1 = ApiInterface();
@@ -58,7 +58,7 @@ class _LeaveApplicationState extends State<LeaveApplication> {
 
   static List<LeaveApplicationModel> data = List();
   LeaveApplicationDataSource _leaveApplicationDataSource =
-  LeaveApplicationDataSource(data);
+      LeaveApplicationDataSource(data);
 
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
@@ -81,7 +81,7 @@ class _LeaveApplicationState extends State<LeaveApplication> {
     );
     setState(() {
       updateTableResponse =
-              _apiInterface1.leaveApplicationResponseData(leaveApplicationRequest);
+          _apiInterface1.leaveApplicationResponseData(leaveApplicationRequest);
     });
 
     getSharedPrefs();
@@ -101,9 +101,9 @@ class _LeaveApplicationState extends State<LeaveApplication> {
                     child: new Text(
                       "Leave Application List",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -184,18 +184,21 @@ class _LeaveApplicationState extends State<LeaveApplication> {
             FutureBuilder(
               future: updateTableResponse,
               builder: (BuildContext context,
-                      AsyncSnapshot<LeaveApplicationResponse> snapshot) {
+                  AsyncSnapshot<LeaveApplicationResponse> snapshot) {
                 if (snapshot.hasData) {
                   LeaveApplicationResponse _myResponseData = snapshot.data;
                   _leaveApplicationDataSource =
-                          LeaveApplicationDataSource(_myResponseData.data);
+                      LeaveApplicationDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _leaveApplicationDataSource.selectAll,
                     header: Text(""),
                     columns: [
@@ -203,144 +206,144 @@ class _LeaveApplicationState extends State<LeaveApplication> {
                         label: new Text(
                           "Document No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Leave Code",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Leave Description",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Leave Duration",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "From Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "To Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Total Days",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Leave Reason",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sanctioned",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Leave Avbl Ccy",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sanc Incharge",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sanc Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Cancellation Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -376,144 +379,144 @@ class _LeaveApplicationState extends State<LeaveApplication> {
                             label: new Text(
                               "Document No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Leave Code",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Leave Description",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Leave Duration",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "From Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "To Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Total Days",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Leave Reason",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sanctioned",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Leave Avbl Ccy",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sanc Incharge",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sanc Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Cancellation Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -551,10 +554,10 @@ class _LeaveApplicationState extends State<LeaveApplication> {
         FlatButton(
           onPressed: () async {
             if (fromDateController.text.isEmpty ||
-                    toDateController.text.isEmpty ||
-                    leaveReasonController.text.isEmpty ||
-                    contactDetailsController.text.isEmpty ||
-                    workingDayController.text.isEmpty) {
+                toDateController.text.isEmpty ||
+                leaveReasonController.text.isEmpty ||
+                contactDetailsController.text.isEmpty ||
+                workingDayController.text.isEmpty) {
               Fluttertoast.showToast(
                 msg: "One or more blank entries",
                 toastLength: Toast.LENGTH_LONG,
@@ -563,34 +566,33 @@ class _LeaveApplicationState extends State<LeaveApplication> {
             } else {
               Navigator.pop(context);
               LeaveApplicationResponse leaveApplicationResponse =
-              await _apiInterface2.leaveApplicationResponseData(
-                      LeaveApplicationRequest(
-                        action: 2,
-                        employeeNo: selectedEmp,
-                        employeeName: empNameController.text,
-                        leaveCode: selectedLeaveCode,
-                        leaveDescription: leaveDescripController.text,
-                        leaveDuration: leaveDuration.indexOf(selectedLeaveDuration),
-                        fromDate: fromDateController.text,
-                        toDate: toDateController.text,
-                        noDays: double.parse(totDaysController.text),
-                        reasonLeave: leaveReasonController.text,
-                        status: statusList.indexOf(selectedStatus),
-                        contactDetail: contactDetailsController.text,
-                        specifyWorkDay: workingDayController.text,
-                        cancelConfirm: cancellationConfirm,
-                        applicationDate: applDateController.text,
-                      ));
+                  await _apiInterface2
+                      .leaveApplicationResponseData(LeaveApplicationRequest(
+                action: 2,
+                employeeNo: selectedEmp,
+                employeeName: empNameController.text,
+                leaveCode: selectedLeaveCode,
+                leaveDescription: leaveDescripController.text,
+                leaveDuration: leaveDuration.indexOf(selectedLeaveDuration),
+                fromDate: fromDateController.text,
+                toDate: toDateController.text,
+                noDays: double.parse(totDaysController.text),
+                reasonLeave: leaveReasonController.text,
+                status: statusList.indexOf(selectedStatus),
+                contactDetail: contactDetailsController.text,
+                specifyWorkDay: workingDayController.text,
+                cancelConfirm: cancellationConfirm,
+                applicationDate: applDateController.text,
+              ));
 
               if (leaveApplicationResponse.status) {
                 LeaveApplicationRequest leaveApplicationRequest =
-                LeaveApplicationRequest(
+                    LeaveApplicationRequest(
                   action: 1,
                 );
                 setState(() {
-                  updateTableResponse =
-                          _apiInterface1.leaveApplicationResponseData(
-                                  leaveApplicationRequest);
+                  updateTableResponse = _apiInterface1
+                      .leaveApplicationResponseData(leaveApplicationRequest);
                 });
               }
 
@@ -633,17 +635,17 @@ class _LeaveApplicationState extends State<LeaveApplication> {
     editClicked = true;
 
     var documentNo =
-    LeaveApplicationDataSource.selectedRowData.documentNo.toString();
+        LeaveApplicationDataSource.selectedRowData.documentNo.toString();
 
     if (_leaveApplicationDataSource.rowSelect) {
       if (LeaveApplicationDataSource.selectedRowData.status == statusList[0] ||
-              LeaveApplicationDataSource.selectedRowData.status == statusList[1]) {
+          LeaveApplicationDataSource.selectedRowData.status == statusList[1]) {
         if (LeaveApplicationDataSource.selectedRowData.status ==
-                statusList[1]) {
+            statusList[1]) {
           textFieldEnableStatus = false;
           Fluttertoast.showToast(
             msg:
-            "Document is ${LeaveApplicationDataSource.selectedRowData.status} status and cannot be edited",
+                "Document is ${LeaveApplicationDataSource.selectedRowData.status} status and cannot be edited",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER,
           );
@@ -660,10 +662,10 @@ class _LeaveApplicationState extends State<LeaveApplication> {
             FlatButton(
               onPressed: () async {
                 if (fromDateController.text.isEmpty ||
-                        toDateController.text.isEmpty ||
-                        leaveReasonController.text.isEmpty ||
-                        contactDetailsController.text.isEmpty ||
-                        workingDayController.text.isEmpty) {
+                    toDateController.text.isEmpty ||
+                    leaveReasonController.text.isEmpty ||
+                    contactDetailsController.text.isEmpty ||
+                    workingDayController.text.isEmpty) {
                   Fluttertoast.showToast(
                     msg: "One or more blank entries",
                     toastLength: Toast.LENGTH_LONG,
@@ -675,27 +677,26 @@ class _LeaveApplicationState extends State<LeaveApplication> {
                     editClicked = false;
                   });
                   if (selectedStatus == statusList[4]) {
-                    RejCanPostResponse rejCanResponse =
-                    await _apiInterface3.leaveRejCanResponseData(
-                            LeaveApprovalRequest(
-                              action: "7",
-                              documentType: "1",
-                              sequenceNo: "0",
-                              senderId: selectedEmp,
-                              status: "4",
-                              fromDate: fromDateController.text,
-                              cancellationComment: cancelCommentController.text,
-                            ));
+                    RejCanPostResponse rejCanResponse = await _apiInterface3
+                        .leaveRejCanResponseData(LeaveApprovalRequest(
+                      action: "7",
+                      documentType: "1",
+                      sequenceNo: "0",
+                      senderId: selectedEmp,
+                      status: "4",
+                      fromDate: fromDateController.text,
+                      cancellationComment: cancelCommentController.text,
+                    ));
 
                     if (rejCanResponse.status) {
                       LeaveApplicationRequest leaveApplicationRequest =
-                      LeaveApplicationRequest(
+                          LeaveApplicationRequest(
                         action: 1,
                       );
                       setState(() {
                         updateTableResponse =
-                                _apiInterface1.leaveApplicationResponseData(
-                                        leaveApplicationRequest);
+                            _apiInterface1.leaveApplicationResponseData(
+                                leaveApplicationRequest);
                       });
                     }
 
@@ -715,36 +716,36 @@ class _LeaveApplicationState extends State<LeaveApplication> {
                     );*/
                   } else {
                     LeaveApplicationResponse leaveApplicationResponse =
-                    await _apiInterface2.leaveApplicationResponseData(
+                        await _apiInterface2.leaveApplicationResponseData(
                             LeaveApplicationRequest(
-                              action: 3,
-                              employeeNo: selectedEmp,
-                              employeeName: empNameController.text,
-                              leaveCode: selectedLeaveCode,
-                              leaveDescription: leaveDescripController.text,
-                              leaveDuration:
-                              leaveDuration.indexOf(selectedLeaveDuration),
-                              fromDate: fromDateController.text,
-                              toDate: toDateController.text,
-                              noDays: double.parse(totDaysController.text),
-                              reasonLeave: leaveReasonController.text,
-                              status: statusList.indexOf(selectedStatus),
-                              contactDetail: contactDetailsController.text,
-                              specifyWorkDay: workingDayController.text,
-                              cancelConfirm: cancellationConfirm,
-                              applicationDate: applDateController.text,
-                              documentNo: documentNo,
-                            ));
+                      action: 3,
+                      employeeNo: selectedEmp,
+                      employeeName: empNameController.text,
+                      leaveCode: selectedLeaveCode,
+                      leaveDescription: leaveDescripController.text,
+                      leaveDuration:
+                          leaveDuration.indexOf(selectedLeaveDuration),
+                      fromDate: fromDateController.text,
+                      toDate: toDateController.text,
+                      noDays: double.parse(totDaysController.text),
+                      reasonLeave: leaveReasonController.text,
+                      status: statusList.indexOf(selectedStatus),
+                      contactDetail: contactDetailsController.text,
+                      specifyWorkDay: workingDayController.text,
+                      cancelConfirm: cancellationConfirm,
+                      applicationDate: applDateController.text,
+                      documentNo: documentNo,
+                    ));
 
                     if (leaveApplicationResponse.status) {
                       LeaveApplicationRequest leaveApplicationRequest =
-                      LeaveApplicationRequest(
+                          LeaveApplicationRequest(
                         action: 1,
                       );
                       setState(() {
                         updateTableResponse =
-                                _apiInterface1.leaveApplicationResponseData(
-                                        leaveApplicationRequest);
+                            _apiInterface1.leaveApplicationResponseData(
+                                leaveApplicationRequest);
                       });
                     }
 
@@ -780,17 +781,17 @@ class _LeaveApplicationState extends State<LeaveApplication> {
         );
 
         showDialog(
-                context: context,
-                builder: (context) {
-                  return alert;
-                });
+            context: context,
+            builder: (context) {
+              return alert;
+            });
       } else {
         setState(() {
           editClicked = false;
         });
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${LeaveApplicationDataSource.selectedRowData.status} status and cannot be edited"),
+              "Document is ${LeaveApplicationDataSource.selectedRowData.status} status and cannot be edited"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -833,10 +834,10 @@ class _LeaveApplicationState extends State<LeaveApplication> {
 
   void onRemovePress(BuildContext context) {
     var documentNo =
-    LeaveApplicationDataSource.selectedRowData.documentNo.toString();
+        LeaveApplicationDataSource.selectedRowData.documentNo.toString();
     if (_leaveApplicationDataSource.rowSelect) {
       if (LeaveApplicationDataSource.selectedRowData.status == statusList[0] ||
-              LeaveApplicationDataSource.selectedRowData.status == statusList[1]) {
+          LeaveApplicationDataSource.selectedRowData.status == statusList[1]) {
         var alert = AlertDialog(
           content: Text("Are you sure you want to delete this entry!?"),
           actions: <Widget>[
@@ -844,21 +845,20 @@ class _LeaveApplicationState extends State<LeaveApplication> {
               onPressed: () async {
                 Navigator.pop(context);
                 LeaveApplicationResponse leaveApplicationResponse =
-                await _apiInterface2.leaveApplicationResponseData(
-                        LeaveApplicationRequest(
-                          action: 4,
-                          documentNo: documentNo,
-                        ));
+                    await _apiInterface2
+                        .leaveApplicationResponseData(LeaveApplicationRequest(
+                  action: 4,
+                  documentNo: documentNo,
+                ));
 
                 if (leaveApplicationResponse.status) {
                   LeaveApplicationRequest leaveApplicationRequest =
-                  LeaveApplicationRequest(
+                      LeaveApplicationRequest(
                     action: 1,
                   );
                   setState(() {
-                    updateTableResponse =
-                            _apiInterface1.leaveApplicationResponseData(
-                                    leaveApplicationRequest);
+                    updateTableResponse = _apiInterface1
+                        .leaveApplicationResponseData(leaveApplicationRequest);
                   });
                 }
 
@@ -895,7 +895,7 @@ class _LeaveApplicationState extends State<LeaveApplication> {
       } else {
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${LeaveApplicationDataSource.selectedRowData.status} status and cannot be deleted"),
+              "Document is ${LeaveApplicationDataSource.selectedRowData.status} status and cannot be deleted"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -945,6 +945,7 @@ class _DialogContentState extends State<DialogContent> {
   var formatter = new DateFormat('MM/dd/yyyy');
 
   DateTime fromDate = DateTime.now();
+  DateTime toDate = DateTime.now().subtract(Duration(days: 1));
 
   Future<Null> _selectFromDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -957,13 +958,11 @@ class _DialogContentState extends State<DialogContent> {
       setState(() {
         fromDate = picked;
         _LeaveApplicationState.fromDateController.text =
-                formatter.format(fromDate);
+            formatter.format(fromDate);
         _LeaveApplicationState.totDaysController.text =
-                (toDate.difference(fromDate).inDays + 1).toString();
+            (toDate.difference(fromDate).inDays + 1).toString();
       });
   }
-
-  DateTime toDate = DateTime.now();
 
   Future<Null> _selectToDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -977,7 +976,7 @@ class _DialogContentState extends State<DialogContent> {
         toDate = picked;
         _LeaveApplicationState.toDateController.text = formatter.format(toDate);
         _LeaveApplicationState.totDaysController.text =
-                (toDate.difference(fromDate).inDays + 1).toString();
+            (toDate.difference(fromDate).inDays + 1).toString();
       });
   }
 
@@ -994,7 +993,7 @@ class _DialogContentState extends State<DialogContent> {
       setState(() {
         specifyWorkDate = picked;
         _LeaveApplicationState.workingDayController.text =
-                formatter.format(specifyWorkDate);
+            formatter.format(specifyWorkDate);
       });
   }
 
@@ -1005,77 +1004,84 @@ class _DialogContentState extends State<DialogContent> {
     super.initState();
     setState(() {
       _LeaveApplicationState.selectedEmp = _LeaveApplicationState.editClicked
-              ? LeaveApplicationDataSource.selectedRowData.employeeNo
-              : _LeaveApplicationState.empNo[0];
+          ? LeaveApplicationDataSource.selectedRowData.employeeNo
+          : _LeaveApplicationState.empNo[0];
       _LeaveApplicationState.empNameController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.employeeName
               : _LeaveApplicationState.empName[_LeaveApplicationState.empNo
-              .indexOf(_LeaveApplicationState.selectedEmp)];
+                  .indexOf(_LeaveApplicationState.selectedEmp)];
 
       _LeaveApplicationState.selectedLeaveCode =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.leaveCode
               : _LeaveApplicationState.leaveCode[0];
       _LeaveApplicationState.leaveDescripController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.leaveDescription
               : _LeaveApplicationState.leaveDescription[_LeaveApplicationState
-              .leaveCode
-              .indexOf(_LeaveApplicationState.selectedLeaveCode)];
+                  .leaveCode
+                  .indexOf(_LeaveApplicationState.selectedLeaveCode)];
 
       _LeaveApplicationState.selectedLeaveDuration =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.leaveDuration
               : _leaveApplicationState.leaveDuration[0];
 
       _LeaveApplicationState.fromDateController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.fromDate
               : "";
       _LeaveApplicationState.toDateController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.toDate
               : "";
       _LeaveApplicationState.totDaysController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.noOfDays.toString()
               : "";
       _LeaveApplicationState.leaveReasonController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.reasonForLeave
               : "";
       _LeaveApplicationState.contactDetailsController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource
-              .selectedRowData.contactDetailsLeavePeriod
-              .toString()
+                  .selectedRowData.contactDetailsLeavePeriod
+                  .toString()
               : "";
       _LeaveApplicationState.workingDayController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.specifyWorkingDay
               : "";
       _LeaveApplicationState.apprDateTimeController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource
-              .selectedRowData.sendForApprovalDateTime
+                  .selectedRowData.sendForApprovalDateTime
               : "";
 
       _LeaveApplicationState.selectedStatus = _LeaveApplicationState.editClicked
-              ? LeaveApplicationDataSource.selectedRowData.status
-              : _leaveApplicationState.statusList[0];
+          ? LeaveApplicationDataSource.selectedRowData.status
+          : _leaveApplicationState.statusList[0];
 
       _LeaveApplicationState.cancellationConfirm = _LeaveApplicationState
               .editClicked
-              ? (LeaveApplicationDataSource.selectedRowData.cancellationConfirmed ==
-              "1"
+          ? (LeaveApplicationDataSource.selectedRowData.cancellationConfirmed ==
+                  "1"
               ? true
               : false)
-              : false;
+          : false;
       _LeaveApplicationState.applDateController.text =
-      _LeaveApplicationState.editClicked
+          _LeaveApplicationState.editClicked
               ? LeaveApplicationDataSource.selectedRowData.applicationDate
               : formatter.format(applicationDate);
+
+      if(_LeaveApplicationState.editClicked) {
+        fromDate = DateFormat("yyyy-MM-dd").parse(
+                _LeaveApplicationState.fromDateController.text);
+        toDate = DateFormat("yyyy-MM-dd").parse(
+                _LeaveApplicationState.toDateController.text);
+      }
     });
   }
 
@@ -1093,19 +1099,19 @@ class _DialogContentState extends State<DialogContent> {
                       contentPadding: EdgeInsets.all(2),
                       content: TextField(
                         controller:
-                        _LeaveApplicationState.cancelCommentController,
+                            _LeaveApplicationState.cancelCommentController,
                         decoration: InputDecoration(
-                                labelText: "Enter the cancellation comment"),
+                            labelText: "Enter the cancellation comment"),
                       ),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             if (_LeaveApplicationState
-                                    .cancelCommentController.text.isNotEmpty) {
+                                .cancelCommentController.text.isNotEmpty) {
                               Navigator.pop(context);
                               setState(() {
                                 _LeaveApplicationState.selectedStatus =
-                                _leaveApplicationState.statusList[4];
+                                    _leaveApplicationState.statusList[4];
                               });
                             } else {
                               Fluttertoast.showToast(
@@ -1144,14 +1150,14 @@ class _DialogContentState extends State<DialogContent> {
                   onPressed: () {
                     var alert = AlertDialog(
                       content:
-                      Text("Are you sure you want to send for approval ?"),
+                          Text("Are you sure you want to send for approval ?"),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
                             setState(() {
                               _LeaveApplicationState.selectedStatus =
-                              _leaveApplicationState.statusList[1];
+                                  _leaveApplicationState.statusList[1];
                             });
                           },
                           child: Text("Yes"),
@@ -1205,7 +1211,7 @@ class _DialogContentState extends State<DialogContent> {
                     setState(() {
                       _LeaveApplicationState.selectedEmp = newValue;
                       _LeaveApplicationState.empNameController.text =
-                      _LeaveApplicationState.empName[_LeaveApplicationState
+                          _LeaveApplicationState.empName[_LeaveApplicationState
                               .empNo
                               .indexOf(_LeaveApplicationState.selectedEmp)];
                     });
@@ -1245,9 +1251,9 @@ class _DialogContentState extends State<DialogContent> {
                   setState(() {
                     _LeaveApplicationState.selectedLeaveCode = newValue;
                     _LeaveApplicationState.leaveDescripController.text =
-                    _LeaveApplicationState.leaveDescription[
-                    _LeaveApplicationState.leaveCode.indexOf(
-                            _LeaveApplicationState.selectedLeaveCode)];
+                        _LeaveApplicationState.leaveDescription[
+                            _LeaveApplicationState.leaveCode.indexOf(
+                                _LeaveApplicationState.selectedLeaveCode)];
                   });
                 },
               ),

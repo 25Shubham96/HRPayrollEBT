@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/TrainingReqResponse.dart';
 
 class TrainingRequestDataSource extends DataTableSource {
-
   List<TrainingRequestModel> data = List();
 
   TrainingRequestDataSource(this.data);
@@ -39,7 +38,7 @@ class TrainingRequestDataSource extends DataTableSource {
           prevIndex = index;
         }
       },
-      cells: <DataCell> [
+      cells: <DataCell>[
         DataCell(Text(trainingRequestModel.requestNo)),
         DataCell(Text(trainingRequestModel.requestedBy)),
         DataCell(Text(trainingRequestModel.contactNo)),
@@ -62,5 +61,4 @@ class TrainingRequestDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

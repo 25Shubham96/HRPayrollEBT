@@ -10,13 +10,13 @@ class TrainingProvider extends StatefulWidget {
 }
 
 class _TrainingProviderState extends State<TrainingProvider> {
-
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   ApiInterface _apiInterface = ApiInterface();
 
   static List<TrainingProviderModel> newdata = new List();
-  TrainingProviderDataSource _trainingProviderDataSource = TrainingProviderDataSource(newdata);
+  TrainingProviderDataSource _trainingProviderDataSource =
+      TrainingProviderDataSource(newdata);
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +36,26 @@ class _TrainingProviderState extends State<TrainingProvider> {
               ),
             ),
             FutureBuilder(
-              future: _apiInterface.trainingProviderResponseData(TrainingProviderCourseRequest(
+              future: _apiInterface
+                  .trainingProviderResponseData(TrainingProviderCourseRequest(
                 action: 1,
               )),
-              builder: (BuildContext context, AsyncSnapshot<TrainingProviderResponse> snapshot) {
-                if(snapshot.hasData) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<TrainingProviderResponse> snapshot) {
+                if (snapshot.hasData) {
                   TrainingProviderResponse _myResponseData = snapshot.data;
-                  _trainingProviderDataSource = TrainingProviderDataSource(_myResponseData.data);
+                  _trainingProviderDataSource =
+                      TrainingProviderDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     header: Text(""),
                     columns: [
                       DataColumn(
@@ -149,18 +155,18 @@ class _TrainingProviderState extends State<TrainingProvider> {
                   return Column(
                     children: <Widget>[
                       Center(
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(15, 5, 5, 5),
-                              ),
-                              CircularProgressIndicator(),
-                              Padding(
-                                padding: EdgeInsets.all(5),
-                              ),
-                              Text("Loading please wait..."),
-                            ],
-                          ),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(15, 5, 5, 5),
+                            ),
+                            CircularProgressIndicator(),
+                            Padding(
+                              padding: EdgeInsets.all(5),
+                            ),
+                            Text("Loading please wait..."),
+                          ],
+                        ),
                       ),
                       PaginatedDataTable(
                         columnSpacing: 15,

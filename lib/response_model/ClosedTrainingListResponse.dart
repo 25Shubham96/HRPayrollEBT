@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-ClosedTrainingListResponse closedTrainingListResponseFromJson(String str) => ClosedTrainingListResponse.fromJson(json.decode(str));
+ClosedTrainingListResponse closedTrainingListResponseFromJson(String str) =>
+    ClosedTrainingListResponse.fromJson(json.decode(str));
 
-String closedTrainingListResponseToJson(ClosedTrainingListResponse data) => json.encode(data.toJson());
+String closedTrainingListResponseToJson(ClosedTrainingListResponse data) =>
+    json.encode(data.toJson());
 
 class ClosedTrainingListResponse {
   bool status;
@@ -15,17 +17,19 @@ class ClosedTrainingListResponse {
     this.data,
   });
 
-  factory ClosedTrainingListResponse.fromJson(Map<String, dynamic> json) => ClosedTrainingListResponse(
-    status: json["status"],
-    message: json["message"],
-    data: List<ClosedTrainingListModel>.from(json["data"].map((x) => ClosedTrainingListModel.fromJson(x))),
-  );
+  factory ClosedTrainingListResponse.fromJson(Map<String, dynamic> json) =>
+      ClosedTrainingListResponse(
+        status: json["status"],
+        message: json["message"],
+        data: List<ClosedTrainingListModel>.from(
+            json["data"].map((x) => ClosedTrainingListModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class ClosedTrainingListModel {
@@ -51,27 +55,28 @@ class ClosedTrainingListModel {
     this.courseDescription,
   });
 
-  factory ClosedTrainingListModel.fromJson(Map<String, dynamic> json) => ClosedTrainingListModel(
-    activityNo: json["Activity No_"],
-    trainingLocation: json["Training Location"],
-    status: json["Status"],
-    trainingProvider: json["Training Provider"],
-    courseId: json["Course ID"],
-    courseStartDate: json["Course Start Date"],
-    courseEndDate: json["Course End Date"],
-    trainingProviderName: json["Training Provider Name"],
-    courseDescription: json["Course Description"],
-  );
+  factory ClosedTrainingListModel.fromJson(Map<String, dynamic> json) =>
+      ClosedTrainingListModel(
+        activityNo: json["Activity No_"],
+        trainingLocation: json["Training Location"],
+        status: json["Status"],
+        trainingProvider: json["Training Provider"],
+        courseId: json["Course ID"],
+        courseStartDate: json["Course Start Date"],
+        courseEndDate: json["Course End Date"],
+        trainingProviderName: json["Training Provider Name"],
+        courseDescription: json["Course Description"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "Activity No_": activityNo,
-    "Training Location": trainingLocation,
-    "Status": status,
-    "Training Provider": trainingProvider,
-    "Course ID": courseId,
-    "Course Start Date": courseStartDate,
-    "Course End Date": courseEndDate,
-    "Training Provider Name": trainingProviderName,
-    "Course Description": courseDescription,
-  };
+        "Activity No_": activityNo,
+        "Training Location": trainingLocation,
+        "Status": status,
+        "Training Provider": trainingProvider,
+        "Course ID": courseId,
+        "Course Start Date": courseStartDate,
+        "Course End Date": courseEndDate,
+        "Training Provider Name": trainingProviderName,
+        "Course Description": courseDescription,
+      };
 }

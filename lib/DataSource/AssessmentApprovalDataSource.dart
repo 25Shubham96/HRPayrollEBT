@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/AssessmentApprovalResponse.dart';
+import 'package:intl/intl.dart';
 
 class AssessmentApprovalDataSource extends DataTableSource {
   List<AssessmentApprovalModel> data = new List();
@@ -11,6 +12,8 @@ class AssessmentApprovalDataSource extends DataTableSource {
 
   bool rowSelect = false;
   static AssessmentApprovalModel selectedRowData = AssessmentApprovalModel();
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (AssessmentApprovalModel assessApprMod in data)
@@ -43,7 +46,7 @@ class AssessmentApprovalDataSource extends DataTableSource {
         DataCell(Text(assessmentApprovalModel.entryNo.toString())),
         DataCell(Text(assessmentApprovalModel.documentType)),
         DataCell(Text(assessmentApprovalModel.requisitionNo)),
-        DataCell(Text(assessmentApprovalModel.requisitionDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(assessmentApprovalModel.requisitionDate)))),
         DataCell(Text(assessmentApprovalModel.sequenceNo.toString())),
         DataCell(Text(assessmentApprovalModel.senderId)),
         DataCell(Text(assessmentApprovalModel.employeeApproverId)),

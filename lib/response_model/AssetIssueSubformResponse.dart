@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-AssetIssueSubformResponse assetIssueSubformResponseFromJson(String str) => AssetIssueSubformResponse.fromJson(json.decode(str));
+AssetIssueSubformResponse assetIssueSubformResponseFromJson(String str) =>
+    AssetIssueSubformResponse.fromJson(json.decode(str));
 
-String assetIssueSubformResponseToJson(AssetIssueSubformResponse data) => json.encode(data.toJson());
+String assetIssueSubformResponseToJson(AssetIssueSubformResponse data) =>
+    json.encode(data.toJson());
 
 class AssetIssueSubformResponse {
   bool status;
@@ -15,17 +17,19 @@ class AssetIssueSubformResponse {
     this.data,
   });
 
-  factory AssetIssueSubformResponse.fromJson(Map<String, dynamic> json) => AssetIssueSubformResponse(
-    status: json["status"],
-    message: json["message"],
-    data: List<AssetIssueSubformModel>.from(json["data"].map((x) => AssetIssueSubformModel.fromJson(x))),
-  );
+  factory AssetIssueSubformResponse.fromJson(Map<String, dynamic> json) =>
+      AssetIssueSubformResponse(
+        status: json["status"],
+        message: json["message"],
+        data: List<AssetIssueSubformModel>.from(
+            json["data"].map((x) => AssetIssueSubformModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class AssetIssueSubformModel {
@@ -59,33 +63,34 @@ class AssetIssueSubformModel {
     this.postedPurchaseOrderNo,
   });
 
-  factory AssetIssueSubformModel.fromJson(Map<String, dynamic> json) => AssetIssueSubformModel(
-    issueNo: json["Issue No_"],
-    lineNo: json["Line No_"],
-    assetType: json["Asset Type"],
-    assetNo: json["Asset No_"],
-    assetName: json["Asset Name"],
-    owner: json["Owner"],
-    value: json["Value"],
-    manufacturar: json["Manufacturar"],
-    model: json["Model"],
-    ownerName: json["Owner Name"],
-    currentAssetLocation: json["Current Asset Location"],
-    postedPurchaseOrderNo: json["Posted Purchase Order No_"],
-  );
+  factory AssetIssueSubformModel.fromJson(Map<String, dynamic> json) =>
+      AssetIssueSubformModel(
+        issueNo: json["Issue No_"],
+        lineNo: json["Line No_"],
+        assetType: json["Asset Type"],
+        assetNo: json["Asset No_"],
+        assetName: json["Asset Name"],
+        owner: json["Owner"],
+        value: json["Value"],
+        manufacturar: json["Manufacturar"],
+        model: json["Model"],
+        ownerName: json["Owner Name"],
+        currentAssetLocation: json["Current Asset Location"],
+        postedPurchaseOrderNo: json["Posted Purchase Order No_"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "Issue No_": issueNo,
-    "Line No_": lineNo,
-    "Asset Type": assetType,
-    "Asset No_": assetNo,
-    "Asset Name": assetName,
-    "Owner": owner,
-    "Value": value,
-    "Manufacturar": manufacturar,
-    "Model": model,
-    "Owner Name": ownerName,
-    "Current Asset Location": currentAssetLocation,
-    "Posted Purchase Order No_": postedPurchaseOrderNo,
-  };
+        "Issue No_": issueNo,
+        "Line No_": lineNo,
+        "Asset Type": assetType,
+        "Asset No_": assetNo,
+        "Asset Name": assetName,
+        "Owner": owner,
+        "Value": value,
+        "Manufacturar": manufacturar,
+        "Model": model,
+        "Owner Name": ownerName,
+        "Current Asset Location": currentAssetLocation,
+        "Posted Purchase Order No_": postedPurchaseOrderNo,
+      };
 }

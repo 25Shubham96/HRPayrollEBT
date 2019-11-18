@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/CompOffResponse.dart';
+import 'package:intl/intl.dart';
 
 class CompOffDataSource extends DataTableSource {
   List<CompOffModel> data = List();
@@ -11,6 +12,8 @@ class CompOffDataSource extends DataTableSource {
 
   bool rowSelect = false;
   static CompOffModel selectedRowData = CompOffModel();
+
+  var formatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (CompOffModel compOffMod in data) compOffMod.selected = checked;
@@ -43,8 +46,8 @@ class CompOffDataSource extends DataTableSource {
         DataCell(Text(compOffModel.employeeName)),
         DataCell(Text(compOffModel.designation)),
         DataCell(Text(compOffModel.department)),
-        DataCell(Text(compOffModel.fromDate)),
-        DataCell(Text(compOffModel.toDate)),
+        DataCell(Text(formatter.format(DateFormat("yyyy-MM-dd").parse(compOffModel.fromDate)))),
+        DataCell(Text(formatter.format(DateFormat("yyyy-MM-dd").parse(compOffModel.toDate)))),
         DataCell(Text(compOffModel.noOfDays.toString())),
         DataCell(Text(compOffModel.taskToComplete)),
         DataCell(Text(compOffModel.reason)),

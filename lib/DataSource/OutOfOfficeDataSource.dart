@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/OutOfOFficeResponse.dart';
+import 'package:intl/intl.dart';
 
 class OutOfOfficeDataSource extends DataTableSource {
   List<OutOfOfficeModel> data = List();
@@ -11,6 +12,8 @@ class OutOfOfficeDataSource extends DataTableSource {
 
   bool rowSelect = false;
   static OutOfOfficeModel selectedRowData = OutOfOfficeModel();
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (OutOfOfficeModel outOfOfficeMod in data)
@@ -44,7 +47,7 @@ class OutOfOfficeDataSource extends DataTableSource {
         DataCell(Text(outOfOfficeModel.employeeName)),
         DataCell(Text(outOfOfficeModel.designation)),
         DataCell(Text(outOfOfficeModel.department)),
-        DataCell(Text(outOfOfficeModel.requestDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(outOfOfficeModel.requestDate)))),
         DataCell(Text(outOfOfficeModel.fromTime)),
         DataCell(Text(outOfOfficeModel.toTime)),
         DataCell(Text(outOfOfficeModel.reason)),

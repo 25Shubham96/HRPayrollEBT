@@ -16,7 +16,7 @@ class _TrainingApprovalState extends State<TrainingApproval> {
   static List<TrainingApprovalModel> newdata = new List();
 
   TrainingApprovalDataSource _trainingApprovalDataSource =
-  TrainingApprovalDataSource(newdata);
+      TrainingApprovalDataSource(newdata);
 
   Future<TrainingApprovalResponse> updateResponse;
 
@@ -32,14 +32,14 @@ class _TrainingApprovalState extends State<TrainingApproval> {
   void initState() {
     super.initState();
     TrainingApprovalRequest trainingApprovalRequest = TrainingApprovalRequest(
-            action: "1",
-            senderId: MyDrawer.EmpNo,
-            status: "1",
-            entryNo: "0000",
-            sequenceNo: "0");
+        action: "1",
+        senderId: MyDrawer.empNo,
+        status: "1",
+        entryNo: "0000",
+        sequenceNo: "0");
 
     updateResponse =
-            _apiInterface.trainingApprovalResponseData(trainingApprovalRequest);
+        _apiInterface.trainingApprovalResponseData(trainingApprovalRequest);
   }
 
   @override
@@ -56,9 +56,9 @@ class _TrainingApprovalState extends State<TrainingApproval> {
                     child: new Text(
                       "Pending Training List",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -88,25 +88,25 @@ class _TrainingApprovalState extends State<TrainingApproval> {
                         ),
                         new Padding(padding: new EdgeInsets.only(left: 10)),
                         Expanded(
-                                child: FlatButton(
-                                  onPressed: () {
-                                    onReject(context);
-                                  },
-                                  child: new Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      new Icon(
-                                        Icons.clear,
-                                        color: Colors.white,
-                                      ),
-                                      new Text(
-                                        "Reject",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  color: Colors.red,
-                                )),
+                            child: FlatButton(
+                          onPressed: () {
+                            onReject(context);
+                          },
+                          child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              new Icon(
+                                Icons.clear,
+                                color: Colors.white,
+                              ),
+                              new Text(
+                                "Reject",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          color: Colors.red,
+                        )),
                       ],
                     ),
                   ),
@@ -116,18 +116,21 @@ class _TrainingApprovalState extends State<TrainingApproval> {
             FutureBuilder(
               future: updateResponse,
               builder: (BuildContext context,
-                      AsyncSnapshot<TrainingApprovalResponse> snapshot) {
+                  AsyncSnapshot<TrainingApprovalResponse> snapshot) {
                 if (snapshot.hasData) {
                   TrainingApprovalResponse _myResponseData = snapshot.data;
                   _trainingApprovalDataSource =
-                          TrainingApprovalDataSource(_myResponseData.data);
+                      TrainingApprovalDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _trainingApprovalDataSource.selectAll,
                     header: new Text(""),
                     columns: [
@@ -135,108 +138,108 @@ class _TrainingApprovalState extends State<TrainingApproval> {
                         label: new Text(
                           "Entry No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Table Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Document Type",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Request Code",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sequence",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sender Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Emp Appr Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Appr Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Modified By",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Rejection Comment",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Cancellation Comment",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -271,108 +274,108 @@ class _TrainingApprovalState extends State<TrainingApproval> {
                             label: new Text(
                               "Entry No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Table Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Document Type",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Request Code",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sequence",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sender Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Emp Appr Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Appr Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Modified By",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Rejection Comment",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Cancellation Comment",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -398,31 +401,31 @@ class _TrainingApprovalState extends State<TrainingApproval> {
             onPressed: () async {
               Navigator.pop(context);
               TrainingApprovalResponse trainingApprovalResponse =
-              await _apiInterface.trainingApprovalResponseData(
+                  await _apiInterface.trainingApprovalResponseData(
                 TrainingApprovalRequest(
                   action: "3",
                   status: "2",
-                  modifiedBy: MyDrawer.EmpNo,
+                  modifiedBy: MyDrawer.empNo,
                   senderId: TrainingApprovalDataSource.selectedRowData.senderId,
                   empApproverId: TrainingApprovalDataSource
-                          .selectedRowData.employeeApproverId,
+                      .selectedRowData.employeeApproverId,
                   entryNo: TrainingApprovalDataSource.selectedRowData.entryNo
-                          .toString(),
+                      .toString(),
                   tableName:
-                  TrainingApprovalDataSource.selectedRowData.tableName,
+                      TrainingApprovalDataSource.selectedRowData.tableName,
                   documentType:
-                  TrainingApprovalDataSource.selectedRowData.documentType,
+                      TrainingApprovalDataSource.selectedRowData.documentType,
                   requestNo:
-                  TrainingApprovalDataSource.selectedRowData.requestCode,
+                      TrainingApprovalDataSource.selectedRowData.requestCode,
                   sequenceNo: TrainingApprovalDataSource
-                          .selectedRowData.sequenceNo
-                          .toString(),
+                      .selectedRowData.sequenceNo
+                      .toString(),
                   approverId:
-                  TrainingApprovalDataSource.selectedRowData.approverId,
+                      TrainingApprovalDataSource.selectedRowData.approverId,
                   rejectionComment: TrainingApprovalDataSource
-                          .selectedRowData.commentRejection,
+                      .selectedRowData.commentRejection,
                   cancellationComment: TrainingApprovalDataSource
-                          .selectedRowData.commentCancellation,
+                      .selectedRowData.commentCancellation,
                 ),
               );
 
@@ -446,15 +449,15 @@ class _TrainingApprovalState extends State<TrainingApproval> {
                 );
                 setState(() {
                   TrainingApprovalRequest trainingApprovalRequest =
-                  TrainingApprovalRequest(
+                      TrainingApprovalRequest(
                           action: "1",
-                          senderId: MyDrawer.EmpNo,
+                          senderId: MyDrawer.empNo,
                           status: "1",
                           entryNo: "0000",
                           sequenceNo: "0");
 
-                  updateResponse = _apiInterface.trainingApprovalResponseData(
-                          trainingApprovalRequest);
+                  updateResponse = _apiInterface
+                      .trainingApprovalResponseData(trainingApprovalRequest);
                 });
               } else {
                 Fluttertoast.showToast(
@@ -528,7 +531,7 @@ class _TrainingApprovalState extends State<TrainingApproval> {
           FlatButton(
             onPressed: () async {
               if (rejectionCommentControler.text.isEmpty ||
-                      rejectionCommentControler.text == " ") {
+                  rejectionCommentControler.text == " ") {
                 var alert = AlertDialog(
                   content: Text("Please enter rejection comment..."),
                   actions: <Widget>[
@@ -549,31 +552,31 @@ class _TrainingApprovalState extends State<TrainingApproval> {
               } else {
                 Navigator.pop(context);
                 RejCanPostResponse RejCanResp =
-                await _apiInterface.trainingRejCanResponseData(
+                    await _apiInterface.trainingRejCanResponseData(
                   TrainingApprovalRequest(
                     action: "4",
                     status: "3",
-                    modifiedBy: MyDrawer.EmpNo,
+                    modifiedBy: MyDrawer.empNo,
                     senderId:
-                    TrainingApprovalDataSource.selectedRowData.senderId,
+                        TrainingApprovalDataSource.selectedRowData.senderId,
                     empApproverId: TrainingApprovalDataSource
-                            .selectedRowData.employeeApproverId,
+                        .selectedRowData.employeeApproverId,
                     entryNo: TrainingApprovalDataSource.selectedRowData.entryNo
-                            .toString(),
+                        .toString(),
                     tableName:
-                    TrainingApprovalDataSource.selectedRowData.tableName,
+                        TrainingApprovalDataSource.selectedRowData.tableName,
                     documentType:
-                    TrainingApprovalDataSource.selectedRowData.documentType,
+                        TrainingApprovalDataSource.selectedRowData.documentType,
                     requestNo:
-                    TrainingApprovalDataSource.selectedRowData.requestCode,
+                        TrainingApprovalDataSource.selectedRowData.requestCode,
                     sequenceNo: TrainingApprovalDataSource
-                            .selectedRowData.sequenceNo
-                            .toString(),
+                        .selectedRowData.sequenceNo
+                        .toString(),
                     approverId:
-                    TrainingApprovalDataSource.selectedRowData.approverId,
+                        TrainingApprovalDataSource.selectedRowData.approverId,
                     rejectionComment: rejectionCommentControler.text,
                     cancellationComment: TrainingApprovalDataSource
-                            .selectedRowData.commentCancellation,
+                        .selectedRowData.commentCancellation,
                   ),
                 );
 
@@ -597,15 +600,15 @@ class _TrainingApprovalState extends State<TrainingApproval> {
                   );
                   setState(() {
                     TrainingApprovalRequest trainingApprovalRequest =
-                    TrainingApprovalRequest(
+                        TrainingApprovalRequest(
                             action: "1",
-                            senderId: MyDrawer.EmpNo,
+                            senderId: MyDrawer.empNo,
                             status: "1",
                             entryNo: "0000",
                             sequenceNo: "0");
 
-                    updateResponse = _apiInterface.trainingApprovalResponseData(
-                            trainingApprovalRequest);
+                    updateResponse = _apiInterface
+                        .trainingApprovalResponseData(trainingApprovalRequest);
                   });
                 } else {
                   Fluttertoast.showToast(

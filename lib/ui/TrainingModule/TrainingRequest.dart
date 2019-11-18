@@ -20,13 +20,13 @@ class TrainingRequest extends StatefulWidget {
 }
 
 class _TrainingRequestState extends State<TrainingRequest> {
-
   final List<String> statusList = [
     "Created",
     "Send for Approval",
     "Approved",
     "Rejected",
-    "Cancelled"];
+    "Cancelled"
+  ];
   final List<String> requestType = ["Internal", "External"];
 
   static List<String> empNo;
@@ -35,16 +35,21 @@ class _TrainingRequestState extends State<TrainingRequest> {
   static List<String> trainingCourse;
   static List<String> trainingCourseTitle;
 
-  static var selectedEmp = "", selectedStatus = "", selectedRequestType = "", selectedTrainingCourse = "", selectedSubformEmp = "";
+  static var selectedEmp = "",
+      selectedStatus = "",
+      selectedRequestType = "",
+      selectedTrainingCourse = "",
+      selectedSubformEmp = "";
 
   static TextEditingController requestNoController = TextEditingController();
   static TextEditingController departmentController = TextEditingController();
   static TextEditingController contactNoController = TextEditingController();
   static TextEditingController contactNameController = TextEditingController();
-  static TextEditingController trainingCourseTitleController = TextEditingController();
+  static TextEditingController trainingCourseTitleController =
+      TextEditingController();
   static TextEditingController commentsController = TextEditingController();
-  static TextEditingController cancelCommentController = TextEditingController();
-
+  static TextEditingController cancelCommentController =
+      TextEditingController();
 
   Future<TrainingReqResponse> updateTableResponse;
   ApiInterface _apiInterface1 = ApiInterface();
@@ -56,7 +61,8 @@ class _TrainingRequestState extends State<TrainingRequest> {
   ApiInterface _apiInterface8 = ApiInterface();
 
   static List<TrainingRequestModel> data = List();
-  TrainingRequestDataSource _trainingRequestDataSource = TrainingRequestDataSource(data);
+  TrainingRequestDataSource _trainingRequestDataSource =
+      TrainingRequestDataSource(data);
 
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
@@ -72,7 +78,8 @@ class _TrainingRequestState extends State<TrainingRequest> {
     empName = sharedPreferences.getStringList("empName");
     empDepartment = sharedPreferences.getStringList("empDepartment");
     trainingCourse = sharedPreferences.getStringList("trainingCourse");
-    trainingCourseTitle = sharedPreferences.getStringList("trainingCourseTitle");
+    trainingCourseTitle =
+        sharedPreferences.getStringList("trainingCourseTitle");
   }
 
   @override
@@ -84,7 +91,7 @@ class _TrainingRequestState extends State<TrainingRequest> {
     );
     setState(() {
       updateTableResponse =
-              _apiInterface1.trainingRequestResponseData(trainingReqRequest);
+          _apiInterface1.trainingRequestResponseData(trainingReqRequest);
     });
 
     getSharedPrefs();
@@ -104,9 +111,9 @@ class _TrainingRequestState extends State<TrainingRequest> {
                     child: new Text(
                       "Training Request",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -186,17 +193,22 @@ class _TrainingRequestState extends State<TrainingRequest> {
             ),
             FutureBuilder(
               future: updateTableResponse,
-              builder: (BuildContext context, AsyncSnapshot<TrainingReqResponse> snapshot) {
-                if(snapshot.hasData) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<TrainingReqResponse> snapshot) {
+                if (snapshot.hasData) {
                   TrainingReqResponse _myResponseData = snapshot.data;
-                  _trainingRequestDataSource = TrainingRequestDataSource(_myResponseData.data);
+                  _trainingRequestDataSource =
+                      TrainingRequestDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _trainingRequestDataSource.selectAll,
                     header: Text(""),
                     columns: [
@@ -204,90 +216,90 @@ class _TrainingRequestState extends State<TrainingRequest> {
                         label: new Text(
                           "Request No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Requested By",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Contact No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Request Type",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Training Course Title",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Comments",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Contact Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Training Course",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Department",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -323,90 +335,90 @@ class _TrainingRequestState extends State<TrainingRequest> {
                             label: new Text(
                               "Request No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Requested By",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Contact No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Request Type",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Training Course Title",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Comments",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Contact Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Training Course",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Department",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -444,8 +456,8 @@ class _TrainingRequestState extends State<TrainingRequest> {
         FlatButton(
           onPressed: () async {
             if (contactNoController.text.isEmpty ||
-                    contactNameController.text.isEmpty ||
-                    commentsController.text.isEmpty) {
+                contactNameController.text.isEmpty ||
+                commentsController.text.isEmpty) {
               Fluttertoast.showToast(
                 msg: "One or more blank entries",
                 toastLength: Toast.LENGTH_LONG,
@@ -453,21 +465,21 @@ class _TrainingRequestState extends State<TrainingRequest> {
               );
             } else {
               Navigator.pop(context);
-              TrainingReqResponse trainingReqResponse =
-              await _apiInterface2.trainingRequestResponseData(
-                      TrainingReqRequest(
-                        action: 2,
-                        requestNo: requestNoController.text,
-                        requestedBy: selectedEmp,
-                        department: departmentController.text,
-                        contactNo: contactNoController.text,
-                        contactName: contactNameController.text,
-                        requestType: requestType.indexOf(selectedRequestType).toString(),
-                        trainingCourse: selectedTrainingCourse,
-                        trainingCourseTitle: selectedTrainingCourse,
-                        comment: selectedTrainingCourse,
-                        status: statusList.indexOf(selectedStatus),
-                      ));
+              TrainingReqResponse trainingReqResponse = await _apiInterface2
+                  .trainingRequestResponseData(TrainingReqRequest(
+                action: 2,
+                requestNo: requestNoController.text,
+                requestedBy: selectedEmp,
+                department: departmentController.text,
+                contactNo: contactNoController.text,
+                contactName: contactNameController.text,
+                requestType:
+                    requestType.indexOf(selectedRequestType).toString(),
+                trainingCourse: selectedTrainingCourse,
+                trainingCourseTitle: trainingCourseTitleController.text,
+                comment: commentsController.text,
+                status: statusList.indexOf(selectedStatus),
+              ));
 
               if (trainingReqResponse.status) {
                 TrainingReqRequest trainingReqRequest = TrainingReqRequest(
@@ -475,8 +487,8 @@ class _TrainingRequestState extends State<TrainingRequest> {
                   status: 0,
                 );
                 setState(() {
-                  updateTableResponse =
-                          _apiInterface1.trainingRequestResponseData(trainingReqRequest);
+                  updateTableResponse = _apiInterface1
+                      .trainingRequestResponseData(trainingReqRequest);
                 });
               }
               Fluttertoast.showToast(
@@ -512,17 +524,18 @@ class _TrainingRequestState extends State<TrainingRequest> {
       },
     );
   }
+
   void onEditPress(BuildContext context) {
     editClicked = true;
 
     if (_trainingRequestDataSource.rowSelect) {
       if (TrainingRequestDataSource.selectedRowData.status == statusList[0] ||
-              TrainingRequestDataSource.selectedRowData.status == statusList[1]) {
+          TrainingRequestDataSource.selectedRowData.status == statusList[1]) {
         if (TrainingRequestDataSource.selectedRowData.status == statusList[1]) {
           textFieldEnableStatus = false;
           Fluttertoast.showToast(
             msg:
-            "Document is ${TrainingRequestDataSource.selectedRowData.status} status and cannot be edited",
+                "Document is ${TrainingRequestDataSource.selectedRowData.status} status and cannot be edited",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER,
           );
@@ -539,8 +552,8 @@ class _TrainingRequestState extends State<TrainingRequest> {
             FlatButton(
               onPressed: () async {
                 if (contactNoController.text.isEmpty ||
-                        contactNameController.text.isEmpty ||
-                        commentsController.text.isEmpty) {
+                    contactNameController.text.isEmpty ||
+                    commentsController.text.isEmpty) {
                   Fluttertoast.showToast(
                     msg: "One or more blank entries",
                     toastLength: Toast.LENGTH_LONG,
@@ -552,25 +565,25 @@ class _TrainingRequestState extends State<TrainingRequest> {
                     editClicked = false;
                   });
                   if (selectedStatus == statusList[4]) {
-                    RejCanPostResponse rejCanResponse =
-                    await _apiInterface3.trainingRejCanResponseData(
-                            TrainingApprovalRequest(
-                              action: "5",
-                              sequenceNo: "0",
-                              senderId: selectedEmp,
-                              status: "4",
-                              requestNo: requestNoController.text,
-                              cancellationComment: cancelCommentController.text,
-                            ));
+                    RejCanPostResponse rejCanResponse = await _apiInterface3
+                        .trainingRejCanResponseData(TrainingApprovalRequest(
+                      action: "5",
+                      sequenceNo: "0",
+                      senderId: selectedEmp,
+                      status: "4",
+                      requestNo: requestNoController.text,
+                      cancellationComment: cancelCommentController.text,
+                    ));
 
                     if (rejCanResponse.status) {
-                      TrainingReqRequest trainingReqRequest = TrainingReqRequest(
+                      TrainingReqRequest trainingReqRequest =
+                          TrainingReqRequest(
                         action: 1,
                         status: 0,
                       );
                       setState(() {
-                        updateTableResponse =
-                                _apiInterface1.trainingRequestResponseData(trainingReqRequest);
+                        updateTableResponse = _apiInterface1
+                            .trainingRequestResponseData(trainingReqRequest);
                       });
                     }
                     Fluttertoast.showToast(
@@ -588,29 +601,31 @@ class _TrainingRequestState extends State<TrainingRequest> {
                     );*/
                   } else {
                     TrainingReqResponse trainingReqResponse =
-                    await _apiInterface2.trainingRequestResponseData(
-                            TrainingReqRequest(
-                              action: 3,
-                              requestNo: requestNoController.text,
-                              requestedBy: selectedEmp,
-                              department: departmentController.text,
-                              contactNo: contactNoController.text,
-                              contactName: contactNameController.text,
-                              requestType: requestType.indexOf(selectedRequestType).toString(),
-                              trainingCourse: selectedTrainingCourse,
-                              trainingCourseTitle: selectedTrainingCourse,
-                              comment: selectedTrainingCourse,
-                              status: statusList.indexOf(selectedStatus),
-                            ));
+                        await _apiInterface2
+                            .trainingRequestResponseData(TrainingReqRequest(
+                      action: 3,
+                      requestNo: requestNoController.text,
+                      requestedBy: selectedEmp,
+                      department: departmentController.text,
+                      contactNo: contactNoController.text,
+                      contactName: contactNameController.text,
+                      requestType:
+                          requestType.indexOf(selectedRequestType).toString(),
+                      trainingCourse: selectedTrainingCourse,
+                      trainingCourseTitle: selectedTrainingCourse,
+                      comment: selectedTrainingCourse,
+                      status: statusList.indexOf(selectedStatus),
+                    ));
 
                     if (trainingReqResponse.status) {
-                      TrainingReqRequest trainingReqRequest = TrainingReqRequest(
+                      TrainingReqRequest trainingReqRequest =
+                          TrainingReqRequest(
                         action: 1,
                         status: 0,
                       );
                       setState(() {
-                        updateTableResponse =
-                                _apiInterface1.trainingRequestResponseData(trainingReqRequest);
+                        updateTableResponse = _apiInterface1
+                            .trainingRequestResponseData(trainingReqRequest);
                       });
                     }
                     Fluttertoast.showToast(
@@ -659,29 +674,28 @@ class _TrainingRequestState extends State<TrainingRequest> {
                       }
                     }*/
 
-                    for(TrainingReqSubformModel trainingReqSubMod in dataSubform) {
+                    for (TrainingReqSubformModel trainingReqSubMod
+                        in dataSubform) {
                       TrainingReqSubformResponse trainingReqSubformResponse =
-                      await _apiInterface6.trainingReqSubformResponseData(
+                          await _apiInterface6.trainingReqSubformResponseData(
                               TrainingReqSubformRequest(
-                                action: "2",
-                                requestNo: requestNoController.text,
-                                employeeNo: trainingReqSubMod.employeeNo,
-                                employeeName: trainingReqSubMod.employeeName,
-                                lineNo: trainingReqSubMod.lineNo.toString(),
-                              )
-                      );
+                        action: "2",
+                        requestNo: requestNoController.text,
+                        employeeNo: trainingReqSubMod.employeeNo,
+                        employeeName: trainingReqSubMod.employeeName,
+                        lineNo: trainingReqSubMod.lineNo.toString(),
+                      ));
                     }
-                    for(TrainingReqSubformModel trainingReqSubMod in deleteEntries) {
+                    for (TrainingReqSubformModel trainingReqSubMod
+                        in deleteEntries) {
                       TrainingReqSubformResponse trainingReqSubformResponse =
-                      await _apiInterface8.trainingReqSubformResponseData(
+                          await _apiInterface8.trainingReqSubformResponseData(
                               TrainingReqSubformRequest(
-                                action: "4",
-                                requestNo: requestNoController.text,
-                                lineNo: trainingReqSubMod.lineNo.toString(),
-                              )
-                      );
+                        action: "4",
+                        requestNo: requestNoController.text,
+                        lineNo: trainingReqSubMod.lineNo.toString(),
+                      ));
                     }
-
                   }
                 }
               },
@@ -700,17 +714,17 @@ class _TrainingRequestState extends State<TrainingRequest> {
         );
 
         showDialog(
-                context: context,
-                builder: (context) {
-                  return alert;
-                });
+            context: context,
+            builder: (context) {
+              return alert;
+            });
       } else {
         setState(() {
           editClicked = false;
         });
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${TrainingRequestDataSource.selectedRowData.status} status and cannot be edited"),
+              "Document is ${TrainingRequestDataSource.selectedRowData.status} status and cannot be edited"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -750,23 +764,23 @@ class _TrainingRequestState extends State<TrainingRequest> {
       );
     }
   }
+
   void onRemovePress(BuildContext context) {
     var requestNo = TrainingRequestDataSource.selectedRowData.requestNo;
     if (_trainingRequestDataSource.rowSelect) {
       if (TrainingRequestDataSource.selectedRowData.status == statusList[0] ||
-              TrainingRequestDataSource.selectedRowData.status == statusList[1]) {
+          TrainingRequestDataSource.selectedRowData.status == statusList[1]) {
         var alert = AlertDialog(
           content: Text("Are you sure you want to delete this entry!?"),
           actions: <Widget>[
             FlatButton(
               onPressed: () async {
                 Navigator.pop(context);
-                TrainingReqResponse trainingReqResponse =
-                await _apiInterface2.trainingRequestResponseData(
-                        TrainingReqRequest(
-                          action: 4,
-                          requestNo: requestNo,
-                        ));
+                TrainingReqResponse trainingReqResponse = await _apiInterface2
+                    .trainingRequestResponseData(TrainingReqRequest(
+                  action: 4,
+                  requestNo: requestNo,
+                ));
 
                 if (trainingReqResponse.status) {
                   TrainingReqRequest trainingReqRequest = TrainingReqRequest(
@@ -774,8 +788,8 @@ class _TrainingRequestState extends State<TrainingRequest> {
                     status: 0,
                   );
                   setState(() {
-                    updateTableResponse =
-                            _apiInterface1.trainingRequestResponseData(trainingReqRequest);
+                    updateTableResponse = _apiInterface1
+                        .trainingRequestResponseData(trainingReqRequest);
                   });
                 }
                 Fluttertoast.showToast(
@@ -793,26 +807,24 @@ class _TrainingRequestState extends State<TrainingRequest> {
                 );*/
 
                 TrainingReqSubformResponse trainingReqSubformResponse =
-                await _apiInterface7.trainingReqSubformResponseData(
+                    await _apiInterface7.trainingReqSubformResponseData(
                         TrainingReqSubformRequest(
-                          action: "1",
-                          requestNo: requestNo,
-                        )
-                );
+                  action: "1",
+                  requestNo: requestNo,
+                ));
 
-                if(trainingReqSubformResponse.status){
-                  for(TrainingReqSubformModel trainingReqSubMod in trainingReqSubformResponse.data) {
+                if (trainingReqSubformResponse.status) {
+                  for (TrainingReqSubformModel trainingReqSubMod
+                      in trainingReqSubformResponse.data) {
                     TrainingReqSubformResponse currAssetReqSubformResponse =
-                    await _apiInterface6.trainingReqSubformResponseData(
+                        await _apiInterface6.trainingReqSubformResponseData(
                             TrainingReqSubformRequest(
-                              action: "4",
-                              requestNo: requestNo,
-                              lineNo: trainingReqSubMod.lineNo.toString(),
-                            )
-                    );
+                      action: "4",
+                      requestNo: requestNo,
+                      lineNo: trainingReqSubMod.lineNo.toString(),
+                    ));
                   }
                 }
-
               },
               child: Text("Yes"),
             ),
@@ -833,7 +845,7 @@ class _TrainingRequestState extends State<TrainingRequest> {
       } else {
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${TrainingRequestDataSource.selectedRowData.status} status and cannot be deleted"),
+              "Document is ${TrainingRequestDataSource.selectedRowData.status} status and cannot be deleted"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -878,14 +890,14 @@ class DialogContent extends StatefulWidget {
 }
 
 class _DialogContentState extends State<DialogContent> {
-
   _TrainingRequestState _trainingRequestState = _TrainingRequestState();
 
   ApiInterface _apiInterface4 = ApiInterface();
   ApiInterface _apiInterface5 = ApiInterface();
 
   static List<TrainingReqSubformModel> dupCurrSubformData = List();
-  TrainingReqSubformDataSource _trainingReqSubformDataSource = TrainingReqSubformDataSource(dupCurrSubformData);
+  TrainingReqSubformDataSource _trainingReqSubformDataSource =
+      TrainingReqSubformDataSource(dupCurrSubformData);
 
   Widget iconWidgetDown = Icon(Icons.keyboard_arrow_down);
   Widget iconWidgetUp = Icon(Icons.keyboard_arrow_up);
@@ -897,20 +909,23 @@ class _DialogContentState extends State<DialogContent> {
   List<TrainingReqSubformModel> currSubformData = List();
   List<TrainingReqSubformModel> currDeleteEntry = List();
 
-  void getRequestNo() async{
-    NoSeriesResponse requestNoResponse = await _apiInterface5.requestNoReasponseData();
+  void getRequestNo() async {
+    NoSeriesResponse requestNoResponse =
+        await _apiInterface5.requestNoReasponseData();
 
     _TrainingRequestState.requestNoController.text = requestNoResponse.message;
   }
 
-  void getSubformData() async{
-    TrainingReqSubformResponse _mySubformResponse = await _apiInterface4.trainingReqSubformResponseData(
-            TrainingReqSubformRequest(
-              action: "1",
-              requestNo: _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.requestNo : "",
-            )
-    );
-    _trainingReqSubformDataSource = TrainingReqSubformDataSource(_mySubformResponse.data);
+  void getSubformData() async {
+    TrainingReqSubformResponse _mySubformResponse = await _apiInterface4
+        .trainingReqSubformResponseData(TrainingReqSubformRequest(
+      action: "1",
+      requestNo: _TrainingRequestState.editClicked
+          ? TrainingRequestDataSource.selectedRowData.requestNo
+          : "",
+    ));
+    _trainingReqSubformDataSource =
+        TrainingReqSubformDataSource(_mySubformResponse.data);
     _rowsPerPage = _mySubformResponse.data.length + 2;
 
     _TrainingRequestState.dataSubform = _mySubformResponse.data;
@@ -921,28 +936,57 @@ class _DialogContentState extends State<DialogContent> {
   void initState() {
     super.initState();
     setState(() {
-      if(_TrainingRequestState.editClicked)
-        _TrainingRequestState.requestNoController.text = TrainingRequestDataSource.selectedRowData.requestNo;
+      if (_TrainingRequestState.editClicked)
+        _TrainingRequestState.requestNoController.text =
+            TrainingRequestDataSource.selectedRowData.requestNo;
       else
         getRequestNo();
 
-      _TrainingRequestState.selectedEmp = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.requestedBy : _TrainingRequestState.empNo[0];
+      _TrainingRequestState.selectedEmp = _TrainingRequestState.editClicked
+          ? TrainingRequestDataSource.selectedRowData.requestedBy
+          : _TrainingRequestState.empNo[0];
 
-      _TrainingRequestState.departmentController.text = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.department : _TrainingRequestState.empDepartment[_TrainingRequestState.empNo.indexOf(_TrainingRequestState.selectedEmp)];
+      _TrainingRequestState.departmentController.text =
+          _TrainingRequestState.editClicked
+              ? TrainingRequestDataSource.selectedRowData.department
+              : _TrainingRequestState.empDepartment[_TrainingRequestState.empNo
+                  .indexOf(_TrainingRequestState.selectedEmp)];
 
-      _TrainingRequestState.contactNoController.text = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.contactNo : "";
+      _TrainingRequestState.contactNoController.text =
+          _TrainingRequestState.editClicked
+              ? TrainingRequestDataSource.selectedRowData.contactNo
+              : "";
 
-      _TrainingRequestState.contactNameController.text = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.contactName : "";
+      _TrainingRequestState.contactNameController.text =
+          _TrainingRequestState.editClicked
+              ? TrainingRequestDataSource.selectedRowData.contactName
+              : "";
 
-      _TrainingRequestState.selectedRequestType = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.requestType : _trainingRequestState.requestType[0];
+      _TrainingRequestState.selectedRequestType =
+          _TrainingRequestState.editClicked
+              ? TrainingRequestDataSource.selectedRowData.requestType
+              : _trainingRequestState.requestType[0];
 
-      _TrainingRequestState.selectedTrainingCourse = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.trainingCourse : _TrainingRequestState.trainingCourse[0];
+      _TrainingRequestState.selectedTrainingCourse =
+          _TrainingRequestState.editClicked
+              ? TrainingRequestDataSource.selectedRowData.trainingCourse
+              : _TrainingRequestState.trainingCourse[0];
 
-      _TrainingRequestState.trainingCourseTitleController.text = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.trainingCourseTitle : _TrainingRequestState.trainingCourseTitle[_TrainingRequestState.trainingCourse.indexOf(_TrainingRequestState.selectedTrainingCourse)];
+      _TrainingRequestState.trainingCourseTitleController.text =
+          _TrainingRequestState.editClicked
+              ? TrainingRequestDataSource.selectedRowData.trainingCourseTitle
+              : _TrainingRequestState.trainingCourseTitle[_TrainingRequestState
+                  .trainingCourse
+                  .indexOf(_TrainingRequestState.selectedTrainingCourse)];
 
-      _TrainingRequestState.commentsController.text = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.comments : "";
+      _TrainingRequestState.commentsController.text =
+          _TrainingRequestState.editClicked
+              ? TrainingRequestDataSource.selectedRowData.comments
+              : "";
 
-      _TrainingRequestState.selectedStatus = _TrainingRequestState.editClicked ? TrainingRequestDataSource.selectedRowData.status : _trainingRequestState.statusList[0];
+      _TrainingRequestState.selectedStatus = _TrainingRequestState.editClicked
+          ? TrainingRequestDataSource.selectedRowData.status
+          : _trainingRequestState.statusList[0];
 
       getSubformData();
     });
@@ -961,19 +1005,20 @@ class _DialogContentState extends State<DialogContent> {
                     var alert = AlertDialog(
                       contentPadding: EdgeInsets.all(2),
                       content: TextField(
-                        controller: _TrainingRequestState.cancelCommentController,
+                        controller:
+                            _TrainingRequestState.cancelCommentController,
                         decoration: InputDecoration(
-                                labelText: "Enter the cancellation comment"),
+                            labelText: "Enter the cancellation comment"),
                       ),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             if (_TrainingRequestState
-                                    .cancelCommentController.text.isNotEmpty) {
+                                .cancelCommentController.text.isNotEmpty) {
                               Navigator.pop(context);
                               setState(() {
                                 _TrainingRequestState.selectedStatus =
-                                _trainingRequestState.statusList[4];
+                                    _trainingRequestState.statusList[4];
                               });
                             } else {
                               Fluttertoast.showToast(
@@ -1012,14 +1057,14 @@ class _DialogContentState extends State<DialogContent> {
                   onPressed: () {
                     var alert = AlertDialog(
                       content:
-                      Text("Are you sure you want to send for approval ?"),
+                          Text("Are you sure you want to send for approval ?"),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
                             setState(() {
                               _TrainingRequestState.selectedStatus =
-                              _trainingRequestState.statusList[1];
+                                  _trainingRequestState.statusList[1];
                             });
                           },
                           child: Text("Yes"),
@@ -1050,18 +1095,18 @@ class _DialogContentState extends State<DialogContent> {
             ),
             visible: _TrainingRequestState.editClicked,
           ),
-
           ListTile(
             title: Text("General"),
             trailing: generalClick ? iconWidgetUp : iconWidgetDown,
             onTap: () {
               setState(() {
                 generalClick = !generalClick;
-                subformClick ? subformClick = !subformClick : subformClick = subformClick;
+                subformClick
+                    ? subformClick = !subformClick
+                    : subformClick = subformClick;
               });
             },
           ),
-
           Visibility(
             child: Container(
               child: Column(
@@ -1073,7 +1118,6 @@ class _DialogContentState extends State<DialogContent> {
                     ),
                     enabled: false,
                   ),
-
                   Padding(padding: EdgeInsets.all(5)),
                   Row(
                     children: <Widget>[
@@ -1084,11 +1128,11 @@ class _DialogContentState extends State<DialogContent> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
                       IgnorePointer(
                         child: DropdownButton(
                           value: _TrainingRequestState.selectedEmp,
-                          items: _TrainingRequestState.empNo.map((String value) {
+                          items:
+                              _TrainingRequestState.empNo.map((String value) {
                             return DropdownMenuItem(
                               value: value,
                               child: Text(value),
@@ -1099,19 +1143,16 @@ class _DialogContentState extends State<DialogContent> {
                             setState(() {
                               _TrainingRequestState.selectedEmp = newValue;
                               _TrainingRequestState.departmentController.text =
-                              _TrainingRequestState
-                                      .empDepartment[_TrainingRequestState
-                                      .empNo
-                                      .indexOf(_TrainingRequestState.selectedEmp)];
+                                  _TrainingRequestState.empDepartment[
+                                      _TrainingRequestState.empNo.indexOf(
+                                          _TrainingRequestState.selectedEmp)];
                             });
                           },
                         ),
                         ignoring: !_TrainingRequestState.textFieldEnableStatus,
                       ),
-
                     ],
                   ),
-
                   TextField(
                     controller: _TrainingRequestState.departmentController,
                     decoration: InputDecoration(
@@ -1119,7 +1160,6 @@ class _DialogContentState extends State<DialogContent> {
                     ),
                     enabled: false,
                   ),
-
                   TextField(
                     controller: _TrainingRequestState.contactNoController,
                     keyboardType: TextInputType.phone,
@@ -1128,7 +1168,6 @@ class _DialogContentState extends State<DialogContent> {
                     ),
                     enabled: _TrainingRequestState.textFieldEnableStatus,
                   ),
-
                   TextField(
                     controller: _TrainingRequestState.contactNameController,
                     decoration: InputDecoration(
@@ -1136,7 +1175,6 @@ class _DialogContentState extends State<DialogContent> {
                     ),
                     enabled: _TrainingRequestState.textFieldEnableStatus,
                   ),
-
                   Padding(padding: EdgeInsets.all(5)),
                   Row(
                     children: <Widget>[
@@ -1150,7 +1188,8 @@ class _DialogContentState extends State<DialogContent> {
                       IgnorePointer(
                         child: DropdownButton(
                           value: _TrainingRequestState.selectedRequestType,
-                          items: _trainingRequestState.requestType.map((String value) {
+                          items: _trainingRequestState.requestType
+                              .map((String value) {
                             return DropdownMenuItem(
                               value: value,
                               child: Text(value),
@@ -1158,7 +1197,8 @@ class _DialogContentState extends State<DialogContent> {
                           }).toList(),
                           onChanged: (String newValue) {
                             setState(() {
-                              _TrainingRequestState.selectedRequestType = newValue;
+                              _TrainingRequestState.selectedRequestType =
+                                  newValue;
                             });
                           },
                         ),
@@ -1179,7 +1219,8 @@ class _DialogContentState extends State<DialogContent> {
                       IgnorePointer(
                         child: DropdownButton(
                           value: _TrainingRequestState.selectedTrainingCourse,
-                          items: _TrainingRequestState.trainingCourse.map((String value) {
+                          items: _TrainingRequestState.trainingCourse
+                              .map((String value) {
                             return DropdownMenuItem(
                               value: value,
                               child: Text(value),
@@ -1187,12 +1228,14 @@ class _DialogContentState extends State<DialogContent> {
                           }).toList(),
                           onChanged: (String newValue) {
                             setState(() {
-                              _TrainingRequestState.selectedTrainingCourse = newValue;
-                              _TrainingRequestState.trainingCourseTitleController.text =
+                              _TrainingRequestState.selectedTrainingCourse =
+                                  newValue;
                               _TrainingRequestState
-                                      .trainingCourseTitle[_TrainingRequestState
-                                      .trainingCourse
-                                      .indexOf(_TrainingRequestState.selectedTrainingCourse)];
+                                      .trainingCourseTitleController.text =
+                                  _TrainingRequestState.trainingCourseTitle[
+                                      _TrainingRequestState.trainingCourse
+                                          .indexOf(_TrainingRequestState
+                                              .selectedTrainingCourse)];
                             });
                           },
                         ),
@@ -1200,15 +1243,14 @@ class _DialogContentState extends State<DialogContent> {
                       )
                     ],
                   ),
-
                   TextField(
-                    controller: _TrainingRequestState.trainingCourseTitleController,
+                    controller:
+                        _TrainingRequestState.trainingCourseTitleController,
                     decoration: InputDecoration(
                       labelText: "Training Course Title",
                     ),
                     enabled: false,
                   ),
-
                   TextField(
                     controller: _TrainingRequestState.commentsController,
                     decoration: InputDecoration(
@@ -1216,7 +1258,6 @@ class _DialogContentState extends State<DialogContent> {
                     ),
                     enabled: _TrainingRequestState.textFieldEnableStatus,
                   ),
-
                   Padding(padding: EdgeInsets.all(5)),
                   Row(
                     children: <Widget>[
@@ -1230,7 +1271,8 @@ class _DialogContentState extends State<DialogContent> {
                       IgnorePointer(
                         child: DropdownButton(
                           value: _TrainingRequestState.selectedStatus,
-                          items: _trainingRequestState.statusList.map((String value) {
+                          items: _trainingRequestState.statusList
+                              .map((String value) {
                             return DropdownMenuItem(
                               value: value,
                               child: Text(value),
@@ -1251,18 +1293,18 @@ class _DialogContentState extends State<DialogContent> {
             ),
             visible: generalClick,
           ),
-
           ListTile(
             title: Text("Attendees"),
             trailing: subformClick ? iconWidgetUp : iconWidgetDown,
             onTap: () {
               setState(() {
                 subformClick = !subformClick;
-                generalClick ? generalClick = !generalClick : generalClick = generalClick;
+                generalClick
+                    ? generalClick = !generalClick
+                    : generalClick = generalClick;
               });
             },
           ),
-
           Visibility(
             child: Container(
               margin: new EdgeInsets.all(5),
@@ -1273,80 +1315,106 @@ class _DialogContentState extends State<DialogContent> {
                     child: new Row(
                       children: <Widget>[
                         Expanded(
-                                child: PopupMenuButton(
-                                  child: Container(
-                                    height: 35,
-                                    color: Colors.red,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(Icons.menu, color: Colors.white,),
-                                        Text("Add", style: TextStyle(color: Colors.white, fontSize: 15),),
-                                      ],
-                                    ),
+                          child: PopupMenuButton(
+                            child: Container(
+                              height: 35,
+                              color: Colors.red,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.add,
+                                    color: Colors.white,
                                   ),
-                                  itemBuilder: (BuildContext context) {
-                                    return _TrainingRequestState.empNo.map((String value) {
-                                      return PopupMenuItem(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList();
-                                  },
-                                  onSelected: (String newValue) {
-                                    _TrainingRequestState.selectedSubformEmp = newValue;
+                                  Text(
+                                    "Add",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            itemBuilder: (BuildContext context) {
+                              return _TrainingRequestState.empNo
+                                  .map((String value) {
+                                return PopupMenuItem(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList();
+                            },
+                            onSelected: (String newValue) {
+                              _TrainingRequestState.selectedSubformEmp =
+                                  newValue;
 
-                                    Random random = new Random();
+                              Random random = new Random();
 
-                                    int lineNo = 1000000 + random.nextInt(1000000);
+                              int lineNo = 1000000 + random.nextInt(1000000);
 
-                                    currSubformData = _TrainingRequestState.dataSubform;
+                              currSubformData =
+                                  _TrainingRequestState.dataSubform;
 
-                                    if(currSubformData.length > 0) {
+                              if (currSubformData.length > 0) {
+                                int duplicateCheck = 0;
 
-                                      int duplicateCheck = 0;
+                                for (TrainingReqSubformModel subformModel
+                                    in currSubformData) {
+                                  if (subformModel.employeeNo ==
+                                      _TrainingRequestState
+                                          .selectedSubformEmp) {
+                                    Fluttertoast.showToast(
+                                      msg: "Duplicate entry not allowed",
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.CENTER,
+                                    );
+                                    duplicateCheck = 1;
+                                    break;
+                                  }
+                                }
 
-                                      for(TrainingReqSubformModel subformModel in currSubformData) {
-
-                                        if(subformModel.employeeNo == _TrainingRequestState.selectedSubformEmp) {
-                                          Fluttertoast.showToast(
-                                            msg: "Duplicate entry not allowed",
-                                            toastLength: Toast.LENGTH_LONG,
-                                            gravity: ToastGravity.CENTER,
-                                          );
-                                          duplicateCheck = 1;
-                                          break;
-                                        }
-                                      }
-
-                                      if(duplicateCheck == 0) {
-                                        currSubformData.add(TrainingReqSubformModel(
-                                          employeeNo: _TrainingRequestState.selectedSubformEmp,
-                                          employeeName: _TrainingRequestState.empName[_TrainingRequestState.empNo.indexOf(_TrainingRequestState.selectedSubformEmp)],
-                                          lineNo: lineNo,
-                                        ));
-                                        setState(() {
-                                          _TrainingRequestState.dataSubform = currSubformData;
-                                          _trainingReqSubformDataSource = TrainingReqSubformDataSource(currSubformData);
-                                          _rowsPerPage = _TrainingRequestState.dataSubform.length + 2;
-                                        });
+                                if (duplicateCheck == 0) {
+                                  currSubformData.add(TrainingReqSubformModel(
+                                    employeeNo: _TrainingRequestState
+                                        .selectedSubformEmp,
+                                    employeeName: _TrainingRequestState.empName[
+                                        _TrainingRequestState.empNo.indexOf(
+                                            _TrainingRequestState
+                                                .selectedSubformEmp)],
+                                    lineNo: lineNo,
+                                  ));
+                                  setState(() {
+                                    _TrainingRequestState.dataSubform =
+                                        currSubformData;
+                                    _trainingReqSubformDataSource =
+                                        TrainingReqSubformDataSource(
+                                            currSubformData);
+                                    _rowsPerPage = _TrainingRequestState
+                                            .dataSubform.length +
+                                        2;
+                                  });
 //                                  Navigator.pop(context);
-                                      }
-
-                                    } else {
+                                }
+                              } else {
 //                                Navigator.pop(context);
-                                      currSubformData.add(TrainingReqSubformModel(
-                                        employeeNo: _TrainingRequestState.selectedSubformEmp,
-                                        employeeName: _TrainingRequestState.empName[_TrainingRequestState.empNo.indexOf(_TrainingRequestState.selectedSubformEmp)],
-                                        lineNo: lineNo,
-                                      ));
-                                      setState(() {
-                                        _TrainingRequestState.dataSubform = currSubformData;
-                                        _trainingReqSubformDataSource = TrainingReqSubformDataSource(currSubformData);
-                                      });
-                                    }
-                                  },
-                                )
+                                currSubformData.add(TrainingReqSubformModel(
+                                  employeeNo:
+                                      _TrainingRequestState.selectedSubformEmp,
+                                  employeeName: _TrainingRequestState.empName[
+                                      _TrainingRequestState.empNo.indexOf(
+                                          _TrainingRequestState
+                                              .selectedSubformEmp)],
+                                  lineNo: lineNo,
+                                ));
+                                setState(() {
+                                  _TrainingRequestState.dataSubform =
+                                      currSubformData;
+                                  _trainingReqSubformDataSource =
+                                      TrainingReqSubformDataSource(
+                                          currSubformData);
+                                });
+                              }
+                            },
+                          ),
                         ),
                         new Padding(padding: new EdgeInsets.only(left: 5)),
                         Expanded(
@@ -1387,18 +1455,18 @@ class _DialogContentState extends State<DialogContent> {
                           label: new Text(
                             "Employee ID",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         DataColumn(
                           label: new Text(
                             "Employee Name",
                             style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                       ],
@@ -1416,22 +1484,22 @@ class _DialogContentState extends State<DialogContent> {
   }
 
   void onSubformRemovePress(BuildContext context) {
-    if(_trainingReqSubformDataSource.rowSelect) {
+    if (_trainingReqSubformDataSource.rowSelect) {
       setState(() {
-        _TrainingRequestState.dataSubform.removeAt(_trainingReqSubformDataSource.selectedRow);
-        _trainingReqSubformDataSource = TrainingReqSubformDataSource(_TrainingRequestState.dataSubform);
+        _TrainingRequestState.dataSubform
+            .removeAt(_trainingReqSubformDataSource.selectedRow);
+        _trainingReqSubformDataSource =
+            TrainingReqSubformDataSource(_TrainingRequestState.dataSubform);
 
-        currDeleteEntry.add(
-                TrainingReqSubformModel(
-                  requestNo: TrainingReqSubformDataSource.selectedRowData.requestNo,
-                  employeeNo: TrainingReqSubformDataSource.selectedRowData.employeeNo,
-                  employeeName: TrainingReqSubformDataSource.selectedRowData.employeeName,
-                  lineNo: TrainingReqSubformDataSource.selectedRowData.lineNo,
-                )
-        );
+        currDeleteEntry.add(TrainingReqSubformModel(
+          requestNo: TrainingReqSubformDataSource.selectedRowData.requestNo,
+          employeeNo: TrainingReqSubformDataSource.selectedRowData.employeeNo,
+          employeeName:
+              TrainingReqSubformDataSource.selectedRowData.employeeName,
+          lineNo: TrainingReqSubformDataSource.selectedRowData.lineNo,
+        ));
 
         _TrainingRequestState.deleteEntries = currDeleteEntry;
-
       });
     } else {
       var alert = AlertDialog(

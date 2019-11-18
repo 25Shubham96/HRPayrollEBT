@@ -19,7 +19,6 @@ class PassportRetention extends StatefulWidget {
 }
 
 class _PassportRetentionState extends State<PassportRetention> {
-
   final List<String> statusList = [
     "Created",
     "Send For Approval",
@@ -28,10 +27,7 @@ class _PassportRetentionState extends State<PassportRetention> {
     "Cancelled"
   ];
 
-  final List<String> requestType = [
-    "Obtaining",
-    "Releasing"
-  ];
+  final List<String> requestType = ["Obtaining", "Releasing"];
 
   static List<String> transactionType;
   static List<String> empNo;
@@ -43,19 +39,29 @@ class _PassportRetentionState extends State<PassportRetention> {
   static String transactionId;
   static String userId;
 
-  static var selectedEmp = "", selectedRequestType = "", selectedTransactionType = "", selectedStatus = "", selectedReceEmpId = "";
+  static var selectedEmp = "",
+      selectedRequestType = "",
+      selectedTransactionType = "",
+      selectedStatus = "",
+      selectedReceEmpId = "";
 
-  static TextEditingController transactionIdController = TextEditingController();
+  static TextEditingController transactionIdController =
+      TextEditingController();
   static TextEditingController empNameController = TextEditingController();
   static TextEditingController passportNoController = TextEditingController();
   static TextEditingController receEmpNameController = TextEditingController();
-  static TextEditingController expCollectionDateController = TextEditingController();
-  static TextEditingController receivingTimeController = TextEditingController();
+  static TextEditingController expCollectionDateController =
+      TextEditingController();
+  static TextEditingController receivingTimeController =
+      TextEditingController();
   static TextEditingController receTimeController = TextEditingController();
-  static TextEditingController commentRemarkController = TextEditingController();
+  static TextEditingController commentRemarkController =
+      TextEditingController();
   static TextEditingController userIdController = TextEditingController();
-  static TextEditingController expReturnDateController = TextEditingController();
-  static TextEditingController cancelCommentController = TextEditingController();
+  static TextEditingController expReturnDateController =
+      TextEditingController();
+  static TextEditingController cancelCommentController =
+      TextEditingController();
 
   Future<PassportRetentionResponse> updateTableResponse;
   ApiInterface _apiInterface1 = ApiInterface();
@@ -63,7 +69,8 @@ class _PassportRetentionState extends State<PassportRetention> {
   ApiInterface _apiInterface3 = ApiInterface();
 
   static List<PassportRetentionModel> data = List();
-  PassportRetentionDataSource _passportRetentionDataSource = PassportRetentionDataSource(data);
+  PassportRetentionDataSource _passportRetentionDataSource =
+      PassportRetentionDataSource(data);
 
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
@@ -74,7 +81,8 @@ class _PassportRetentionState extends State<PassportRetention> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     empNo = sharedPreferences.getStringList("empNo");
     empName = sharedPreferences.getStringList("empName");
-    passportRetentionReq = sharedPreferences.getStringList("passportRetentionReq");
+    passportRetentionReq =
+        sharedPreferences.getStringList("passportRetentionReq");
     passportObtained = sharedPreferences.getStringList("passportObtained");
     passportReleased = sharedPreferences.getStringList("passportReleased");
     transactionType = sharedPreferences.getStringList("transactionType");
@@ -83,7 +91,9 @@ class _PassportRetentionState extends State<PassportRetention> {
 
   static bool postReq = false;
 
-  static String obtainedStatus = "", releasedStatus = "", requestTypeStatus = "";
+  static String obtainedStatus = "",
+      releasedStatus = "",
+      requestTypeStatus = "";
 
   static String obtainedTxt = "", releasedTxt = "", empNoTxtPassObtRel = "";
 
@@ -94,12 +104,13 @@ class _PassportRetentionState extends State<PassportRetention> {
   @override
   void initState() {
     super.initState();
-    PassportRetentionRequest passportRetentionRequest = PassportRetentionRequest(
+    PassportRetentionRequest passportRetentionRequest =
+        PassportRetentionRequest(
       action: 1,
     );
     setState(() {
-      updateTableResponse =
-              _apiInterface1.passportRetentionResponseData(passportRetentionRequest);
+      updateTableResponse = _apiInterface1
+          .passportRetentionResponseData(passportRetentionRequest);
     });
 
     getSharedPrefs();
@@ -119,9 +130,9 @@ class _PassportRetentionState extends State<PassportRetention> {
                     child: new Text(
                       "Passport Retention",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -201,18 +212,22 @@ class _PassportRetentionState extends State<PassportRetention> {
             ),
             FutureBuilder(
               future: updateTableResponse,
-              builder: (BuildContext context, AsyncSnapshot<PassportRetentionResponse> snapshot) {
-                if(snapshot.hasData) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<PassportRetentionResponse> snapshot) {
+                if (snapshot.hasData) {
                   PassportRetentionResponse _myResponseData = snapshot.data;
                   _passportRetentionDataSource =
-                          PassportRetentionDataSource(_myResponseData.data);
+                      PassportRetentionDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _passportRetentionDataSource.selectAll,
                     header: Text(""),
                     columns: [
@@ -220,126 +235,126 @@ class _PassportRetentionState extends State<PassportRetention> {
                         label: new Text(
                           "Receipt Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Transaction ID",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Request Type",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee ID",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Passport No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Receiving Emp ID",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Receiving Emp Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Receiving Time",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Comment/Remark",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Transaction Type",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "User ID",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Exp. Receipt Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -375,126 +390,126 @@ class _PassportRetentionState extends State<PassportRetention> {
                             label: new Text(
                               "Receipt Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Transaction ID",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Request Type",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee ID",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Passport No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Receiving Emp ID",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Receiving Emp Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Receiving Time",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Comment/Remark",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Transaction Type",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "User ID",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Exp. Receipt Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -532,29 +547,30 @@ class _PassportRetentionState extends State<PassportRetention> {
         FlatButton(
           onPressed: () async {
             if (expCollectionDateController.text.isEmpty ||
-                    expReturnDateController.text.isEmpty ||
-                    receivingTimeController.text.isEmpty ||
-                    passportNoController.text.isEmpty ||
-                    commentRemarkController.text.isEmpty ||
-                    wrongEmpCheck ||
-                    (requestTypeStatus == "0" && obtainedStatus == "1") ||
-                    (requestTypeStatus == "1" && obtainedStatus == "0")) {
-
-              if(wrongEmpCheck) {
+                expReturnDateController.text.isEmpty ||
+                receivingTimeController.text.isEmpty ||
+                passportNoController.text.isEmpty ||
+                commentRemarkController.text.isEmpty ||
+                wrongEmpCheck ||
+                (requestTypeStatus == "0" && obtainedStatus == "1") ||
+                (requestTypeStatus == "1" && obtainedStatus == "0")) {
+              if (wrongEmpCheck) {
                 Fluttertoast.showToast(
-                  msg: "Employee is not selected for Passport Retention in Employee Master",
+                  msg:
+                      "Employee is not selected for Passport Retention in Employee Master",
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.CENTER,
                 );
-              } else if((requestTypeStatus == "0" && obtainedStatus == "1")) {
+              } else if ((requestTypeStatus == "0" && obtainedStatus == "1")) {
                 Fluttertoast.showToast(
                   msg: "Passport is already obtained for the employee",
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.CENTER,
                 );
-              } else if((requestTypeStatus == "1" && obtainedStatus == "0")) {
+              } else if ((requestTypeStatus == "1" && obtainedStatus == "0")) {
                 Fluttertoast.showToast(
-                  msg: "Passport cannot be released, first you have to obtain the passport for the employee",
+                  msg:
+                      "Passport cannot be released, first you have to obtain the passport for the employee",
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.CENTER,
                 );
@@ -568,32 +584,33 @@ class _PassportRetentionState extends State<PassportRetention> {
             } else {
               Navigator.pop(context);
               PassportRetentionResponse passportRetentionResponse =
-              await _apiInterface2.passportRetentionResponseData(
-                      PassportRetentionRequest(
-                        action: 2,
-                        transactionId: transactionIdController.text,
-                        requestType: requestType.indexOf(selectedRequestType),
-                        transactionType: selectedTransactionType,
-                        employeeId: selectedEmp,
-                        employeeName: empNameController.text,
-                        passportNo: passportNoController.text,
-                        receivingEmployeeNo: selectedReceEmpId,
-                        receivingEmployeeName: receEmpNameController.text,
-                        expectedColDate: expCollectionDateController.text,
-                        receivingTime: receivingTimeController.text,
-                        comment: commentRemarkController.text,
-                        status: statusList.indexOf(selectedStatus),
-                        userId: userIdController.text,
-                        returnDate: expReturnDateController.text,
-                      ));
+                  await _apiInterface2
+                      .passportRetentionResponseData(PassportRetentionRequest(
+                action: 2,
+                transactionId: transactionIdController.text,
+                requestType: requestType.indexOf(selectedRequestType),
+                transactionType: selectedTransactionType,
+                employeeId: selectedEmp,
+                employeeName: empNameController.text,
+                passportNo: passportNoController.text,
+                receivingEmployeeNo: selectedReceEmpId,
+                receivingEmployeeName: receEmpNameController.text,
+                expectedColDate: expCollectionDateController.text,
+                receivingTime: receivingTimeController.text,
+                comment: commentRemarkController.text,
+                status: statusList.indexOf(selectedStatus),
+                userId: userIdController.text,
+                returnDate: expReturnDateController.text,
+              ));
 
               if (passportRetentionResponse.status) {
-                PassportRetentionRequest passportRetentionRequest = PassportRetentionRequest(
+                PassportRetentionRequest passportRetentionRequest =
+                    PassportRetentionRequest(
                   action: 1,
                 );
                 setState(() {
-                  updateTableResponse =
-                          _apiInterface1.passportRetentionResponseData(passportRetentionRequest);
+                  updateTableResponse = _apiInterface1
+                      .passportRetentionResponseData(passportRetentionRequest);
                 });
               }
               Fluttertoast.showToast(
@@ -629,19 +646,21 @@ class _PassportRetentionState extends State<PassportRetention> {
       },
     );
   }
+
   void onEditPress(BuildContext context) {
     postCheck = 0;
     editClicked = true;
 
     if (_passportRetentionDataSource.rowSelect) {
       if (PassportRetentionDataSource.selectedRowData.status == statusList[0] ||
-              PassportRetentionDataSource.selectedRowData.status == statusList[1] ||
-              PassportRetentionDataSource.selectedRowData.status == statusList[2]) {
-        if (PassportRetentionDataSource.selectedRowData.status == statusList[1]) {
+          PassportRetentionDataSource.selectedRowData.status == statusList[1] ||
+          PassportRetentionDataSource.selectedRowData.status == statusList[2]) {
+        if (PassportRetentionDataSource.selectedRowData.status ==
+            statusList[1]) {
           textFieldEnableStatus = false;
           Fluttertoast.showToast(
             msg:
-            "Document is ${PassportRetentionDataSource.selectedRowData.status} status and cannot be edited",
+                "Document is ${PassportRetentionDataSource.selectedRowData.status} status and cannot be edited",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER,
           );
@@ -658,29 +677,32 @@ class _PassportRetentionState extends State<PassportRetention> {
             FlatButton(
               onPressed: () async {
                 if (expCollectionDateController.text.isEmpty ||
-                        expReturnDateController.text.isEmpty ||
-                        receivingTimeController.text.isEmpty ||
-                        passportNoController.text.isEmpty ||
-                        commentRemarkController.text.isEmpty ||
-                        wrongEmpCheck ||
-                        (requestTypeStatus == "0" && obtainedStatus == "1") ||
-                        (requestTypeStatus == "1" && obtainedStatus == "0"))
-                {
-                  if(wrongEmpCheck) {
+                    expReturnDateController.text.isEmpty ||
+                    receivingTimeController.text.isEmpty ||
+                    passportNoController.text.isEmpty ||
+                    commentRemarkController.text.isEmpty ||
+                    wrongEmpCheck ||
+                    (requestTypeStatus == "0" && obtainedStatus == "1") ||
+                    (requestTypeStatus == "1" && obtainedStatus == "0")) {
+                  if (wrongEmpCheck) {
                     Fluttertoast.showToast(
-                      msg: "Employee is not selected for Passport Retention in Employee Master",
+                      msg:
+                          "Employee is not selected for Passport Retention in Employee Master",
                       toastLength: Toast.LENGTH_LONG,
                       gravity: ToastGravity.CENTER,
                     );
-                  } else if((requestTypeStatus == "0" && obtainedStatus == "1")) {
+                  } else if ((requestTypeStatus == "0" &&
+                      obtainedStatus == "1")) {
                     Fluttertoast.showToast(
                       msg: "Passport is already obtained for the employee",
                       toastLength: Toast.LENGTH_LONG,
                       gravity: ToastGravity.CENTER,
                     );
-                  } else if((requestTypeStatus == "1" && obtainedStatus == "0")) {
+                  } else if ((requestTypeStatus == "1" &&
+                      obtainedStatus == "0")) {
                     Fluttertoast.showToast(
-                      msg: "Passport cannot be released, first you have to obtain the passport for the employee",
+                      msg:
+                          "Passport cannot be released, first you have to obtain the passport for the employee",
                       toastLength: Toast.LENGTH_LONG,
                       gravity: ToastGravity.CENTER,
                     );
@@ -692,7 +714,6 @@ class _PassportRetentionState extends State<PassportRetention> {
                     );
                   }
                 } else {
-
                   if (requestTypeStatus == "0") {
                     obtainedTxt = "1";
                     releasedTxt = "0";
@@ -710,17 +731,15 @@ class _PassportRetentionState extends State<PassportRetention> {
                     editClicked = false;
                   });
 
-                  if(_PassportRetentionState.postCheck == 1) {
-                    RejCanPostResponse rejCanResponse =
-                    await _apiInterface3.postRetentionResponseData(
-                            PostRetentionRequest(
-                              action: 2,
-                              receiptDate: _PassportRetentionState
-                                      .expCollectionDateController.text,
-                              transactionId: _PassportRetentionState
-                                      .transactionIdController.text,
-                            )
-                    );
+                  if (_PassportRetentionState.postCheck == 1) {
+                    RejCanPostResponse rejCanResponse = await _apiInterface3
+                        .postRetentionResponseData(PostRetentionRequest(
+                      action: 2,
+                      receiptDate: _PassportRetentionState
+                          .expCollectionDateController.text,
+                      transactionId:
+                          _PassportRetentionState.transactionIdController.text,
+                    ));
 
                     Fluttertoast.showToast(
                       msg: "${rejCanResponse.message}",
@@ -737,42 +756,40 @@ class _PassportRetentionState extends State<PassportRetention> {
                     );*/
 
                     RejCanPostResponse rejCanResponse2 =
-                    await _apiInterface1.updateObtainReleaseResponseData(
+                        await _apiInterface1.updateObtainReleaseResponseData(
                             UpdateObtainReleaseRequest(
-                              passportObtained: obtainedTxt,
-                              passportReleased: releasedTxt,
-                              employeeId: empNoTxtPassObtRel,
-                            )
-                    );
+                      passportObtained: obtainedTxt,
+                      passportReleased: releasedTxt,
+                      employeeId: empNoTxtPassObtRel,
+                    ));
 
                     PassportRetentionResponse passportRetentionResponse =
-                    await _apiInterface2.passportRetentionResponseData(
+                        await _apiInterface2.passportRetentionResponseData(
                             PassportRetentionRequest(
-                              action: 4,
-                              transactionId: transactionId,
-                            )
-                    );
+                      action: 4,
+                      transactionId: transactionId,
+                    ));
                   } else {
                     if (selectedStatus == statusList[4]) {
-                      RejCanPostResponse rejCanResponse =
-                      await _apiInterface3.passportRejCanResponseData(
-                              PassportApprovalRequest(
-                                action: "5",
-                                sequenceNo: "0",
-                                senderId: selectedEmp,
-                                status: "4",
-                                cancellationComment: cancelCommentController.text,
-                                transactionId: transactionIdController.text,
-                              ));
+                      RejCanPostResponse rejCanResponse = await _apiInterface3
+                          .passportRejCanResponseData(PassportApprovalRequest(
+                        action: "5",
+                        sequenceNo: "0",
+                        senderId: selectedEmp,
+                        status: "4",
+                        cancellationComment: cancelCommentController.text,
+                        transactionId: transactionIdController.text,
+                      ));
 
                       if (rejCanResponse.status) {
-                        PassportRetentionRequest passportRetentionRequest = PassportRetentionRequest(
+                        PassportRetentionRequest passportRetentionRequest =
+                            PassportRetentionRequest(
                           action: 1,
                         );
                         setState(() {
                           updateTableResponse =
-                                  _apiInterface1.passportRetentionResponseData(
-                                          passportRetentionRequest);
+                              _apiInterface1.passportRetentionResponseData(
+                                  passportRetentionRequest);
                         });
                       }
                       Fluttertoast.showToast(
@@ -790,34 +807,34 @@ class _PassportRetentionState extends State<PassportRetention> {
                       );*/
                     } else {
                       PassportRetentionResponse passportRetentionResponse =
-                      await _apiInterface2.passportRetentionResponseData(
+                          await _apiInterface2.passportRetentionResponseData(
                               PassportRetentionRequest(
-                                action: 3,
-                                transactionId: transactionIdController.text,
-                                requestType: requestType.indexOf(
-                                        selectedRequestType),
-                                transactionType: selectedTransactionType,
-                                employeeId: selectedEmp,
-                                employeeName: empNameController.text,
-                                passportNo: passportNoController.text,
-                                receivingEmployeeNo: selectedReceEmpId,
-                                receivingEmployeeName: receivingTimeController.text,
-                                expectedColDate: expCollectionDateController.text,
-                                receivingTime: receivingTimeController.text,
-                                comment: commentRemarkController.text,
-                                status: statusList.indexOf(selectedStatus),
-                                userId: userIdController.text,
-                                returnDate: expReturnDateController.text,
-                              ));
+                        action: 3,
+                        transactionId: transactionIdController.text,
+                        requestType: requestType.indexOf(selectedRequestType),
+                        transactionType: selectedTransactionType,
+                        employeeId: selectedEmp,
+                        employeeName: empNameController.text,
+                        passportNo: passportNoController.text,
+                        receivingEmployeeNo: selectedReceEmpId,
+                        receivingEmployeeName: receivingTimeController.text,
+                        expectedColDate: expCollectionDateController.text,
+                        receivingTime: receivingTimeController.text,
+                        comment: commentRemarkController.text,
+                        status: statusList.indexOf(selectedStatus),
+                        userId: userIdController.text,
+                        returnDate: expReturnDateController.text,
+                      ));
 
                       if (passportRetentionResponse.status) {
-                        PassportRetentionRequest passportRetentionRequest = PassportRetentionRequest(
+                        PassportRetentionRequest passportRetentionRequest =
+                            PassportRetentionRequest(
                           action: 1,
                         );
                         setState(() {
                           updateTableResponse =
-                                  _apiInterface1.passportRetentionResponseData(
-                                          passportRetentionRequest);
+                              _apiInterface1.passportRetentionResponseData(
+                                  passportRetentionRequest);
                         });
                       }
                       Fluttertoast.showToast(
@@ -852,17 +869,17 @@ class _PassportRetentionState extends State<PassportRetention> {
         );
 
         showDialog(
-                context: context,
-                builder: (context) {
-                  return alert;
-                });
+            context: context,
+            builder: (context) {
+              return alert;
+            });
       } else {
         setState(() {
           editClicked = false;
         });
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${PassportRetentionDataSource.selectedRowData.status} status and cannot be edited"),
+              "Document is ${PassportRetentionDataSource.selectedRowData.status} status and cannot be edited"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -902,11 +919,13 @@ class _PassportRetentionState extends State<PassportRetention> {
       );
     }
   }
+
   void onRemovePress(BuildContext context) {
-    var transactionId = PassportRetentionDataSource.selectedRowData.transactionId.toString();
+    var transactionId =
+        PassportRetentionDataSource.selectedRowData.transactionId.toString();
     if (_passportRetentionDataSource.rowSelect) {
       if (PassportRetentionDataSource.selectedRowData.status == statusList[0] ||
-              PassportRetentionDataSource.selectedRowData.status == statusList[1]) {
+          PassportRetentionDataSource.selectedRowData.status == statusList[1]) {
         var alert = AlertDialog(
           content: Text("Are you sure you want to delete this entry!?"),
           actions: <Widget>[
@@ -914,19 +933,21 @@ class _PassportRetentionState extends State<PassportRetention> {
               onPressed: () async {
                 Navigator.pop(context);
                 PassportRetentionResponse passportRetentionResponse =
-                await _apiInterface2.passportRetentionResponseData(
-                        PassportRetentionRequest(
-                          action: 4,
-                          transactionId: transactionId,
-                        ));
+                    await _apiInterface2
+                        .passportRetentionResponseData(PassportRetentionRequest(
+                  action: 4,
+                  transactionId: transactionId,
+                ));
 
                 if (passportRetentionResponse.status) {
-                  PassportRetentionRequest passportRetentionRequest = PassportRetentionRequest(
+                  PassportRetentionRequest passportRetentionRequest =
+                      PassportRetentionRequest(
                     action: 1,
                   );
                   setState(() {
                     updateTableResponse =
-                            _apiInterface1.passportRetentionResponseData(passportRetentionRequest);
+                        _apiInterface1.passportRetentionResponseData(
+                            passportRetentionRequest);
                   });
                 }
                 Fluttertoast.showToast(
@@ -962,7 +983,7 @@ class _PassportRetentionState extends State<PassportRetention> {
       } else {
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${PassportRetentionDataSource.selectedRowData.status} status and cannot be deleted"),
+              "Document is ${PassportRetentionDataSource.selectedRowData.status} status and cannot be deleted"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -1011,10 +1032,16 @@ class _DialogContentState extends State<DialogContent> {
 
   ApiInterface _apiInterface4 = ApiInterface();
 
-  void getRequisitionNo() async{
-    NoSeriesResponse seriesNoResponse = await _apiInterface4.transactionIdReasponseData();
+  var formatter = new DateFormat('MM/dd/yyyy');
+  DateTime expCollectionDate = DateTime.now();
+  DateTime expReturnDate = DateTime.now();
 
-    _PassportRetentionState.transactionIdController.text = seriesNoResponse.message;
+  void getRequisitionNo() async {
+    NoSeriesResponse seriesNoResponse =
+        await _apiInterface4.transactionIdReasponseData();
+
+    _PassportRetentionState.transactionIdController.text =
+        seriesNoResponse.message;
   }
 
   @override
@@ -1023,33 +1050,79 @@ class _DialogContentState extends State<DialogContent> {
     setState(() {
       if (_PassportRetentionState.editClicked)
         _PassportRetentionState.transactionIdController.text =
-                PassportRetentionDataSource.selectedRowData.transactionId;
+            PassportRetentionDataSource.selectedRowData.transactionId;
       else
         getRequisitionNo();
 
-      _PassportRetentionState.selectedRequestType = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.requestType : _passportRetentionState.requestType[0];
-      _PassportRetentionState.selectedTransactionType = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.transactionType : _PassportRetentionState.transactionType[0];
-      _PassportRetentionState.selectedEmp = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.employeeId : _PassportRetentionState.empNo[0];
-      _PassportRetentionState.empNameController.text = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.employeeName : _PassportRetentionState.empName[_PassportRetentionState.empNo.indexOf(_PassportRetentionState.selectedEmp)];
-      _PassportRetentionState.passportNoController.text = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.passportNo : "";
-      _PassportRetentionState.selectedReceEmpId = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.receivingEmployeeId : _PassportRetentionState.empNo[0];
-      _PassportRetentionState.receEmpNameController.text = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.receivingEmployeeName : _PassportRetentionState.empName[_PassportRetentionState.empNo.indexOf(_PassportRetentionState.selectedReceEmpId)];
-      _PassportRetentionState.expCollectionDateController.text = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.dateOfReceipt : "";
-      _PassportRetentionState.receTimeController.text = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.column1 : "";
-      _PassportRetentionState.commentRemarkController.text = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.commentRemarks : "";
-      _PassportRetentionState.selectedStatus = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.status : _passportRetentionState.statusList[0];
-      _PassportRetentionState.userIdController.text = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.userId : _PassportRetentionState.userId;
-      _PassportRetentionState.expReturnDateController.text = _PassportRetentionState.editClicked ? PassportRetentionDataSource.selectedRowData.expectedReceiptDate : "";
+      _PassportRetentionState.selectedRequestType =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.requestType
+              : _passportRetentionState.requestType[0];
+      _PassportRetentionState.selectedTransactionType =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.transactionType
+              : _PassportRetentionState.transactionType[0];
+      _PassportRetentionState.selectedEmp = _PassportRetentionState.editClicked
+          ? PassportRetentionDataSource.selectedRowData.employeeId
+          : _PassportRetentionState.empNo[0];
+      _PassportRetentionState.empNameController.text =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.employeeName
+              : _PassportRetentionState.empName[_PassportRetentionState.empNo
+                  .indexOf(_PassportRetentionState.selectedEmp)];
+      _PassportRetentionState.passportNoController.text =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.passportNo
+              : "";
+      _PassportRetentionState.selectedReceEmpId =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.receivingEmployeeId
+              : _PassportRetentionState.empNo[0];
+      _PassportRetentionState.receEmpNameController.text =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource
+                  .selectedRowData.receivingEmployeeName
+              : _PassportRetentionState.empName[_PassportRetentionState.empNo
+                  .indexOf(_PassportRetentionState.selectedReceEmpId)];
+      _PassportRetentionState.expCollectionDateController.text =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.dateOfReceipt
+              : "";
+      _PassportRetentionState.receTimeController.text =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.column1
+              : "";
+      _PassportRetentionState.commentRemarkController.text =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.commentRemarks
+              : "";
+      _PassportRetentionState.selectedStatus =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.status
+              : _passportRetentionState.statusList[0];
+      _PassportRetentionState.userIdController.text =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.userId
+              : _PassportRetentionState.userId;
+      _PassportRetentionState.expReturnDateController.text =
+          _PassportRetentionState.editClicked
+              ? PassportRetentionDataSource.selectedRowData.expectedReceiptDate
+              : "";
 
-      _PassportRetentionState.postReq = _PassportRetentionState.selectedStatus == _passportRetentionState.statusList[2] ? true : false;
+      _PassportRetentionState.postReq =
+          _PassportRetentionState.selectedStatus ==
+                  _passportRetentionState.statusList[2]
+              ? true
+              : false;
 
       _PassportRetentionState.wrongEmpCheck = true;
+
+      if(_PassportRetentionState.editClicked) {
+        expCollectionDate = DateFormat("yyyy-MM-dd").parse(_PassportRetentionState.expCollectionDateController.text);
+        expReturnDate = DateFormat("yyyy-MM-dd").parse(_PassportRetentionState.expReturnDateController.text);
+      }
     });
   }
-
-  var formatter = new DateFormat('MM/dd/yyyy');
-
-  DateTime expCollectionDate = DateTime.now();
 
   Future<Null> _selectExpCollectionDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -1061,11 +1134,10 @@ class _DialogContentState extends State<DialogContent> {
     if (picked != null)
       setState(() {
         expCollectionDate = picked;
-        _PassportRetentionState.expCollectionDateController.text = formatter.format(expCollectionDate);
+        _PassportRetentionState.expCollectionDateController.text =
+            formatter.format(expCollectionDate);
       });
   }
-
-  DateTime expReturnDate = DateTime.now();
 
   Future<Null> _selectExpReturnDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -1077,7 +1149,8 @@ class _DialogContentState extends State<DialogContent> {
     if (picked != null)
       setState(() {
         expReturnDate = picked;
-        _PassportRetentionState.expReturnDateController.text = formatter.format(expReturnDate);
+        _PassportRetentionState.expReturnDateController.text =
+            formatter.format(expReturnDate);
       });
   }
 
@@ -1092,7 +1165,10 @@ class _DialogContentState extends State<DialogContent> {
       setState(() {
         receivingTime = picked;
         _PassportRetentionState.receivingTimeController.text =
-                receivingTime.hour.toString() + ":" + receivingTime.minute.toString() + ":00";
+            receivingTime.hour.toString() +
+                ":" +
+                receivingTime.minute.toString() +
+                ":00";
       });
   }
 
@@ -1110,19 +1186,20 @@ class _DialogContentState extends State<DialogContent> {
                       var alert = AlertDialog(
                         contentPadding: EdgeInsets.all(2),
                         content: TextField(
-                          controller: _PassportRetentionState.cancelCommentController,
+                          controller:
+                              _PassportRetentionState.cancelCommentController,
                           decoration: InputDecoration(
-                                  labelText: "Enter the cancellation comment"),
+                              labelText: "Enter the cancellation comment"),
                         ),
                         actions: <Widget>[
                           FlatButton(
                             onPressed: () {
                               if (_PassportRetentionState
-                                      .cancelCommentController.text.isNotEmpty) {
+                                  .cancelCommentController.text.isNotEmpty) {
                                 Navigator.pop(context);
                                 setState(() {
                                   _PassportRetentionState.selectedStatus =
-                                  _passportRetentionState.statusList[4];
+                                      _passportRetentionState.statusList[4];
                                 });
                               } else {
                                 Fluttertoast.showToast(
@@ -1161,15 +1238,15 @@ class _DialogContentState extends State<DialogContent> {
                   child: FlatButton(
                     onPressed: () {
                       var alert = AlertDialog(
-                        content:
-                        Text("Are you sure you want to send for approval ?"),
+                        content: Text(
+                            "Are you sure you want to send for approval ?"),
                         actions: <Widget>[
                           FlatButton(
                             onPressed: () {
                               Navigator.pop(context);
                               setState(() {
                                 _PassportRetentionState.selectedStatus =
-                                _passportRetentionState.statusList[1];
+                                    _passportRetentionState.statusList[1];
                               });
                             },
                             child: Text("Yes"),
@@ -1201,8 +1278,8 @@ class _DialogContentState extends State<DialogContent> {
                   child: FlatButton(
                     onPressed: () {
                       var alert = AlertDialog(
-                        content:
-                        Text("Are you sure you want to POST the document ?"),
+                        content: Text(
+                            "Are you sure you want to POST the document ?"),
                         actions: <Widget>[
                           FlatButton(
                             onPressed: () {
@@ -1230,19 +1307,20 @@ class _DialogContentState extends State<DialogContent> {
                     },
                     child: Column(
                       children: <Widget>[
-                        Icon(Icons.add, color: Colors.lightGreen,),
+                        Icon(
+                          Icons.add,
+                          color: Colors.lightGreen,
+                        ),
                         Text("Post"),
                       ],
                     ),
                   ),
                   ignoring: !_PassportRetentionState.postReq,
                 )
-
               ],
             ),
             visible: _PassportRetentionState.editClicked,
           ),
-
           TextField(
             controller: _PassportRetentionState.transactionIdController,
             decoration: InputDecoration(
@@ -1263,7 +1341,8 @@ class _DialogContentState extends State<DialogContent> {
               IgnorePointer(
                 child: DropdownButton(
                   value: _PassportRetentionState.selectedRequestType,
-                  items: _passportRetentionState.requestType.map((String value) {
+                  items:
+                      _passportRetentionState.requestType.map((String value) {
                     return DropdownMenuItem(
                       value: value,
                       child: Text(value),
@@ -1272,7 +1351,10 @@ class _DialogContentState extends State<DialogContent> {
                   onChanged: (String newValue) {
                     setState(() {
                       _PassportRetentionState.selectedRequestType = newValue;
-                      _PassportRetentionState.requestTypeStatus = _passportRetentionState.requestType.indexOf(newValue).toString();
+                      _PassportRetentionState.requestTypeStatus =
+                          _passportRetentionState.requestType
+                              .indexOf(newValue)
+                              .toString();
                     });
                   },
                 ),
@@ -1293,7 +1375,8 @@ class _DialogContentState extends State<DialogContent> {
               IgnorePointer(
                 child: DropdownButton(
                   value: _PassportRetentionState.selectedTransactionType,
-                  items: _PassportRetentionState.transactionType.map((String value) {
+                  items: _PassportRetentionState.transactionType
+                      .map((String value) {
                     return DropdownMenuItem(
                       value: value,
                       child: Text(value),
@@ -1301,7 +1384,8 @@ class _DialogContentState extends State<DialogContent> {
                   }).toList(),
                   onChanged: (String newValue) {
                     setState(() {
-                      _PassportRetentionState.selectedTransactionType = newValue;
+                      _PassportRetentionState.selectedTransactionType =
+                          newValue;
                     });
                   },
                 ),
@@ -1333,16 +1417,26 @@ class _DialogContentState extends State<DialogContent> {
                     setState(() {
                       _PassportRetentionState.selectedEmp = newValue;
                       _PassportRetentionState.empNameController.text =
-                      _PassportRetentionState.empName[_PassportRetentionState.empNo
-                              .indexOf(_PassportRetentionState.selectedEmp)];
+                          _PassportRetentionState.empName[
+                              _PassportRetentionState.empNo.indexOf(
+                                  _PassportRetentionState.selectedEmp)];
 
-                      if(identical(_PassportRetentionState.passportRetentionReq[_PassportRetentionState.empNo.indexOf(newValue)].toString(),"0"))
+                      if (identical(
+                          _PassportRetentionState.passportRetentionReq[
+                                  _PassportRetentionState.empNo
+                                      .indexOf(newValue)]
+                              .toString(),
+                          "0"))
                         _PassportRetentionState.wrongEmpCheck = true;
                       else
                         _PassportRetentionState.wrongEmpCheck = false;
 
-                      _PassportRetentionState.obtainedStatus = _PassportRetentionState.passportObtained[_PassportRetentionState.empNo.indexOf(newValue)];
-                      _PassportRetentionState.releasedStatus = _PassportRetentionState.passportReleased[_PassportRetentionState.empNo.indexOf(newValue)];
+                      _PassportRetentionState.obtainedStatus =
+                          _PassportRetentionState.passportObtained[
+                              _PassportRetentionState.empNo.indexOf(newValue)];
+                      _PassportRetentionState.releasedStatus =
+                          _PassportRetentionState.passportReleased[
+                              _PassportRetentionState.empNo.indexOf(newValue)];
                     });
                   },
                 ),
@@ -1392,8 +1486,9 @@ class _DialogContentState extends State<DialogContent> {
                     setState(() {
                       _PassportRetentionState.selectedReceEmpId = newValue;
                       _PassportRetentionState.receEmpNameController.text =
-                      _PassportRetentionState.empName[_PassportRetentionState.empNo
-                              .indexOf(_PassportRetentionState.selectedReceEmpId)];
+                          _PassportRetentionState.empName[
+                              _PassportRetentionState.empNo.indexOf(
+                                  _PassportRetentionState.selectedReceEmpId)];
                     });
                   },
                 ),
@@ -1401,7 +1496,6 @@ class _DialogContentState extends State<DialogContent> {
               )
             ],
           ),
-
           TextField(
             controller: _PassportRetentionState.receEmpNameController,
             decoration: InputDecoration(
@@ -1509,16 +1603,18 @@ class MyBlinkingText extends StatefulWidget {
   _MyBlinkingTextState createState() => _MyBlinkingTextState();
 }
 
-class _MyBlinkingTextState extends State<MyBlinkingText> with SingleTickerProviderStateMixin{
-
+class _MyBlinkingTextState extends State<MyBlinkingText>
+    with SingleTickerProviderStateMixin {
   AnimationController _animationController;
 
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animationController.repeat();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return FadeTransition(

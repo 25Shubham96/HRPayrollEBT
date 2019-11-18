@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/AssetReqResponse.dart';
+import 'package:intl/intl.dart';
 
 class EmpAssetReqDataSource extends DataTableSource {
   List<AssetReqModel> data = List();
@@ -12,9 +13,10 @@ class EmpAssetReqDataSource extends DataTableSource {
   bool rowSelect = false;
   static AssetReqModel selectedRowData = AssetReqModel();
 
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
+
   void selectAll(bool checked) {
-    for (AssetReqModel assetReqMod in data)
-      assetReqMod.selected = checked;
+    for (AssetReqModel assetReqMod in data) assetReqMod.selected = checked;
     selectedCount = checked ? data.length : 0;
     notifyListeners();
   }
@@ -38,11 +40,11 @@ class EmpAssetReqDataSource extends DataTableSource {
           prevIndex = index;
         }
       },
-      cells: <DataCell> [
+      cells: <DataCell>[
         DataCell(Text(assetReqModel.requisitionNo)),
         DataCell(Text(assetReqModel.employeeNo)),
         DataCell(Text(assetReqModel.employeeName)),
-        DataCell(Text(assetReqModel.requisionDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(assetReqModel.requisionDate)))),
         DataCell(Text(assetReqModel.requestedBy)),
         DataCell(Text(assetReqModel.requestedByName)),
         DataCell(Text(assetReqModel.status)),
@@ -60,5 +62,4 @@ class EmpAssetReqDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

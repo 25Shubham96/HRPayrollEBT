@@ -44,10 +44,10 @@ class _CompOffState extends State<CompOff> {
   static TextEditingController toDateController = TextEditingController();
   static TextEditingController totDaysController = TextEditingController();
   static TextEditingController taskToCompleteController =
-  TextEditingController();
+      TextEditingController();
   static TextEditingController leaveReasonController = TextEditingController();
   static TextEditingController cancelCommentController =
-  TextEditingController();
+      TextEditingController();
 
   static var selectedEmp = "", selectedStatus = "";
 
@@ -88,9 +88,9 @@ class _CompOffState extends State<CompOff> {
                     child: new Text(
                       "Compensatory Off List",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -171,7 +171,7 @@ class _CompOffState extends State<CompOff> {
             FutureBuilder(
               future: updateTableResponse,
               builder: (BuildContext context,
-                      AsyncSnapshot<CompOffResponse> snapshot) {
+                  AsyncSnapshot<CompOffResponse> snapshot) {
                 if (snapshot.hasData) {
                   CompOffResponse _myResponseData = snapshot.data;
                   _compOffDataSource = CompOffDataSource(_myResponseData.data);
@@ -181,7 +181,10 @@ class _CompOffState extends State<CompOff> {
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _compOffDataSource.selectAll,
                     header: Text(""),
                     columns: [
@@ -189,99 +192,99 @@ class _CompOffState extends State<CompOff> {
                         label: new Text(
                           "Document No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Designation",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Department",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "From Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "To Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "No of Days",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Task to Complete",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Reason",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -316,99 +319,99 @@ class _CompOffState extends State<CompOff> {
                             label: new Text(
                               "Document No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Designation",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Department",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "From Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "To Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "No of Days",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Task to Complete",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Reason",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -446,9 +449,9 @@ class _CompOffState extends State<CompOff> {
         FlatButton(
           onPressed: () async {
             if (fromDateController.text.isEmpty ||
-                    toDateController.text.isEmpty ||
-                    taskToCompleteController.text.isEmpty ||
-                    leaveReasonController.text.isEmpty) {
+                toDateController.text.isEmpty ||
+                taskToCompleteController.text.isEmpty ||
+                leaveReasonController.text.isEmpty) {
               Fluttertoast.showToast(
                 msg: "One or more blank entries",
                 toastLength: Toast.LENGTH_LONG,
@@ -457,7 +460,7 @@ class _CompOffState extends State<CompOff> {
             } else {
               Navigator.pop(context);
               CompOffResponse compOffResponse =
-              await _apiInterface2.compOffResponseData(CompOffRequest(
+                  await _apiInterface2.compOffResponseData(CompOffRequest(
                 action: 2,
                 employeeNo: selectedEmp,
                 employeeName: empNameController.text,
@@ -476,7 +479,7 @@ class _CompOffState extends State<CompOff> {
 
                 setState(() {
                   updateTableResponse =
-                          _apiInterface1.compOffResponseData(compOffRequest);
+                      _apiInterface1.compOffResponseData(compOffRequest);
                 });
               }
 
@@ -506,10 +509,10 @@ class _CompOffState extends State<CompOff> {
       ],
     );
     showDialog(
-            context: context,
-            builder: (context) {
-              return alert;
-            });
+        context: context,
+        builder: (context) {
+          return alert;
+        });
   }
 
   void onEditPress(BuildContext context) {
@@ -518,12 +521,12 @@ class _CompOffState extends State<CompOff> {
 
     if (_compOffDataSource.rowSelect) {
       if (CompOffDataSource.selectedRowData.status == statusList[0] ||
-              CompOffDataSource.selectedRowData.status == statusList[1]) {
+          CompOffDataSource.selectedRowData.status == statusList[1]) {
         if (CompOffDataSource.selectedRowData.status == statusList[1]) {
           textFieldEnableStatus = false;
           Fluttertoast.showToast(
             msg:
-            "Document is ${CompOffDataSource.selectedRowData.status} status and cannot be edited",
+                "Document is ${CompOffDataSource.selectedRowData.status} status and cannot be edited",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER,
           );
@@ -540,9 +543,9 @@ class _CompOffState extends State<CompOff> {
             FlatButton(
               onPressed: () async {
                 if (fromDateController.text.isEmpty ||
-                        toDateController.text.isEmpty ||
-                        taskToCompleteController.text.isEmpty ||
-                        leaveReasonController.text.isEmpty) {
+                    toDateController.text.isEmpty ||
+                    taskToCompleteController.text.isEmpty ||
+                    leaveReasonController.text.isEmpty) {
                   Fluttertoast.showToast(
                     msg: "One or more blank entries",
                     toastLength: Toast.LENGTH_LONG,
@@ -554,24 +557,23 @@ class _CompOffState extends State<CompOff> {
                     editClicked = false;
                   });
                   if (selectedStatus == statusList[4]) {
-                    RejCanPostResponse rejCanResponse =
-                    await _apiInterface3.leaveRejCanResponseData(
-                            LeaveApprovalRequest(
-                              action: "7",
-                              documentType: "2",
-                              sequenceNo: "0",
-                              senderId: selectedEmp,
-                              status: "4",
-                              fromDate: fromDateController.text,
-                              cancellationComment: cancelCommentController.text,
-                            ));
+                    RejCanPostResponse rejCanResponse = await _apiInterface3
+                        .leaveRejCanResponseData(LeaveApprovalRequest(
+                      action: "7",
+                      documentType: "2",
+                      sequenceNo: "0",
+                      senderId: selectedEmp,
+                      status: "4",
+                      fromDate: fromDateController.text,
+                      cancellationComment: cancelCommentController.text,
+                    ));
 
                     if (rejCanResponse.status) {
                       CompOffRequest compOffRequest = CompOffRequest(action: 1);
 
                       setState(() {
                         updateTableResponse =
-                                _apiInterface1.compOffResponseData(compOffRequest);
+                            _apiInterface1.compOffResponseData(compOffRequest);
                       });
                     }
 
@@ -590,7 +592,7 @@ class _CompOffState extends State<CompOff> {
                     );*/
                   } else {
                     CompOffResponse compOffResponse =
-                    await _apiInterface2.compOffResponseData(CompOffRequest(
+                        await _apiInterface2.compOffResponseData(CompOffRequest(
                       action: 3,
                       entryNo: entryNo,
                       employeeNo: selectedEmp,
@@ -610,7 +612,7 @@ class _CompOffState extends State<CompOff> {
 
                       setState(() {
                         updateTableResponse =
-                                _apiInterface1.compOffResponseData(compOffRequest);
+                            _apiInterface1.compOffResponseData(compOffRequest);
                       });
                     }
 
@@ -644,17 +646,17 @@ class _CompOffState extends State<CompOff> {
           ],
         );
         showDialog(
-                context: context,
-                builder: (context) {
-                  return alert;
-                });
+            context: context,
+            builder: (context) {
+              return alert;
+            });
       } else {
         setState(() {
           editClicked = false;
         });
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${CompOffDataSource.selectedRowData.status} status and cannot be edited"),
+              "Document is ${CompOffDataSource.selectedRowData.status} status and cannot be edited"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -699,7 +701,7 @@ class _CompOffState extends State<CompOff> {
     var entryNo = CompOffDataSource.selectedRowData.entryNo.toString();
     if (_compOffDataSource.rowSelect) {
       if (CompOffDataSource.selectedRowData.status == statusList[0] ||
-              CompOffDataSource.selectedRowData.status == statusList[1]) {
+          CompOffDataSource.selectedRowData.status == statusList[1]) {
         var alert = AlertDialog(
           content: Text("Are you sure you want to delete this entry!?"),
           actions: <Widget>[
@@ -707,7 +709,7 @@ class _CompOffState extends State<CompOff> {
               onPressed: () async {
                 Navigator.pop(context);
                 CompOffResponse compOffResponse =
-                await _apiInterface2.compOffResponseData(CompOffRequest(
+                    await _apiInterface2.compOffResponseData(CompOffRequest(
                   action: 4,
                   entryNo: entryNo,
                   noOfDays: 0,
@@ -718,7 +720,7 @@ class _CompOffState extends State<CompOff> {
 
                   setState(() {
                     updateTableResponse =
-                            _apiInterface1.compOffResponseData(compOffRequest);
+                        _apiInterface1.compOffResponseData(compOffRequest);
                   });
                 }
 
@@ -759,7 +761,7 @@ class _CompOffState extends State<CompOff> {
       } else {
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${CompOffDataSource.selectedRowData.status} status and cannot be deleted"),
+              "Document is ${CompOffDataSource.selectedRowData.status} status and cannot be deleted"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -806,51 +808,58 @@ class DialogContent extends StatefulWidget {
 class _DialogContentState extends State<DialogContent> {
   _CompOffState _compOffState = _CompOffState();
 
+  var formatter = new DateFormat('MM/dd/yyyy');
+
+  DateTime fromDate = DateTime.now();
+  DateTime toDate = DateTime.now().subtract(Duration(days: 1));
+
   @override
   void initState() {
     super.initState();
     setState(() {
       _CompOffState.selectedEmp = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.employeeNo
-              : _CompOffState.empNoList[0];
+          ? CompOffDataSource.selectedRowData.employeeNo
+          : _CompOffState.empNoList[0];
       _CompOffState.empNameController.text = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.employeeName
-              : _CompOffState.empNameList[
-      _CompOffState.empNoList.indexOf(_CompOffState.selectedEmp)];
+          ? CompOffDataSource.selectedRowData.employeeName
+          : _CompOffState.empNameList[
+              _CompOffState.empNoList.indexOf(_CompOffState.selectedEmp)];
       _CompOffState.designationController.text = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.designation
-              : _CompOffState.designationList[
-      _CompOffState.empNoList.indexOf(_CompOffState.selectedEmp)];
+          ? CompOffDataSource.selectedRowData.designation
+          : _CompOffState.designationList[
+              _CompOffState.empNoList.indexOf(_CompOffState.selectedEmp)];
       _CompOffState.departmentController.text = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.department
-              : _CompOffState.departmentList[
-      _CompOffState.empNoList.indexOf(_CompOffState.selectedEmp)];
+          ? CompOffDataSource.selectedRowData.department
+          : _CompOffState.departmentList[
+              _CompOffState.empNoList.indexOf(_CompOffState.selectedEmp)];
 
       _CompOffState.selectedStatus = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.status
-              : _compOffState.statusList[0];
+          ? CompOffDataSource.selectedRowData.status
+          : _compOffState.statusList[0];
 
       _CompOffState.fromDateController.text = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.fromDate
-              : "";
+          ? CompOffDataSource.selectedRowData.fromDate
+          : "";
       _CompOffState.toDateController.text = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.toDate
-              : "";
+          ? CompOffDataSource.selectedRowData.toDate
+          : "";
       _CompOffState.totDaysController.text = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.noOfDays.toString()
-              : "";
+          ? CompOffDataSource.selectedRowData.noOfDays.toString()
+          : "";
       _CompOffState.taskToCompleteController.text = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.taskToComplete
-              : "";
+          ? CompOffDataSource.selectedRowData.taskToComplete
+          : "";
       _CompOffState.leaveReasonController.text = _CompOffState.editClicked
-              ? CompOffDataSource.selectedRowData.reason
-              : "";
+          ? CompOffDataSource.selectedRowData.reason
+          : "";
+      if(_CompOffState.editClicked) {
+        fromDate = DateFormat("yyyy-MM-dd").parse(
+                _CompOffState.fromDateController.text);
+        toDate = DateFormat("yyyy-MM-dd").parse(
+                _CompOffState.toDateController.text);
+      }
     });
   }
-
-  var formatter = new DateFormat('MM/dd/yyyy');
-
-  DateTime fromDate = DateTime.now();
 
   Future<Null> _selectFromDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -863,10 +872,10 @@ class _DialogContentState extends State<DialogContent> {
       setState(() {
         fromDate = picked;
         _CompOffState.fromDateController.text = formatter.format(fromDate);
+        _CompOffState.totDaysController.text =
+                (toDate.difference(fromDate).inDays + 1).toString();
       });
   }
-
-  DateTime toDate = DateTime.now();
 
   Future<Null> _selectToDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -879,6 +888,8 @@ class _DialogContentState extends State<DialogContent> {
       setState(() {
         toDate = picked;
         _CompOffState.toDateController.text = formatter.format(toDate);
+        _CompOffState.totDaysController.text =
+                (toDate.difference(fromDate).inDays + 1).toString();
       });
   }
 
@@ -897,17 +908,17 @@ class _DialogContentState extends State<DialogContent> {
                       content: TextField(
                         controller: _CompOffState.cancelCommentController,
                         decoration: InputDecoration(
-                                labelText: "enter the cancellation comment"),
+                            labelText: "enter the cancellation comment"),
                       ),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             if (_CompOffState
-                                    .cancelCommentController.text.isNotEmpty) {
+                                .cancelCommentController.text.isNotEmpty) {
                               Navigator.pop(context);
                               setState(() {
                                 _CompOffState.selectedStatus =
-                                _compOffState.statusList[4];
+                                    _compOffState.statusList[4];
                               });
                             } else {
                               Fluttertoast.showToast(
@@ -946,14 +957,14 @@ class _DialogContentState extends State<DialogContent> {
                   onPressed: () {
                     var alert = AlertDialog(
                       content:
-                      Text("Are you sure you want to send for approval ?"),
+                          Text("Are you sure you want to send for approval ?"),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
                             setState(() {
                               _CompOffState.selectedStatus =
-                              _compOffState.statusList[1];
+                                  _compOffState.statusList[1];
                             });
                           },
                           child: Text("Yes"),
@@ -1007,13 +1018,13 @@ class _DialogContentState extends State<DialogContent> {
                     setState(() {
                       _CompOffState.selectedEmp = newValue;
                       _CompOffState.empNameController.text =
-                      _CompOffState.empNameList[_CompOffState.empNoList
+                          _CompOffState.empNameList[_CompOffState.empNoList
                               .indexOf(_CompOffState.selectedEmp)];
                       _CompOffState.designationController.text =
-                      _CompOffState.designationList[_CompOffState.empNoList
+                          _CompOffState.designationList[_CompOffState.empNoList
                               .indexOf(_CompOffState.selectedEmp)];
                       _CompOffState.departmentController.text =
-                      _CompOffState.departmentList[_CompOffState.empNoList
+                          _CompOffState.departmentList[_CompOffState.empNoList
                               .indexOf(_CompOffState.selectedEmp)];
                     });
                   },

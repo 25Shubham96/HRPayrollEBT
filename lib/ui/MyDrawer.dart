@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hrpayroll/Network/ApiInterface.dart';
 import 'package:hrpayroll/Network/Utils.dart';
+import 'package:hrpayroll/request_model/LogOffRequest.dart';
+import 'package:hrpayroll/response_model/ForgotPasswordResponse.dart';
 import 'package:hrpayroll/ui/Home/Home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,11 +13,15 @@ import 'PassportModule/Passport.dart';
 import 'TrainingModule/Training.dart';
 
 class MyDrawer extends StatelessWidget {
-  static String EmpNo = "";
+  static String empNo = "";
+  static String password = "";
 
-  void GetEmployeeNo() async {
+  ApiInterface _apiInterface = ApiInterface();
+
+  static void getEmployeeNo() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    EmpNo = sharedPreferences.getString(Util.userName);
+    empNo = sharedPreferences.getString(Util.userName);
+    password = sharedPreferences.getString(Util.password);
   }
 
   @override
@@ -41,15 +48,15 @@ class MyDrawer extends StatelessWidget {
 
               Navigator.push(context,
                   new MaterialPageRoute(builder: (BuildContext context) {
-                    return Dashboard();
-                  }));
+                return Dashboard();
+              }));
             },
           ),
           new ListTile(
             title: new Text("Home"),
             leading: new Icon(Icons.format_list_bulleted),
             onTap: () {
-              GetEmployeeNo();
+              getEmployeeNo();
 
               Navigator.pop(context);
               Navigator.pop(context);
@@ -82,8 +89,8 @@ class MyDrawer extends StatelessWidget {
 
               Navigator.push(context,
                   new MaterialPageRoute(builder: (BuildContext context) {
-                    return Training();
-                  }));
+                return Training();
+              }));
             },
           ),
           new ListTile(
@@ -95,8 +102,8 @@ class MyDrawer extends StatelessWidget {
 
               Navigator.push(context,
                   new MaterialPageRoute(builder: (BuildContext context) {
-                    return Employee();
-                  }));
+                return Employee();
+              }));
             },
           ),
           new ListTile(
@@ -108,8 +115,8 @@ class MyDrawer extends StatelessWidget {
 
               Navigator.push(context,
                   new MaterialPageRoute(builder: (BuildContext context) {
-                    return Passport();
-                  }));
+                return Passport();
+              }));
             },
           ),
           new ListTile(
@@ -125,7 +132,62 @@ class MyDrawer extends StatelessWidget {
           new ListTile(
             title: new Text("Log Out"),
             leading: new Icon(Icons.exit_to_app),
-            onTap: () => debugPrint("Log Out"),
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text("Log Out"),
+                      content: Text("Are you sure you want to Log Out?"),
+                      actions: <Widget>[
+                        FlatButton(
+                          onPressed: () async {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: Row(
+                                    children: <Widget>[
+                                      CircularProgressIndicator(),
+                                      Padding(
+                                          padding: EdgeInsets.only(left: 10)),
+                                      Text("Logging off please wait...")
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+
+                            ForgotPasswordResponse _forgotPasswordResponse =
+                                await _apiInterface.logOff(
+                              LogOffRequest(
+                                username: empNo,
+                                password: password,
+                              ),
+                            );
+
+                            if (_forgotPasswordResponse.status) {
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            } else {
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: Text("YES"),
+                        ),
+                        FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("NO"),
+                        ),
+                      ],
+                    );
+                  });
+            },
           ),
         ],
       ),

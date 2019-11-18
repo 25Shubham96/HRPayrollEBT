@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../response_model/EmployeeMasterResponse.dart';
 
@@ -12,6 +13,8 @@ class EmployeeMasterDataSource extends DataTableSource {
 
   bool rowSelect = false;
   EmployeeMasterModel selectedRowData = EmployeeMasterModel();
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (EmployeeMasterModel empMasMod in data) empMasMod.selected = checked;
@@ -71,8 +74,8 @@ class EmployeeMasterDataSource extends DataTableSource {
         DataCell(Text(employeeMasterModel.designation)),
         DataCell(Text(employeeMasterModel.status.toString())),
         //status description needed
-        DataCell(Text(employeeMasterModel.periodStartDate)),
-        DataCell(Text(employeeMasterModel.periodEndDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(employeeMasterModel.periodStartDate)))),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(employeeMasterModel.periodEndDate)))),
         DataCell(Text(employeeMasterModel.departmentCode)),
         DataCell(Text(employeeMasterModel.empPostingGroup)),
         DataCell(Text(employeeMasterModel.payrollBusPostingGroup)),

@@ -15,6 +15,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 3600000), () {
+      setState(() {
+        Navigator.pop(context);
+      });
+    });
+
     return DefaultTabController(
       length: 5,
       child: new Scaffold(

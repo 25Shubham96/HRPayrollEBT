@@ -19,8 +19,8 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-
-  void enterEmpDetailsToSharedPref(List<String> empNo,
+  void enterEmpDetailsToSharedPref(
+      List<String> empNo,
       List<String> empName,
       List<String> empDesignation,
       List<String> empDepartment,
@@ -32,52 +32,53 @@ class _DashboardState extends State<Dashboard> {
     sharedPreferences.setStringList("empName", empName);
     sharedPreferences.setStringList("empDesignation", empDesignation);
     sharedPreferences.setStringList("empDepartment", empDepartment);
-    sharedPreferences.setStringList("passportRetentionReq", passportRetentionReq);
+    sharedPreferences.setStringList(
+        "passportRetentionReq", passportRetentionReq);
     sharedPreferences.setStringList("passportObtained", passportObtained);
     sharedPreferences.setStringList("passportReleased", passportReleased);
   }
 
   void enterLeaveDetailsToSharedPref(
-      List<String> leaveCode,
-      List<String> leaveDescription) async {
+      List<String> leaveCode, List<String> leaveDescription) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setStringList("leaveCode", leaveCode);
     sharedPreferences.setStringList("leaveDescription", leaveDescription);
   }
 
-  void enterLookupToSharedPref(String lookupNo,
-      List<String> data) async {
+  void enterLookupToSharedPref(String lookupNo, List<String> data) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    switch(lookupNo){
-      case "13":{
-        sharedPreferences.setStringList("assetType", data);
-        break;
-      }
-      case "14":{
-        sharedPreferences.setStringList("transactionType", data);
-        break;
-      }
-      case "17":{
-        sharedPreferences.setStringList("location", data);
-        break;
-      }
+    switch (lookupNo) {
+      case "13":
+        {
+          sharedPreferences.setStringList("assetType", data);
+          break;
+        }
+      case "14":
+        {
+          sharedPreferences.setStringList("transactionType", data);
+          break;
+        }
+      case "17":
+        {
+          sharedPreferences.setStringList("location", data);
+          break;
+        }
     }
   }
 
   void enterTrainingCourseDetailsToSharedPref(
-      List<String> trainingCourse,
-      List<String> trainingCourseTitle) async {
+      List<String> trainingCourse, List<String> trainingCourseTitle) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setStringList("trainingCourse", trainingCourse);
     sharedPreferences.setStringList("trainingCourseTitle", trainingCourseTitle);
   }
 
   void enterTrainingProviderDetailsToSharedPref(
-      List<String> trainingProvider,
-      List<String> trainingProviderName) async {
+      List<String> trainingProvider, List<String> trainingProviderName) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setStringList("trainingProvider", trainingProvider);
-    sharedPreferences.setStringList("trainingProviderName", trainingProviderName);
+    sharedPreferences.setStringList(
+        "trainingProviderName", trainingProviderName);
   }
 
   void enterAssetDetailsToSharedPref(
@@ -112,23 +113,33 @@ class _DashboardState extends State<Dashboard> {
   ApiInterface _apiInterface8 = ApiInterface();
 
   @override
+  void initState() {
+    MyDrawer.getEmployeeNo();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 3600000), () {
+      setState(() {
+        Navigator.pop(context);
+      });
+    });
+
     return new Scaffold(
       appBar: MyAppBar.getAppBar("Welcome"),
       drawer: new MyDrawer(),
       body: Stack(
         children: <Widget>[
           FutureBuilder(
-            future: _apiInterface8.getAssetDetailsResponseData(
-                TrainingProviderCourseRequest(
-                  action: 1,
-                )
-            ),
+            future: _apiInterface8
+                .getAssetDetailsResponseData(TrainingProviderCourseRequest(
+              action: 1,
+            )),
             builder: (BuildContext context,
                 AsyncSnapshot<FixedAssetResponse> snapshot) {
-
               if (snapshot.hasData) {
-                if(!snapshot.data.status) {
+                if (!snapshot.data.status) {
                   var alert = new AlertDialog(
                     title: new Text("Caution!"),
                     content: new Text(snapshot.data.message),
@@ -166,18 +177,22 @@ class _DashboardState extends State<Dashboard> {
                     ownerName.add(fixedAssetResponse.data[i].ownerName);
                     manufacturar.add(fixedAssetResponse.data[i].manufacturar);
                     model.add(fixedAssetResponse.data[i].model);
-                    currAssetLoc.add(fixedAssetResponse.data[i].currentAssetLocation);
-                    assetIssueStatus.add(fixedAssetResponse.data[i].issued.toString());
+                    currAssetLoc
+                        .add(fixedAssetResponse.data[i].currentAssetLocation);
+                    assetIssueStatus
+                        .add(fixedAssetResponse.data[i].issued.toString());
                   }
-                  enterAssetDetailsToSharedPref(assetNo,
-                      assetName,
-                      assetType,
-                      owner,
-                      ownerName,
-                      manufacturar,
-                      model,
-                      currAssetLoc,
-                      assetIssueStatus,);
+                  enterAssetDetailsToSharedPref(
+                    assetNo,
+                    assetName,
+                    assetType,
+                    owner,
+                    ownerName,
+                    manufacturar,
+                    model,
+                    currAssetLoc,
+                    assetIssueStatus,
+                  );
                 }
                 return Container();
               } else {
@@ -203,24 +218,29 @@ class _DashboardState extends State<Dashboard> {
             },
           ),
           FutureBuilder(
-            future: _apiInterface7.trainingProviderResponseData(
-                TrainingProviderCourseRequest(
-                  action: 1,
-                )
-            ),
+            future: _apiInterface7
+                .trainingProviderResponseData(TrainingProviderCourseRequest(
+              action: 1,
+            )),
             builder: (BuildContext context,
                 AsyncSnapshot<TrainingProviderResponse> snapshot) {
               if (snapshot.hasData) {
-                TrainingProviderResponse trainingProviderResponse = snapshot.data;
+                TrainingProviderResponse trainingProviderResponse =
+                    snapshot.data;
                 if (trainingProviderResponse.status) {
                   List<String> trainingProvider = List();
                   List<String> trainingProviderName = List();
 
-                  for (int i = 0; i < trainingProviderResponse.data.length; i++) {
-                    trainingProvider.add(trainingProviderResponse.data[i].providerNo);
-                    trainingProviderName.add(trainingProviderResponse.data[i].providerName);
+                  for (int i = 0;
+                      i < trainingProviderResponse.data.length;
+                      i++) {
+                    trainingProvider
+                        .add(trainingProviderResponse.data[i].providerNo);
+                    trainingProviderName
+                        .add(trainingProviderResponse.data[i].providerName);
                   }
-                  enterTrainingProviderDetailsToSharedPref(trainingProvider, trainingProviderName);
+                  enterTrainingProviderDetailsToSharedPref(
+                      trainingProvider, trainingProviderName);
                 }
                 return Container();
               } else {
@@ -246,11 +266,10 @@ class _DashboardState extends State<Dashboard> {
             },
           ),
           FutureBuilder(
-            future: _apiInterface6.trainingCourseResponseData(
-                TrainingProviderCourseRequest(
-                  action: 1,
-                )
-            ),
+            future: _apiInterface6
+                .trainingCourseResponseData(TrainingProviderCourseRequest(
+              action: 1,
+            )),
             builder: (BuildContext context,
                 AsyncSnapshot<TrainingCourseResponse> snapshot) {
               if (snapshot.hasData) {
@@ -261,9 +280,11 @@ class _DashboardState extends State<Dashboard> {
 
                   for (int i = 0; i < trainingCourseResponse.data.length; i++) {
                     trainingCourse.add(trainingCourseResponse.data[i].courseId);
-                    trainingCourseTitle.add(trainingCourseResponse.data[i].courseDescription);
+                    trainingCourseTitle
+                        .add(trainingCourseResponse.data[i].courseDescription);
                   }
-                  enterTrainingCourseDetailsToSharedPref(trainingCourse, trainingCourseTitle);
+                  enterTrainingCourseDetailsToSharedPref(
+                      trainingCourse, trainingCourseTitle);
                 }
                 return Container();
               } else {
@@ -290,8 +311,8 @@ class _DashboardState extends State<Dashboard> {
           ),
           FutureBuilder(
             future: _apiInterface3.lookupResponseData("13"),
-            builder: (BuildContext context,
-                AsyncSnapshot<LookupResponse> snapshot) {
+            builder:
+                (BuildContext context, AsyncSnapshot<LookupResponse> snapshot) {
               if (snapshot.hasData) {
                 LookupResponse lookupResponse = snapshot.data;
                 if (lookupResponse.status) {
@@ -300,7 +321,7 @@ class _DashboardState extends State<Dashboard> {
                   for (int i = 0; i < lookupResponse.data.length; i++) {
                     data.add(lookupResponse.data[i].lookupName);
                   }
-                  enterLookupToSharedPref("13",data);
+                  enterLookupToSharedPref("13", data);
                 }
                 return Container();
               } else {
@@ -327,8 +348,8 @@ class _DashboardState extends State<Dashboard> {
           ),
           FutureBuilder(
             future: _apiInterface4.lookupResponseData("14"),
-            builder: (BuildContext context,
-                AsyncSnapshot<LookupResponse> snapshot) {
+            builder:
+                (BuildContext context, AsyncSnapshot<LookupResponse> snapshot) {
               if (snapshot.hasData) {
                 LookupResponse lookupResponse = snapshot.data;
                 if (lookupResponse.status) {
@@ -337,7 +358,7 @@ class _DashboardState extends State<Dashboard> {
                   for (int i = 0; i < lookupResponse.data.length; i++) {
                     data.add(lookupResponse.data[i].lookupName);
                   }
-                  enterLookupToSharedPref("14",data);
+                  enterLookupToSharedPref("14", data);
                 }
                 return Container();
               } else {
@@ -364,8 +385,8 @@ class _DashboardState extends State<Dashboard> {
           ),
           FutureBuilder(
             future: _apiInterface5.lookupResponseData("17"),
-            builder: (BuildContext context,
-                AsyncSnapshot<LookupResponse> snapshot) {
+            builder:
+                (BuildContext context, AsyncSnapshot<LookupResponse> snapshot) {
               if (snapshot.hasData) {
                 LookupResponse lookupResponse = snapshot.data;
                 if (lookupResponse.status) {
@@ -374,7 +395,7 @@ class _DashboardState extends State<Dashboard> {
                   for (int i = 0; i < lookupResponse.data.length; i++) {
                     data.add(lookupResponse.data[i].lookupName);
                   }
-                  enterLookupToSharedPref("17",data);
+                  enterLookupToSharedPref("17", data);
                 }
                 return Container();
               } else {
@@ -423,12 +444,15 @@ class _DashboardState extends State<Dashboard> {
                         .add(employeeMasterResponse.data[i].designation);
                     empDepartment
                         .add(employeeMasterResponse.data[i].departmentCode);
-                    passportRetentionReq
-                        .add(employeeMasterResponse.data[i].passpostRetentionRequired.toString());
-                    passportObtained
-                        .add(employeeMasterResponse.data[i].passportObtained.toString());
-                    passportReleased
-                        .add(employeeMasterResponse.data[i].passportReleased.toString());
+                    passportRetentionReq.add(employeeMasterResponse
+                        .data[i].passpostRetentionRequired
+                        .toString());
+                    passportObtained.add(employeeMasterResponse
+                        .data[i].passportObtained
+                        .toString());
+                    passportReleased.add(employeeMasterResponse
+                        .data[i].passportReleased
+                        .toString());
                   }
                   enterEmpDetailsToSharedPref(
                       empNo,

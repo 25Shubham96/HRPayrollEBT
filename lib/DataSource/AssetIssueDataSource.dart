@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/AssetIssueResponse.dart';
+import 'package:intl/intl.dart';
 
 class AssetIssueDataSource extends DataTableSource {
-
   List<AssetIssueModel> data = List();
 
   AssetIssueDataSource(this.data);
@@ -12,6 +12,8 @@ class AssetIssueDataSource extends DataTableSource {
 
   bool rowSelect = false;
   static AssetIssueModel selectedRowData = AssetIssueModel();
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (AssetIssueModel assetIssueMod in data)
@@ -42,7 +44,7 @@ class AssetIssueDataSource extends DataTableSource {
       },
       cells: <DataCell>[
         DataCell(Text(assetIssueModel.issueNo)),
-        DataCell(Text(assetIssueModel.issueDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(assetIssueModel.issueDate)))),
         DataCell(Text(assetIssueModel.employeeNo)),
         DataCell(Text(assetIssueModel.employeeName)),
         DataCell(Text(assetIssueModel.issuedBy)),
@@ -59,5 +61,4 @@ class AssetIssueDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

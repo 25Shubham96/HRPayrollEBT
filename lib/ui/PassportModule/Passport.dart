@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hrpayroll/ui/PassportModule/PassportApproveList.dart';
 import 'package:hrpayroll/ui/PassportModule/PassportRetention.dart';
 import 'package:hrpayroll/ui/PassportModule/PassportRetentionLedger.dart';
+
 import '../MyDrawer.dart';
 
 class Passport extends StatefulWidget {
@@ -12,6 +13,12 @@ class Passport extends StatefulWidget {
 class _PassportState extends State<Passport> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 3600000), () {
+      setState(() {
+        Navigator.pop(context);
+      });
+    });
+
     return DefaultTabController(
       length: 3,
       child: new Scaffold(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/TrainingProviderResponse.dart';
 
 class TrainingProviderDataSource extends DataTableSource {
-
   List<TrainingProviderModel> data = new List();
 
   TrainingProviderDataSource(this.data);
@@ -37,5 +36,4 @@ class TrainingProviderDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

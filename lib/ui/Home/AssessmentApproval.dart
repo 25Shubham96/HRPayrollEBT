@@ -16,7 +16,7 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
   static List<AssessmentApprovalModel> newdata = new List();
 
   AssessmentApprovalDataSource _assessmentApprovalDataSource =
-  AssessmentApprovalDataSource(newdata);
+      AssessmentApprovalDataSource(newdata);
 
   Future<AssessmentApprovalResponse> updateResponse;
 
@@ -33,11 +33,11 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
     super.initState();
 
     AssessmentApprovalRequest assessmentApprovalRequest =
-    AssessmentApprovalRequest(
-            action: "1", empApproverId: MyDrawer.EmpNo, status: "1");
+        AssessmentApprovalRequest(
+            action: "1", empApproverId: MyDrawer.empNo, status: "1");
 
     updateResponse =
-            _apiInterface.assessmentApprovalResponseData(assessmentApprovalRequest);
+        _apiInterface.assessmentApprovalResponseData(assessmentApprovalRequest);
   }
 
   @override
@@ -54,9 +54,9 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
                     child: new Text(
                       "Pending Assessment List",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -115,18 +115,21 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
             FutureBuilder(
               future: updateResponse,
               builder: (BuildContext context,
-                      AsyncSnapshot<AssessmentApprovalResponse> snapshot) {
+                  AsyncSnapshot<AssessmentApprovalResponse> snapshot) {
                 if (snapshot.hasData) {
                   AssessmentApprovalResponse _myResponseData = snapshot.data;
                   _assessmentApprovalDataSource =
-                          AssessmentApprovalDataSource(_myResponseData.data);
+                      AssessmentApprovalDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _assessmentApprovalDataSource.selectAll,
                     header: new Text(""),
                     columns: [
@@ -134,99 +137,99 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
                         label: new Text(
                           "Entry No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Document Type",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Requisition No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Requisition Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sequence",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sender Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Emp Appr Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Appr Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Modified By",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Rejection Comment",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -261,99 +264,99 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
                             label: new Text(
                               "Entry No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Document Type",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Requisition No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Requisition Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sequence",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sender Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Emp Appr Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Appr Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Modified By",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Rejection Comment",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -379,35 +382,35 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
             onPressed: () async {
               Navigator.pop(context);
               AssessmentApprovalResponse assessmentApprovalResponse =
-              await _apiInterface.assessmentApprovalResponseData(
-                      AssessmentApprovalRequest(
-                        action: "3",
-                        status: "2",
-                        requisitionDate: AssessmentApprovalDataSource
-                                .selectedRowData.requisitionDate,
-                        requisitionNo:
-                        AssessmentApprovalDataSource.selectedRowData.requisitionNo,
-                        modifiedBy: MyDrawer.EmpNo,
-                        senderId: AssessmentApprovalDataSource.selectedRowData.senderId,
-                        empApproverId: AssessmentApprovalDataSource
-                                .selectedRowData.employeeApproverId,
-                        approverId:
-                        AssessmentApprovalDataSource.selectedRowData.approverId,
-                        entryNo: AssessmentApprovalDataSource.selectedRowData.entryNo
-                                .toString(),
-                        tableName:
-                        AssessmentApprovalDataSource.selectedRowData.tableName,
-                        documentType:
-                        AssessmentApprovalDataSource.selectedRowData.documentType,
-                        documentNo: "",
-                        sequenceNo: AssessmentApprovalDataSource
-                                .selectedRowData.sequenceNo
-                                .toString(),
-                        rejectionComment: AssessmentApprovalDataSource
-                                .selectedRowData.commentRejection,
-                        cancellationComment: AssessmentApprovalDataSource
-                                .selectedRowData.commentCancellation,
-                      ));
+                  await _apiInterface
+                      .assessmentApprovalResponseData(AssessmentApprovalRequest(
+                action: "3",
+                status: "2",
+                requisitionDate: AssessmentApprovalDataSource
+                    .selectedRowData.requisitionDate,
+                requisitionNo:
+                    AssessmentApprovalDataSource.selectedRowData.requisitionNo,
+                modifiedBy: MyDrawer.empNo,
+                senderId: AssessmentApprovalDataSource.selectedRowData.senderId,
+                empApproverId: AssessmentApprovalDataSource
+                    .selectedRowData.employeeApproverId,
+                approverId:
+                    AssessmentApprovalDataSource.selectedRowData.approverId,
+                entryNo: AssessmentApprovalDataSource.selectedRowData.entryNo
+                    .toString(),
+                tableName:
+                    AssessmentApprovalDataSource.selectedRowData.tableName,
+                documentType:
+                    AssessmentApprovalDataSource.selectedRowData.documentType,
+                documentNo: "",
+                sequenceNo: AssessmentApprovalDataSource
+                    .selectedRowData.sequenceNo
+                    .toString(),
+                rejectionComment: AssessmentApprovalDataSource
+                    .selectedRowData.commentRejection,
+                cancellationComment: AssessmentApprovalDataSource
+                    .selectedRowData.commentCancellation,
+              ));
 
               if (assessmentApprovalResponse.status) {
                 Fluttertoast.showToast(
@@ -426,13 +429,13 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
                 );*/
                 setState(() {
                   AssessmentApprovalRequest assessmentApprovalRequest =
-                  AssessmentApprovalRequest(
+                      AssessmentApprovalRequest(
                           action: "1",
-                          empApproverId: MyDrawer.EmpNo,
+                          empApproverId: MyDrawer.empNo,
                           status: "1");
 
                   updateResponse = _apiInterface.assessmentApprovalResponseData(
-                          assessmentApprovalRequest);
+                      assessmentApprovalRequest);
                 });
               } else {
                 Fluttertoast.showToast(
@@ -506,7 +509,7 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
           FlatButton(
             onPressed: () async {
               if (rejectionCommentControler.text.isEmpty ||
-                      rejectionCommentControler.text == " ") {
+                  rejectionCommentControler.text == " ") {
                 var alert = AlertDialog(
                   content: Text("Please enter rejection comment..."),
                   actions: <Widget>[
@@ -526,36 +529,35 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
                 );
               } else {
                 Navigator.pop(context);
-                RejCanPostResponse leaveRejCanResp =
-                await _apiInterface.assessmentRejCanResponseData(
-                        AssessmentApprovalRequest(
-                          action: "4",
-                          status: "3",
-                          requisitionDate: AssessmentApprovalDataSource
-                                  .selectedRowData.requisitionDate,
-                          requisitionNo: AssessmentApprovalDataSource
-                                  .selectedRowData.requisitionNo,
-                          modifiedBy: MyDrawer.EmpNo,
-                          senderId:
-                          AssessmentApprovalDataSource.selectedRowData.senderId,
-                          empApproverId: AssessmentApprovalDataSource
-                                  .selectedRowData.employeeApproverId,
-                          entryNo: AssessmentApprovalDataSource.selectedRowData.entryNo
-                                  .toString(),
-                          tableName:
-                          AssessmentApprovalDataSource.selectedRowData.tableName,
-                          documentType:
-                          AssessmentApprovalDataSource.selectedRowData.documentType,
-                          documentNo: "",
-                          sequenceNo: AssessmentApprovalDataSource
-                                  .selectedRowData.sequenceNo
-                                  .toString(),
-                          approverId:
-                          AssessmentApprovalDataSource.selectedRowData.approverId,
-                          rejectionComment: rejectionCommentControler.text,
-                          cancellationComment: AssessmentApprovalDataSource
-                                  .selectedRowData.commentCancellation,
-                        ));
+                RejCanPostResponse leaveRejCanResp = await _apiInterface
+                    .assessmentRejCanResponseData(AssessmentApprovalRequest(
+                  action: "4",
+                  status: "3",
+                  requisitionDate: AssessmentApprovalDataSource
+                      .selectedRowData.requisitionDate,
+                  requisitionNo: AssessmentApprovalDataSource
+                      .selectedRowData.requisitionNo,
+                  modifiedBy: MyDrawer.empNo,
+                  senderId:
+                      AssessmentApprovalDataSource.selectedRowData.senderId,
+                  empApproverId: AssessmentApprovalDataSource
+                      .selectedRowData.employeeApproverId,
+                  entryNo: AssessmentApprovalDataSource.selectedRowData.entryNo
+                      .toString(),
+                  tableName:
+                      AssessmentApprovalDataSource.selectedRowData.tableName,
+                  documentType:
+                      AssessmentApprovalDataSource.selectedRowData.documentType,
+                  documentNo: "",
+                  sequenceNo: AssessmentApprovalDataSource
+                      .selectedRowData.sequenceNo
+                      .toString(),
+                  approverId:
+                      AssessmentApprovalDataSource.selectedRowData.approverId,
+                  rejectionComment: rejectionCommentControler.text,
+                  cancellationComment: AssessmentApprovalDataSource
+                      .selectedRowData.commentCancellation,
+                ));
 
                 if (leaveRejCanResp.status) {
                   Fluttertoast.showToast(
@@ -574,14 +576,14 @@ class _AssessmentApprovalState extends State<AssessmentApproval> {
                   );*/
                   setState(() {
                     AssessmentApprovalRequest assessmentApprovalRequest =
-                    AssessmentApprovalRequest(
+                        AssessmentApprovalRequest(
                             action: "1",
-                            empApproverId: MyDrawer.EmpNo,
+                            empApproverId: MyDrawer.empNo,
                             status: "1");
 
                     updateResponse =
-                            _apiInterface.assessmentApprovalResponseData(
-                                    assessmentApprovalRequest);
+                        _apiInterface.assessmentApprovalResponseData(
+                            assessmentApprovalRequest);
                   });
                 } else {
                   Fluttertoast.showToast(

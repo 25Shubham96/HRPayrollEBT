@@ -1,8 +1,12 @@
 import 'dart:convert';
 
-TrainingActivitySubformResponse trainingActivitySubformResponseFromJson(String str) => TrainingActivitySubformResponse.fromJson(json.decode(str));
+TrainingActivitySubformResponse trainingActivitySubformResponseFromJson(
+        String str) =>
+    TrainingActivitySubformResponse.fromJson(json.decode(str));
 
-String trainingActivitySubformResponseToJson(TrainingActivitySubformResponse data) => json.encode(data.toJson());
+String trainingActivitySubformResponseToJson(
+        TrainingActivitySubformResponse data) =>
+    json.encode(data.toJson());
 
 class TrainingActivitySubformResponse {
   bool status;
@@ -15,17 +19,19 @@ class TrainingActivitySubformResponse {
     this.data,
   });
 
-  factory TrainingActivitySubformResponse.fromJson(Map<String, dynamic> json) => TrainingActivitySubformResponse(
-    status: json["status"],
-    message: json["message"],
-    data: List<TrainingActivitySubformModel>.from(json["data"].map((x) => TrainingActivitySubformModel.fromJson(x))),
-  );
+  factory TrainingActivitySubformResponse.fromJson(Map<String, dynamic> json) =>
+      TrainingActivitySubformResponse(
+        status: json["status"],
+        message: json["message"],
+        data: List<TrainingActivitySubformModel>.from(
+            json["data"].map((x) => TrainingActivitySubformModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class TrainingActivitySubformModel {
@@ -53,27 +59,28 @@ class TrainingActivitySubformModel {
     this.comments,
   });
 
-  factory TrainingActivitySubformModel.fromJson(Map<String, dynamic> json) => TrainingActivitySubformModel(
-    activityNo: json["Activity No_"],
-    employeeNo: json["Employee No_"],
-    employeeName: json["Employee Name"],
-    planned: json["Planned"],
-    attended: json["Attended"],
-    certificateIssued: json["Certificate Issued"],
-    departmentCode: json["Department Code"],
-    confirmationAssessmentFilled: json["Confirmation_Assessment filled"],
-    comments: json["Comments"],
-  );
+  factory TrainingActivitySubformModel.fromJson(Map<String, dynamic> json) =>
+      TrainingActivitySubformModel(
+        activityNo: json["Activity No_"],
+        employeeNo: json["Employee No_"],
+        employeeName: json["Employee Name"],
+        planned: json["Planned"],
+        attended: json["Attended"],
+        certificateIssued: json["Certificate Issued"],
+        departmentCode: json["Department Code"],
+        confirmationAssessmentFilled: json["Confirmation_Assessment filled"],
+        comments: json["Comments"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "Activity No_": activityNo,
-    "Employee No_": employeeNo,
-    "Employee Name": employeeName,
-    "Planned": planned,
-    "Attended": attended,
-    "Certificate Issued": certificateIssued,
-    "Department Code": departmentCode,
-    "Confirmation_Assessment filled": confirmationAssessmentFilled,
-    "Comments": comments,
-  };
+        "Activity No_": activityNo,
+        "Employee No_": employeeNo,
+        "Employee Name": employeeName,
+        "Planned": planned,
+        "Attended": attended,
+        "Certificate Issued": certificateIssued,
+        "Department Code": departmentCode,
+        "Confirmation_Assessment filled": confirmationAssessmentFilled,
+        "Comments": comments,
+      };
 }

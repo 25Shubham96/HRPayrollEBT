@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-NoSeriesResponse noSeriesResponseFromJson(String str) =>
-    NoSeriesResponse.fromJson(json.decode(str));
+ForgotPasswordResponse forgotPasswordResponseFromJson(String str) =>
+    ForgotPasswordResponse.fromJson(json.decode(str));
 
-String noSeriesResponseToJson(NoSeriesResponse data) =>
+String forgotPasswordResponseToJson(ForgotPasswordResponse data) =>
     json.encode(data.toJson());
 
-class NoSeriesResponse {
+class ForgotPasswordResponse {
   bool status;
   String message;
   List<dynamic> data;
 
-  NoSeriesResponse({
+  ForgotPasswordResponse({
     this.status,
     this.message,
     this.data,
   });
 
-  factory NoSeriesResponse.fromJson(Map<String, dynamic> json) =>
-      NoSeriesResponse(
+  factory ForgotPasswordResponse.fromJson(Map<String, dynamic> json) =>
+      ForgotPasswordResponse(
         status: json["status"],
         message: json["message"],
         data: List<dynamic>.from(json["data"].map((x) => x)),

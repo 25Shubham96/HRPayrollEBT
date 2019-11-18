@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/TrainingReqSubformResponse.dart';
 
 class TrainingReqSubformDataSource extends DataTableSource {
-
   List<TrainingReqSubformModel> data = List();
 
   TrainingReqSubformDataSource(this.data);
@@ -43,7 +42,7 @@ class TrainingReqSubformDataSource extends DataTableSource {
           prevIndex = index;
         }
       },
-      cells: <DataCell> [
+      cells: <DataCell>[
         DataCell(Text(trainingReqSubformModel.employeeNo)),
         DataCell(Text(trainingReqSubformModel.employeeName)),
       ],
@@ -58,5 +57,4 @@ class TrainingReqSubformDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

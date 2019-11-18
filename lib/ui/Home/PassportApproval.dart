@@ -16,7 +16,7 @@ class _PassportApprovalState extends State<PassportApproval> {
   static List<PassportApprovalModel> newdata = new List();
 
   PassportApprovalDataSource _passportApprovalDataSource =
-  PassportApprovalDataSource(newdata);
+      PassportApprovalDataSource(newdata);
 
   Future<PassportApprovalResponse> updateResponse;
 
@@ -32,14 +32,14 @@ class _PassportApprovalState extends State<PassportApproval> {
   void initState() {
     super.initState();
     PassportApprovalRequest passportApprovalRequest = PassportApprovalRequest(
-            action: "1",
-            empApproverId: MyDrawer.EmpNo,
-            status: "1",
-            entryNo: "0000",
-            sequenceNo: "0");
+        action: "1",
+        empApproverId: MyDrawer.empNo,
+        status: "1",
+        entryNo: "0000",
+        sequenceNo: "0");
 
     updateResponse =
-            _apiInterface.passportApprovalResponseData(passportApprovalRequest);
+        _apiInterface.passportApprovalResponseData(passportApprovalRequest);
   }
 
   @override
@@ -56,9 +56,9 @@ class _PassportApprovalState extends State<PassportApproval> {
                     child: new Text(
                       "Pending Passport List",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -88,25 +88,25 @@ class _PassportApprovalState extends State<PassportApproval> {
                         ),
                         new Padding(padding: new EdgeInsets.only(left: 10)),
                         Expanded(
-                                child: FlatButton(
-                                  onPressed: () {
-                                    onReject(context);
-                                  },
-                                  child: new Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      new Icon(
-                                        Icons.clear,
-                                        color: Colors.white,
-                                      ),
-                                      new Text(
-                                        "Reject",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  color: Colors.red,
-                                )),
+                            child: FlatButton(
+                          onPressed: () {
+                            onReject(context);
+                          },
+                          child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              new Icon(
+                                Icons.clear,
+                                color: Colors.white,
+                              ),
+                              new Text(
+                                "Reject",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          color: Colors.red,
+                        )),
                       ],
                     ),
                   ),
@@ -116,18 +116,21 @@ class _PassportApprovalState extends State<PassportApproval> {
             FutureBuilder(
               future: updateResponse,
               builder: (BuildContext context,
-                      AsyncSnapshot<PassportApprovalResponse> snapshot) {
+                  AsyncSnapshot<PassportApprovalResponse> snapshot) {
                 if (snapshot.hasData) {
                   PassportApprovalResponse _myResponseData = snapshot.data;
                   _passportApprovalDataSource =
-                          PassportApprovalDataSource(_myResponseData.data);
+                      PassportApprovalDataSource(_myResponseData.data);
 
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _passportApprovalDataSource.selectAll,
                     header: new Text(""),
                     columns: [
@@ -135,108 +138,108 @@ class _PassportApprovalState extends State<PassportApproval> {
                         label: new Text(
                           "Entry No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Table Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Document Type",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Transaction Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sequence",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Sender Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Emp Appr Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Appr Id",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Modified By",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Rejection Comment",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Cancellation Comment",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -271,108 +274,108 @@ class _PassportApprovalState extends State<PassportApproval> {
                             label: new Text(
                               "Entry No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Table Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Document Type",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Transaction Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sequence",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Sender Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Emp Appr Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Appr Id",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Modified By",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Rejection Comment",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Cancellation Comment",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -398,31 +401,31 @@ class _PassportApprovalState extends State<PassportApproval> {
             onPressed: () async {
               Navigator.pop(context);
               PassportApprovalResponse passportApprovalResponse =
-              await _apiInterface.passportApprovalResponseData(
+                  await _apiInterface.passportApprovalResponseData(
                 PassportApprovalRequest(
                   action: "3",
                   status: "2",
-                  modifiedBy: MyDrawer.EmpNo,
+                  modifiedBy: MyDrawer.empNo,
                   senderId: PassportApprovalDataSource.selectedRowData.senderId,
                   empApproverId: PassportApprovalDataSource
-                          .selectedRowData.employeeApproverId,
+                      .selectedRowData.employeeApproverId,
                   entryNo: PassportApprovalDataSource.selectedRowData.entryNo
-                          .toString(),
+                      .toString(),
                   tableName:
-                  PassportApprovalDataSource.selectedRowData.tableName,
+                      PassportApprovalDataSource.selectedRowData.tableName,
                   documentType:
-                  PassportApprovalDataSource.selectedRowData.documentType,
+                      PassportApprovalDataSource.selectedRowData.documentType,
                   transactionId:
-                  PassportApprovalDataSource.selectedRowData.transactionId,
+                      PassportApprovalDataSource.selectedRowData.transactionId,
                   sequenceNo: PassportApprovalDataSource
-                          .selectedRowData.sequenceNo
-                          .toString(),
+                      .selectedRowData.sequenceNo
+                      .toString(),
                   approverId:
-                  PassportApprovalDataSource.selectedRowData.approverId,
+                      PassportApprovalDataSource.selectedRowData.approverId,
                   rejectionComment: PassportApprovalDataSource
-                          .selectedRowData.commentRejection,
+                      .selectedRowData.commentRejection,
                   cancellationComment: PassportApprovalDataSource
-                          .selectedRowData.commentCancellation,
+                      .selectedRowData.commentCancellation,
                 ),
               );
 
@@ -446,15 +449,15 @@ class _PassportApprovalState extends State<PassportApproval> {
                 );
                 setState(() {
                   PassportApprovalRequest passportApprovalRequest =
-                  PassportApprovalRequest(
+                      PassportApprovalRequest(
                           action: "1",
-                          empApproverId: MyDrawer.EmpNo,
+                          empApproverId: MyDrawer.empNo,
                           status: "1",
                           entryNo: "0000",
                           sequenceNo: "0");
 
-                  updateResponse = _apiInterface.passportApprovalResponseData(
-                          passportApprovalRequest);
+                  updateResponse = _apiInterface
+                      .passportApprovalResponseData(passportApprovalRequest);
                 });
               } else {
                 Fluttertoast.showToast(
@@ -528,7 +531,7 @@ class _PassportApprovalState extends State<PassportApproval> {
           FlatButton(
             onPressed: () async {
               if (rejectionCommentControler.text.isEmpty ||
-                      rejectionCommentControler.text == " ") {
+                  rejectionCommentControler.text == " ") {
                 var alert = AlertDialog(
                   content: Text("Please enter rejection comment..."),
                   actions: <Widget>[
@@ -549,31 +552,31 @@ class _PassportApprovalState extends State<PassportApproval> {
               } else {
                 Navigator.pop(context);
                 RejCanPostResponse RejCanResp =
-                await _apiInterface.passportRejCanResponseData(
+                    await _apiInterface.passportRejCanResponseData(
                   PassportApprovalRequest(
                     action: "4",
                     status: "3",
-                    modifiedBy: MyDrawer.EmpNo,
+                    modifiedBy: MyDrawer.empNo,
                     senderId:
-                    PassportApprovalDataSource.selectedRowData.senderId,
+                        PassportApprovalDataSource.selectedRowData.senderId,
                     empApproverId: PassportApprovalDataSource
-                            .selectedRowData.employeeApproverId,
+                        .selectedRowData.employeeApproverId,
                     entryNo: PassportApprovalDataSource.selectedRowData.entryNo
-                            .toString(),
+                        .toString(),
                     tableName:
-                    PassportApprovalDataSource.selectedRowData.tableName,
+                        PassportApprovalDataSource.selectedRowData.tableName,
                     documentType:
-                    PassportApprovalDataSource.selectedRowData.documentType,
+                        PassportApprovalDataSource.selectedRowData.documentType,
                     transactionId: PassportApprovalDataSource
-                            .selectedRowData.transactionId,
+                        .selectedRowData.transactionId,
                     sequenceNo: PassportApprovalDataSource
-                            .selectedRowData.sequenceNo
-                            .toString(),
+                        .selectedRowData.sequenceNo
+                        .toString(),
                     approverId:
-                    PassportApprovalDataSource.selectedRowData.approverId,
+                        PassportApprovalDataSource.selectedRowData.approverId,
                     rejectionComment: rejectionCommentControler.text,
                     cancellationComment: PassportApprovalDataSource
-                            .selectedRowData.commentCancellation,
+                        .selectedRowData.commentCancellation,
                   ),
                 );
 
@@ -597,15 +600,15 @@ class _PassportApprovalState extends State<PassportApproval> {
                   );
                   setState(() {
                     PassportApprovalRequest passportApprovalRequest =
-                    PassportApprovalRequest(
+                        PassportApprovalRequest(
                             action: "1",
-                            empApproverId: MyDrawer.EmpNo,
+                            empApproverId: MyDrawer.empNo,
                             status: "1",
                             entryNo: "0000",
                             sequenceNo: "0");
 
-                    updateResponse = _apiInterface.passportApprovalResponseData(
-                            passportApprovalRequest);
+                    updateResponse = _apiInterface
+                        .passportApprovalResponseData(passportApprovalRequest);
                   });
                 } else {
                   Fluttertoast.showToast(

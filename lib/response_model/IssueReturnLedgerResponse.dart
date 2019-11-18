@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-IssueReturnLedgerResponse issueReturnLedgerResponseFromJson(String str) => IssueReturnLedgerResponse.fromJson(json.decode(str));
+IssueReturnLedgerResponse issueReturnLedgerResponseFromJson(String str) =>
+    IssueReturnLedgerResponse.fromJson(json.decode(str));
 
-String issueReturnLedgerResponseToJson(IssueReturnLedgerResponse data) => json.encode(data.toJson());
+String issueReturnLedgerResponseToJson(IssueReturnLedgerResponse data) =>
+    json.encode(data.toJson());
 
 class IssueReturnLedgerResponse {
   bool status;
@@ -15,17 +17,19 @@ class IssueReturnLedgerResponse {
     this.data,
   });
 
-  factory IssueReturnLedgerResponse.fromJson(Map<String, dynamic> json) => IssueReturnLedgerResponse(
-    status: json["status"],
-    message: json["message"],
-    data: List<IssueReturnLedgerModel>.from(json["data"].map((x) => IssueReturnLedgerModel.fromJson(x))),
-  );
+  factory IssueReturnLedgerResponse.fromJson(Map<String, dynamic> json) =>
+      IssueReturnLedgerResponse(
+        status: json["status"],
+        message: json["message"],
+        data: List<IssueReturnLedgerModel>.from(
+            json["data"].map((x) => IssueReturnLedgerModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class IssueReturnLedgerModel {
@@ -69,45 +73,46 @@ class IssueReturnLedgerModel {
     this.issuedReturned,
   });
 
-  factory IssueReturnLedgerModel.fromJson(Map<String, dynamic> json) => IssueReturnLedgerModel(
-    issueNo: json["Issue No_"],
-    employeeNo: json["Employee No_"],
-    issuedBy: json["Issued By"],
-    issued: json["Issued"],
-    issueDate: json["Issue Date"],
-    returned: json["Returned"],
-    returnDate: json["Return Date"],
-    assetType: json["Asset Type"],
-    assetNo: json["Asset No_"],
-    assetName: json["Asset Name"],
-    owner: json["Owner"],
-    value: json["Value"],
-    manufacturar: json["Manufacturar"],
-    model: json["Model"],
-    ownerName: json["Owner Name"],
-    currentAssetLocation: json["Current Asset Location"],
-    postedPurchaseOrderNo: json["Posted Purchase Order No_"],
-    issuedReturned: json["Issued & Returned"],
-  );
+  factory IssueReturnLedgerModel.fromJson(Map<String, dynamic> json) =>
+      IssueReturnLedgerModel(
+        issueNo: json["Issue No_"],
+        employeeNo: json["Employee No_"],
+        issuedBy: json["Issued By"],
+        issued: json["Issued"],
+        issueDate: json["Issue Date"],
+        returned: json["Returned"],
+        returnDate: json["Return Date"],
+        assetType: json["Asset Type"],
+        assetNo: json["Asset No_"],
+        assetName: json["Asset Name"],
+        owner: json["Owner"],
+        value: json["Value"],
+        manufacturar: json["Manufacturar"],
+        model: json["Model"],
+        ownerName: json["Owner Name"],
+        currentAssetLocation: json["Current Asset Location"],
+        postedPurchaseOrderNo: json["Posted Purchase Order No_"],
+        issuedReturned: json["Issued & Returned"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "Issue No_": issueNo,
-    "Employee No_": employeeNo,
-    "Issued By": issuedBy,
-    "Issued": issued,
-    "Issue Date": issueDate,
-    "Returned": returned,
-    "Return Date": returnDate,
-    "Asset Type": assetType,
-    "Asset No_": assetNo,
-    "Asset Name": assetName,
-    "Owner": owner,
-    "Value": value,
-    "Manufacturar": manufacturar,
-    "Model": model,
-    "Owner Name": ownerName,
-    "Current Asset Location": currentAssetLocation,
-    "Posted Purchase Order No_": postedPurchaseOrderNo,
-    "Issued & Returned": issuedReturned,
-  };
+        "Issue No_": issueNo,
+        "Employee No_": employeeNo,
+        "Issued By": issuedBy,
+        "Issued": issued,
+        "Issue Date": issueDate,
+        "Returned": returned,
+        "Return Date": returnDate,
+        "Asset Type": assetType,
+        "Asset No_": assetNo,
+        "Asset Name": assetName,
+        "Owner": owner,
+        "Value": value,
+        "Manufacturar": manufacturar,
+        "Model": model,
+        "Owner Name": ownerName,
+        "Current Asset Location": currentAssetLocation,
+        "Posted Purchase Order No_": postedPurchaseOrderNo,
+        "Issued & Returned": issuedReturned,
+      };
 }

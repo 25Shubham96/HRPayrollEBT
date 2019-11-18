@@ -14,9 +14,13 @@ class Leave extends StatefulWidget {
 }
 
 class _LeaveState extends State<Leave> {
-
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 3600000), () {
+      setState(() {
+        Navigator.pop(context);
+      });
+    });
 
     return DefaultTabController(
       length: 6,

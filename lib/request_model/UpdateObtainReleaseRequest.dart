@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-UpdateObtainReleaseRequest updateObtainReleaseRequestFromJson(String str) => UpdateObtainReleaseRequest.fromJson(json.decode(str));
+UpdateObtainReleaseRequest updateObtainReleaseRequestFromJson(String str) =>
+    UpdateObtainReleaseRequest.fromJson(json.decode(str));
 
-String updateObtainReleaseRequestToJson(UpdateObtainReleaseRequest data) => json.encode(data.toJson());
+String updateObtainReleaseRequestToJson(UpdateObtainReleaseRequest data) =>
+    json.encode(data.toJson());
 
 class UpdateObtainReleaseRequest {
   String passportReleased;
@@ -15,15 +17,16 @@ class UpdateObtainReleaseRequest {
     this.employeeId,
   });
 
-  factory UpdateObtainReleaseRequest.fromJson(Map<String, dynamic> json) => UpdateObtainReleaseRequest(
-    passportReleased: json["passportReleased"],
-    passportObtained: json["passportObtained"],
-    employeeId: json["employeeId"],
-  );
+  factory UpdateObtainReleaseRequest.fromJson(Map<String, dynamic> json) =>
+      UpdateObtainReleaseRequest(
+        passportReleased: json["passportReleased"],
+        passportObtained: json["passportObtained"],
+        employeeId: json["employeeId"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "passportReleased": passportReleased,
-    "passportObtained": passportObtained,
-    "employeeId": employeeId,
-  };
+        "passportReleased": passportReleased,
+        "passportObtained": passportObtained,
+        "employeeId": employeeId,
+      };
 }

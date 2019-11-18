@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/BusinessTripResponse.dart';
+import 'package:intl/intl.dart';
 
 class BusinessTripDataSource extends DataTableSource {
   List<BusinessTripModel> data = List();
@@ -12,6 +13,8 @@ class BusinessTripDataSource extends DataTableSource {
   bool rowSelect = false;
   static BusinessTripModel selectedRowData = BusinessTripModel();
 
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
+
   void selectAll(bool checked) {
     for (BusinessTripModel businessTripMod in data)
       businessTripMod.selected = checked;
@@ -21,7 +24,7 @@ class BusinessTripDataSource extends DataTableSource {
 
   @override
   DataRow getRow(int index) {
-      BusinessTripModel businessTripModel = data[index];
+    BusinessTripModel businessTripModel = data[index];
     return DataRow.byIndex(
       index: index,
       selected: businessTripModel.selected,
@@ -42,8 +45,8 @@ class BusinessTripDataSource extends DataTableSource {
         DataCell(Text(businessTripModel.entryNo.toString())),
         DataCell(Text(businessTripModel.employeeNo)),
         DataCell(Text(businessTripModel.employeeName)),
-        DataCell(Text(businessTripModel.fromDate)),
-        DataCell(Text(businessTripModel.toDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(businessTripModel.fromDate)))),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(businessTripModel.toDate)))),
         DataCell(Text(businessTripModel.reasonForTrip)),
         DataCell(Text(businessTripModel.department)),
         DataCell(Text(businessTripModel.status)),

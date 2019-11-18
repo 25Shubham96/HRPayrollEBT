@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/LeaveApproveListResponse.dart';
+import 'package:intl/intl.dart';
 
 class LeaveApproveListDataSource extends DataTableSource {
   List<LeaveApproveListModel> data = List();
@@ -11,6 +12,8 @@ class LeaveApproveListDataSource extends DataTableSource {
 
   bool rowSelect = false;
   static LeaveApproveListModel selectedRowData = LeaveApproveListModel();
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (LeaveApproveListModel leaveApprMod in data)
@@ -46,8 +49,8 @@ class LeaveApproveListDataSource extends DataTableSource {
         DataCell(Text(leaveApproveListModel.employeeApproverId)),
         DataCell(Text(leaveApproveListModel.approverId)),
         DataCell(Text(leaveApproveListModel.status)),
-        DataCell(Text(leaveApproveListModel.fromDate)),
-        DataCell(Text(leaveApproveListModel.toDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(leaveApproveListModel.fromDate)))),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(leaveApproveListModel.toDate)))),
         DataCell(Text(leaveApproveListModel.modifiedBy)),
         DataCell(Text(leaveApproveListModel.commentRejection)),
         DataCell(Text(leaveApproveListModel.commentCancellation)),

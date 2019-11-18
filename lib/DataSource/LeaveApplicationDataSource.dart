@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/LeaveApplicationResponse.dart';
+import 'package:intl/intl.dart';
 
 class LeaveApplicationDataSource extends DataTableSource {
   List<LeaveApplicationModel> data = new List();
@@ -11,6 +12,8 @@ class LeaveApplicationDataSource extends DataTableSource {
 
   bool rowSelect = false;
   static LeaveApplicationModel selectedRowData = LeaveApplicationModel();
+
+  var formatter = new DateFormat('MM/dd/yyyy');
 
   void selectAll(bool checked) {
     for (LeaveApplicationModel leaveApplMod in data)
@@ -46,8 +49,8 @@ class LeaveApplicationDataSource extends DataTableSource {
         DataCell(Text(leaveApplicationModel.leaveCode)),
         DataCell(Text(leaveApplicationModel.leaveDescription)),
         DataCell(Text(leaveApplicationModel.leaveDuration)),
-        DataCell(Text(leaveApplicationModel.fromDate)),
-        DataCell(Text(leaveApplicationModel.toDate)),
+        DataCell(Text(formatter.format(DateFormat("yyyy-MM-dd").parse(leaveApplicationModel.fromDate)))),
+        DataCell(Text(formatter.format(DateFormat("yyyy-MM-dd").parse(leaveApplicationModel.toDate)))),
         DataCell(Text(leaveApplicationModel.noOfDays.toString())),
         DataCell(Text(leaveApplicationModel.reasonForLeave)),
         DataCell(Text(leaveApplicationModel.status)),
@@ -56,8 +59,8 @@ class LeaveApplicationDataSource extends DataTableSource {
             onChanged: null)),
         DataCell(Text(leaveApplicationModel.leavesAvailCurrMonth.toString())),
         DataCell(Text(leaveApplicationModel.sanctioningIncharge)),
-        DataCell(Text(leaveApplicationModel.dateOfSanction)),
-        DataCell(Text(leaveApplicationModel.dateOfCancellation)),
+        DataCell(Text(formatter.format(DateFormat("yyyy-MM-dd").parse(leaveApplicationModel.dateOfSanction)))),
+        DataCell(Text(leaveApplicationModel.dateOfCancellation == "" ? "" : formatter.format(DateFormat("yyyy-MM-dd").parse(leaveApplicationModel.dateOfCancellation)))),
       ],
     );
   }

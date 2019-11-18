@@ -38,7 +38,7 @@ class _OutOfOfficeState extends State<OutOfOffice> {
   static TextEditingController toTimeController = TextEditingController();
   static TextEditingController leaveReasonController = TextEditingController();
   static TextEditingController cancelCommentController =
-  TextEditingController();
+      TextEditingController();
 
   Future<OutOfOfficeResponse> updateTableResponse;
   ApiInterface _apiInterface1 = ApiInterface();
@@ -70,7 +70,7 @@ class _OutOfOfficeState extends State<OutOfOffice> {
     );
     setState(() {
       updateTableResponse =
-              _apiInterface1.outOfOfficeResponseData(outOfOfficeRequest);
+          _apiInterface1.outOfOfficeResponseData(outOfOfficeRequest);
     });
 
     getSharedPrefs();
@@ -90,9 +90,9 @@ class _OutOfOfficeState extends State<OutOfOffice> {
                     child: new Text(
                       "Out of Office List",
                       style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 24),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 5)),
@@ -173,17 +173,20 @@ class _OutOfOfficeState extends State<OutOfOffice> {
             FutureBuilder(
               future: updateTableResponse,
               builder: (BuildContext context,
-                      AsyncSnapshot<OutOfOfficeResponse> snapshot) {
+                  AsyncSnapshot<OutOfOfficeResponse> snapshot) {
                 if (snapshot.hasData) {
                   OutOfOfficeResponse _myResponseData = snapshot.data;
                   _outOfOfficeDataSource =
-                          OutOfOfficeDataSource(_myResponseData.data);
+                      OutOfOfficeDataSource(_myResponseData.data);
                   return PaginatedDataTable(
                     columnSpacing: 15,
                     horizontalMargin: 15,
                     headingRowHeight: 35,
                     dataRowHeight: 30,
-                    rowsPerPage: (_myResponseData.data.length < 10 && _myResponseData.data.length > 0) ? _myResponseData.data.length : _rowsPerPage,
+                    rowsPerPage: (_myResponseData.data.length < 10 &&
+                            _myResponseData.data.length > 0)
+                        ? _myResponseData.data.length
+                        : _rowsPerPage,
                     onSelectAll: _outOfOfficeDataSource.selectAll,
                     header: Text(""),
                     columns: [
@@ -191,90 +194,90 @@ class _OutOfOfficeState extends State<OutOfOffice> {
                         label: new Text(
                           "Document No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee No",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Employee Name",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Designation",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Department",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Request Date",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "From Time",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "To Time",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Reason",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                       DataColumn(
                         label: new Text(
                           "Status",
                           style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ),
                     ],
@@ -310,90 +313,90 @@ class _OutOfOfficeState extends State<OutOfOffice> {
                             label: new Text(
                               "Document No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee No",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Employee Name",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Designation",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Department",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Request Date",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "From Time",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "To Time",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Reason",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                           DataColumn(
                             label: new Text(
                               "Status",
                               style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
                         ],
@@ -431,9 +434,9 @@ class _OutOfOfficeState extends State<OutOfOffice> {
         FlatButton(
           onPressed: () async {
             if (requestDateController.text.isEmpty ||
-                    fromTimeController.text.isEmpty ||
-                    toTimeController.text.isEmpty ||
-                    leaveReasonController.text.isEmpty) {
+                fromTimeController.text.isEmpty ||
+                toTimeController.text.isEmpty ||
+                leaveReasonController.text.isEmpty) {
               Fluttertoast.showToast(
                 msg: "One or more blank entries",
                 toastLength: Toast.LENGTH_LONG,
@@ -441,28 +444,27 @@ class _OutOfOfficeState extends State<OutOfOffice> {
               );
             } else {
               Navigator.pop(context);
-              OutOfOfficeResponse outOfOfficeResponse =
-              await _apiInterface2.outOfOfficeResponseData(
-                      OutOfOfficeRequest(
-                        action: 2,
-                        employeeNo: selectedEmp,
-                        employeeName: empNameController.text,
-                        designation: designationController.text,
-                        department: departmentController.text,
-                        requestDate: requestDateController.text,
-                        fromTime: fromTimeController.text,
-                        toTime: toTimeController.text,
-                        reason: leaveReasonController.text,
-                        status: statusList.indexOf(selectedStatus),
-                      ));
+              OutOfOfficeResponse outOfOfficeResponse = await _apiInterface2
+                  .outOfOfficeResponseData(OutOfOfficeRequest(
+                action: 2,
+                employeeNo: selectedEmp,
+                employeeName: empNameController.text,
+                designation: designationController.text,
+                department: departmentController.text,
+                requestDate: requestDateController.text,
+                fromTime: fromTimeController.text,
+                toTime: toTimeController.text,
+                reason: leaveReasonController.text,
+                status: statusList.indexOf(selectedStatus),
+              ));
 
               if (outOfOfficeResponse.status) {
                 OutOfOfficeRequest outOfOfficeRequest = OutOfOfficeRequest(
                   action: 1,
                 );
                 setState(() {
-                  updateTableResponse = _apiInterface1.outOfOfficeResponseData(
-                          outOfOfficeRequest);
+                  updateTableResponse = _apiInterface1
+                      .outOfOfficeResponseData(outOfOfficeRequest);
                 });
               }
 
@@ -507,12 +509,12 @@ class _OutOfOfficeState extends State<OutOfOffice> {
 
     if (_outOfOfficeDataSource.rowSelect) {
       if (OutOfOfficeDataSource.selectedRowData.status == statusList[0] ||
-              OutOfOfficeDataSource.selectedRowData.status == statusList[1]) {
+          OutOfOfficeDataSource.selectedRowData.status == statusList[1]) {
         if (OutOfOfficeDataSource.selectedRowData.status == statusList[1]) {
           textFieldEnableStatus = false;
           Fluttertoast.showToast(
             msg:
-            "Document is ${OutOfOfficeDataSource.selectedRowData.status} status and cannot be edited",
+                "Document is ${OutOfOfficeDataSource.selectedRowData.status} status and cannot be edited",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER,
           );
@@ -529,9 +531,9 @@ class _OutOfOfficeState extends State<OutOfOffice> {
             FlatButton(
               onPressed: () async {
                 if (requestDateController.text.isEmpty ||
-                        fromTimeController.text.isEmpty ||
-                        toTimeController.text.isEmpty ||
-                        leaveReasonController.text.isEmpty) {
+                    fromTimeController.text.isEmpty ||
+                    toTimeController.text.isEmpty ||
+                    leaveReasonController.text.isEmpty) {
                   Fluttertoast.showToast(
                     msg: "One or more blank entries",
                     toastLength: Toast.LENGTH_LONG,
@@ -543,27 +545,25 @@ class _OutOfOfficeState extends State<OutOfOffice> {
                     editClicked = false;
                   });
                   if (selectedStatus == statusList[4]) {
-                    RejCanPostResponse rejCanResponse =
-                    await _apiInterface3.leaveRejCanResponseData(
-                            LeaveApprovalRequest(
-                              action: "7",
-                              documentType: "3",
-                              sequenceNo: "0",
-                              senderId: selectedEmp,
-                              status: "4",
-                              fromDate: fromTimeController.text,
-                              cancellationComment: cancelCommentController.text,
-                            ));
+                    RejCanPostResponse rejCanResponse = await _apiInterface3
+                        .leaveRejCanResponseData(LeaveApprovalRequest(
+                      action: "7",
+                      documentType: "3",
+                      sequenceNo: "0",
+                      senderId: selectedEmp,
+                      status: "4",
+                      fromDate: fromTimeController.text,
+                      cancellationComment: cancelCommentController.text,
+                    ));
 
                     if (rejCanResponse.status) {
                       OutOfOfficeRequest outOfOfficeRequest =
-                      OutOfOfficeRequest(
+                          OutOfOfficeRequest(
                         action: 1,
                       );
                       setState(() {
-                        updateTableResponse =
-                                _apiInterface1.outOfOfficeResponseData(
-                                        outOfOfficeRequest);
+                        updateTableResponse = _apiInterface1
+                            .outOfOfficeResponseData(outOfOfficeRequest);
                       });
                     }
                     Fluttertoast.showToast(
@@ -581,30 +581,29 @@ class _OutOfOfficeState extends State<OutOfOffice> {
                     );*/
                   } else {
                     OutOfOfficeResponse outOfOfficeResponse =
-                    await _apiInterface2.outOfOfficeResponseData(
-                            OutOfOfficeRequest(
-                              action: 3,
-                              employeeNo: selectedEmp,
-                              employeeName: empNameController.text,
-                              designation: designationController.text,
-                              department: departmentController.text,
-                              requestDate: requestDateController.text,
-                              fromTime: fromTimeController.text,
-                              toTime: toTimeController.text,
-                              reason: leaveReasonController.text,
-                              status: statusList.indexOf(selectedStatus),
-                              entryNo: entryNo,
-                            ));
+                        await _apiInterface2
+                            .outOfOfficeResponseData(OutOfOfficeRequest(
+                      action: 3,
+                      employeeNo: selectedEmp,
+                      employeeName: empNameController.text,
+                      designation: designationController.text,
+                      department: departmentController.text,
+                      requestDate: requestDateController.text,
+                      fromTime: fromTimeController.text,
+                      toTime: toTimeController.text,
+                      reason: leaveReasonController.text,
+                      status: statusList.indexOf(selectedStatus),
+                      entryNo: entryNo,
+                    ));
 
                     if (outOfOfficeResponse.status) {
                       OutOfOfficeRequest outOfOfficeRequest =
-                      OutOfOfficeRequest(
+                          OutOfOfficeRequest(
                         action: 1,
                       );
                       setState(() {
-                        updateTableResponse =
-                                _apiInterface1.outOfOfficeResponseData(
-                                        outOfOfficeRequest);
+                        updateTableResponse = _apiInterface1
+                            .outOfOfficeResponseData(outOfOfficeRequest);
                       });
                     }
                     Fluttertoast.showToast(
@@ -638,17 +637,17 @@ class _OutOfOfficeState extends State<OutOfOffice> {
         );
 
         showDialog(
-                context: context,
-                builder: (context) {
-                  return alert;
-                });
+            context: context,
+            builder: (context) {
+              return alert;
+            });
       } else {
         setState(() {
           editClicked = false;
         });
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${OutOfOfficeDataSource.selectedRowData.status} status and cannot be edited"),
+              "Document is ${OutOfOfficeDataSource.selectedRowData.status} status and cannot be edited"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -693,33 +692,30 @@ class _OutOfOfficeState extends State<OutOfOffice> {
     var entryNo = OutOfOfficeDataSource.selectedRowData.entryNo.toString();
     if (_outOfOfficeDataSource.rowSelect) {
       if (OutOfOfficeDataSource.selectedRowData.status == statusList[0] ||
-              OutOfOfficeDataSource.selectedRowData.status == statusList[1]) {
+          OutOfOfficeDataSource.selectedRowData.status == statusList[1]) {
         var alert = AlertDialog(
           content: Text("Are you sure you want to delete this entry!?"),
           actions: <Widget>[
             FlatButton(
               onPressed: () async {
                 Navigator.pop(context);
-                OutOfOfficeResponse outOfOfficeResponse =
-                await _apiInterface2.outOfOfficeResponseData(
-                        OutOfOfficeRequest(
-                          action: 4,
-                          entryNo: entryNo,
-                        ));
+                OutOfOfficeResponse outOfOfficeResponse = await _apiInterface2
+                    .outOfOfficeResponseData(OutOfOfficeRequest(
+                  action: 4,
+                  entryNo: entryNo,
+                ));
 
                 if (outOfOfficeResponse.status) {
                   OutOfOfficeRequest outOfOfficeRequest = OutOfOfficeRequest(
                     action: 1,
                   );
                   setState(() {
-                    updateTableResponse =
-                            _apiInterface1.outOfOfficeResponseData(
-                                    outOfOfficeRequest);
+                    updateTableResponse = _apiInterface1
+                        .outOfOfficeResponseData(outOfOfficeRequest);
                   });
                 }
 
-                var alert =
-                AlertDialog(
+                var alert = AlertDialog(
                   content: Text(outOfOfficeResponse.message),
                   actions: <Widget>[
                     FlatButton(
@@ -756,7 +752,7 @@ class _OutOfOfficeState extends State<OutOfOffice> {
       } else {
         var alert = AlertDialog(
           content: Text(
-                  "Document is ${OutOfOfficeDataSource.selectedRowData.status} status and cannot be deleted"),
+              "Document is ${OutOfOfficeDataSource.selectedRowData.status} status and cannot be deleted"),
           actions: <Widget>[
             FlatButton(
               onPressed: () {
@@ -803,44 +799,47 @@ class DialogContent extends StatefulWidget {
 class _DialogContentState extends State<DialogContent> {
   _OutOfOfficeState _outOfOfficeState = _OutOfOfficeState();
 
+  TimeOfDay fromTime = TimeOfDay.now();
+  TimeOfDay toTime = TimeOfDay.now();
+
   @override
   void initState() {
     super.initState();
     setState(() {
       _OutOfOfficeState.selectedEmp = _OutOfOfficeState.editClicked
-              ? OutOfOfficeDataSource.selectedRowData.employeeNo
-              : _OutOfOfficeState.empNo[0];
+          ? OutOfOfficeDataSource.selectedRowData.employeeNo
+          : _OutOfOfficeState.empNo[0];
       _OutOfOfficeState.empNameController.text = _OutOfOfficeState.editClicked
-              ? OutOfOfficeDataSource.selectedRowData.employeeName
-              : _OutOfOfficeState.empName[
-      _OutOfOfficeState.empNo.indexOf(_OutOfOfficeState.selectedEmp)];
+          ? OutOfOfficeDataSource.selectedRowData.employeeName
+          : _OutOfOfficeState.empName[
+              _OutOfOfficeState.empNo.indexOf(_OutOfOfficeState.selectedEmp)];
       _OutOfOfficeState.designationController.text = _OutOfOfficeState
               .editClicked
-              ? OutOfOfficeDataSource.selectedRowData.designation
-              : _OutOfOfficeState.empDesignation[
-      _OutOfOfficeState.empNo.indexOf(_OutOfOfficeState.selectedEmp)];
+          ? OutOfOfficeDataSource.selectedRowData.designation
+          : _OutOfOfficeState.empDesignation[
+              _OutOfOfficeState.empNo.indexOf(_OutOfOfficeState.selectedEmp)];
       _OutOfOfficeState.departmentController.text = _OutOfOfficeState
               .editClicked
-              ? OutOfOfficeDataSource.selectedRowData.department
-              : _OutOfOfficeState.empDepartment[
-      _OutOfOfficeState.empNo.indexOf(_OutOfOfficeState.selectedEmp)];
+          ? OutOfOfficeDataSource.selectedRowData.department
+          : _OutOfOfficeState.empDepartment[
+              _OutOfOfficeState.empNo.indexOf(_OutOfOfficeState.selectedEmp)];
 
       _OutOfOfficeState.selectedStatus = _OutOfOfficeState.editClicked
-              ? OutOfOfficeDataSource.selectedRowData.status
-              : _outOfOfficeState.statusList[0];
+          ? OutOfOfficeDataSource.selectedRowData.status
+          : _outOfOfficeState.statusList[0];
 
       _OutOfOfficeState.requestDateController.text =
-      _OutOfOfficeState.editClicked
+          _OutOfOfficeState.editClicked
               ? OutOfOfficeDataSource.selectedRowData.requestDate
               : "";
       _OutOfOfficeState.fromTimeController.text = _OutOfOfficeState.editClicked
-              ? OutOfOfficeDataSource.selectedRowData.fromTime
-              : "";
+          ? OutOfOfficeDataSource.selectedRowData.fromTime
+          : "";
       _OutOfOfficeState.toTimeController.text = _OutOfOfficeState.editClicked
-              ? OutOfOfficeDataSource.selectedRowData.toTime
-              : "";
+          ? OutOfOfficeDataSource.selectedRowData.toTime
+          : "";
       _OutOfOfficeState.leaveReasonController.text =
-      _OutOfOfficeState.editClicked
+          _OutOfOfficeState.editClicked
               ? OutOfOfficeDataSource.selectedRowData.reason
               : "";
     });
@@ -861,11 +860,9 @@ class _DialogContentState extends State<DialogContent> {
       setState(() {
         selectedRequestDate = picked;
         _OutOfOfficeState.requestDateController.text =
-                formatter.format(selectedRequestDate);
+            formatter.format(selectedRequestDate);
       });
   }
-
-  TimeOfDay fromTime = TimeOfDay.now();
 
   Future<Null> _selectFromTime(BuildContext context) async {
     final TimeOfDay picked = await showTimePicker(
@@ -876,11 +873,9 @@ class _DialogContentState extends State<DialogContent> {
       setState(() {
         fromTime = picked;
         _OutOfOfficeState.fromTimeController.text =
-                fromTime.hour.toString() + ":" + fromTime.minute.toString() + ":00";
+            fromTime.hour.toString() + ":" + fromTime.minute.toString() + ":00";
       });
   }
-
-  TimeOfDay toTime = TimeOfDay.now();
 
   Future<Null> _selectToTime(BuildContext context) async {
     final TimeOfDay picked = await showTimePicker(
@@ -891,7 +886,7 @@ class _DialogContentState extends State<DialogContent> {
       setState(() {
         toTime = picked;
         _OutOfOfficeState.toTimeController.text =
-                toTime.hour.toString() + ":" + toTime.minute.toString() + ":00";
+            toTime.hour.toString() + ":" + toTime.minute.toString() + ":00";
       });
   }
 
@@ -910,17 +905,17 @@ class _DialogContentState extends State<DialogContent> {
                       content: TextField(
                         controller: _OutOfOfficeState.cancelCommentController,
                         decoration: InputDecoration(
-                                labelText: "Enter the cancellation comment"),
+                            labelText: "Enter the cancellation comment"),
                       ),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             if (_OutOfOfficeState
-                                    .cancelCommentController.text.isNotEmpty) {
+                                .cancelCommentController.text.isNotEmpty) {
                               Navigator.pop(context);
                               setState(() {
                                 _OutOfOfficeState.selectedStatus =
-                                _outOfOfficeState.statusList[4];
+                                    _outOfOfficeState.statusList[4];
                               });
                             } else {
                               Fluttertoast.showToast(
@@ -959,14 +954,14 @@ class _DialogContentState extends State<DialogContent> {
                   onPressed: () {
                     var alert = AlertDialog(
                       content:
-                      Text("Are you sure you want to send for approval ?"),
+                          Text("Are you sure you want to send for approval ?"),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
                             setState(() {
                               _OutOfOfficeState.selectedStatus =
-                              _outOfOfficeState.statusList[1];
+                                  _outOfOfficeState.statusList[1];
                             });
                           },
                           child: Text("Yes"),
@@ -1019,14 +1014,14 @@ class _DialogContentState extends State<DialogContent> {
                     setState(() {
                       _OutOfOfficeState.selectedEmp = newValue;
                       _OutOfOfficeState.empNameController.text =
-                      _OutOfOfficeState.empName[_OutOfOfficeState.empNo
+                          _OutOfOfficeState.empName[_OutOfOfficeState.empNo
                               .indexOf(_OutOfOfficeState.selectedEmp)];
                       _OutOfOfficeState.designationController.text =
-                      _OutOfOfficeState.empDesignation[_OutOfOfficeState
+                          _OutOfOfficeState.empDesignation[_OutOfOfficeState
                               .empNo
                               .indexOf(_OutOfOfficeState.selectedEmp)];
                       _OutOfOfficeState.departmentController.text =
-                      _OutOfOfficeState.empDepartment[_OutOfOfficeState
+                          _OutOfOfficeState.empDepartment[_OutOfOfficeState
                               .empNo
                               .indexOf(_OutOfOfficeState.selectedEmp)];
                     });

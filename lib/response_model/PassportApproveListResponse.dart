@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-PassportApproveListResponse passportApproveListResponseFromJson(String str) => PassportApproveListResponse.fromJson(json.decode(str));
+PassportApproveListResponse passportApproveListResponseFromJson(String str) =>
+    PassportApproveListResponse.fromJson(json.decode(str));
 
-String passportApproveListResponseToJson(PassportApproveListResponse data) => json.encode(data.toJson());
+String passportApproveListResponseToJson(PassportApproveListResponse data) =>
+    json.encode(data.toJson());
 
 class PassportApproveListResponse {
   bool status;
@@ -15,17 +17,19 @@ class PassportApproveListResponse {
     this.data,
   });
 
-  factory PassportApproveListResponse.fromJson(Map<String, dynamic> json) => PassportApproveListResponse(
-    status: json["status"],
-    message: json["message"],
-    data: List<PassportApproveListModel>.from(json["data"].map((x) => PassportApproveListModel.fromJson(x))),
-  );
+  factory PassportApproveListResponse.fromJson(Map<String, dynamic> json) =>
+      PassportApproveListResponse(
+        status: json["status"],
+        message: json["message"],
+        data: List<PassportApproveListModel>.from(
+            json["data"].map((x) => PassportApproveListModel.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
 class PassportApproveListModel {
@@ -57,31 +61,32 @@ class PassportApproveListModel {
     this.commentCancellation,
   });
 
-  factory PassportApproveListModel.fromJson(Map<String, dynamic> json) => PassportApproveListModel(
-    tableName: json["TableName"],
-    documentType: json["DocumentType"],
-    transactionId: json["TransactionId"],
-    sequenceNo: json["SequenceNo"],
-    senderId: json["SenderId"],
-    employeeApproverId: json["EmployeeApproverId"],
-    approverId: json["ApproverId"],
-    status: json["Status"],
-    modifiedBy: json["ModifiedBy"],
-    commentRejection: json["CommentRejection"],
-    commentCancellation: json["CommentCancellation"],
-  );
+  factory PassportApproveListModel.fromJson(Map<String, dynamic> json) =>
+      PassportApproveListModel(
+        tableName: json["TableName"],
+        documentType: json["DocumentType"],
+        transactionId: json["TransactionId"],
+        sequenceNo: json["SequenceNo"],
+        senderId: json["SenderId"],
+        employeeApproverId: json["EmployeeApproverId"],
+        approverId: json["ApproverId"],
+        status: json["Status"],
+        modifiedBy: json["ModifiedBy"],
+        commentRejection: json["CommentRejection"],
+        commentCancellation: json["CommentCancellation"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "TableName": tableName,
-    "DocumentType": documentType,
-    "TransactionId": transactionId,
-    "SequenceNo": sequenceNo,
-    "SenderId": senderId,
-    "EmployeeApproverId": employeeApproverId,
-    "ApproverId": approverId,
-    "Status": status,
-    "ModifiedBy": modifiedBy,
-    "CommentRejection": commentRejection,
-    "CommentCancellation": commentCancellation,
-  };
+        "TableName": tableName,
+        "DocumentType": documentType,
+        "TransactionId": transactionId,
+        "SequenceNo": sequenceNo,
+        "SenderId": senderId,
+        "EmployeeApproverId": employeeApproverId,
+        "ApproverId": approverId,
+        "Status": status,
+        "ModifiedBy": modifiedBy,
+        "CommentRejection": commentRejection,
+        "CommentCancellation": commentCancellation,
+      };
 }

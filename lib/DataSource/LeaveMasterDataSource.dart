@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/LeaveMasterResponse.dart';
+import 'package:intl/intl.dart';
 
 class LeaveMasterDataSource extends DataTableSource {
   List<LeaveMasterModel> data = new List();
@@ -7,6 +8,8 @@ class LeaveMasterDataSource extends DataTableSource {
   LeaveMasterDataSource(this.data);
 
   int selectedCount = 0;
+
+  var formatter = new DateFormat('MM/dd/yyyy');
 
   @override
   DataRow getRow(int index) {
@@ -22,10 +25,10 @@ class LeaveMasterDataSource extends DataTableSource {
         DataCell(Text(leaveMasterModel.creditingType)),
         DataCell(Text(leaveMasterModel.minimumAllowed.toString())),
         DataCell(Text(leaveMasterModel.maximumAllowed.toString())),
-          DataCell(Checkbox(
-              value: leaveMasterModel.carryForward == 1 ? true : false,
-              onChanged: null)),
-        DataCell(Text(leaveMasterModel.applicableDate)),
+        DataCell(Checkbox(
+            value: leaveMasterModel.carryForward == 1 ? true : false,
+            onChanged: null)),
+        DataCell(Text(formatter.format(DateFormat("MM-dd-yyyy").parse(leaveMasterModel.applicableDate)))),
         DataCell(Text(leaveMasterModel.applicableForGrade)),
       ],
     );

@@ -3,7 +3,8 @@ import 'dart:convert';
 RejCanPostResponse RejCanPostResFromJson(String str) =>
     RejCanPostResponse.fromJson(json.decode(str));
 
-String RejCanPostResToJson(RejCanPostResponse data) => json.encode(data.toJson());
+String RejCanPostResToJson(RejCanPostResponse data) =>
+    json.encode(data.toJson());
 
 class RejCanPostResponse {
   bool status;

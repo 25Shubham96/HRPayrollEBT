@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hrpayroll/response_model/IssueReturnLedgerResponse.dart';
+import 'package:intl/intl.dart';
 
 class IssueReturnLedgerDataSource extends DataTableSource {
-
   List<IssueReturnLedgerModel> data = new List();
 
   IssueReturnLedgerDataSource(this.data);
 
   int selectedCount = 0;
+
+  var dateFormatter = new DateFormat('MM/dd/yyyy');
 
   @override
   DataRow getRow(int index) {
@@ -21,11 +23,11 @@ class IssueReturnLedgerDataSource extends DataTableSource {
         DataCell(Checkbox(
             value: issueReturnLedgerModel.issued == 1 ? true : false,
             onChanged: null)),
-        DataCell(Text(issueReturnLedgerModel.issueDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(issueReturnLedgerModel.issueDate)))),
         DataCell(Checkbox(
             value: issueReturnLedgerModel.returned == 1 ? true : false,
             onChanged: null)),
-        DataCell(Text(issueReturnLedgerModel.returnDate)),
+        DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(issueReturnLedgerModel.returnDate)))),
         DataCell(Text(issueReturnLedgerModel.assetType)),
         DataCell(Text(issueReturnLedgerModel.assetNo)),
         DataCell(Text(issueReturnLedgerModel.assetName)),
@@ -51,5 +53,4 @@ class IssueReturnLedgerDataSource extends DataTableSource {
 
   @override
   int get selectedRowCount => selectedCount;
-
 }

@@ -8,11 +8,13 @@ import 'package:hrpayroll/request_model/AssetReqRequest.dart';
 import 'package:hrpayroll/request_model/AssetReqSubformRequest.dart';
 import 'package:hrpayroll/request_model/BusinessTripRequest.dart';
 import 'package:hrpayroll/request_model/CompOffRequest.dart';
+import 'package:hrpayroll/request_model/ForgotPasswordRequest.dart';
 import 'package:hrpayroll/request_model/IssueReturnLedgerRequest.dart';
 import 'package:hrpayroll/request_model/LeaveApplicationRequest.dart';
 import 'package:hrpayroll/request_model/LeaveApprovalRequest.dart';
 import 'package:hrpayroll/request_model/ApproveListRequest.dart';
 import 'package:hrpayroll/request_model/LeaveMasterRequest.dart';
+import 'package:hrpayroll/request_model/LogOffRequest.dart';
 import 'package:hrpayroll/request_model/NavigateRequest.dart';
 import 'package:hrpayroll/request_model/OutOfOfficeRequest.dart';
 import 'package:hrpayroll/request_model/PassportApprovalRequest.dart';
@@ -37,6 +39,7 @@ import 'package:hrpayroll/response_model/ClosedTrainingListResponse.dart';
 import 'package:hrpayroll/response_model/CompOffResponse.dart';
 import 'package:hrpayroll/response_model/EmployeeMasterResponse.dart';
 import 'package:hrpayroll/response_model/FixedAssetResponse.dart';
+import 'package:hrpayroll/response_model/ForgotPasswordResponse.dart';
 import 'package:hrpayroll/response_model/IssueReturnLedgerResponse.dart';
 import 'package:hrpayroll/response_model/LeaveApplicationResponse.dart';
 import 'package:hrpayroll/response_model/LeaveApprovalResponse.dart';
@@ -83,6 +86,53 @@ class ApiInterface {
       data: loginReqToJson(data),
     );
     return loginResFromJson(response.toString());
+  }
+
+  Future<ForgotPasswordResponse> getAuthCode(
+      ForgotPasswordRequest forgotPasswordRequest) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    apiClient.getClient(sharedPreferences.get(Util.sessionId));
+
+    var response = await apiClient.dio.post(
+      "loginapi/getauthcode",
+      data: forgotPasswordRequestToJson(forgotPasswordRequest),
+    );
+    return forgotPasswordResponseFromJson(response.toString());
+  }
+
+  Future<ForgotPasswordResponse> forgotPassword(
+      ForgotPasswordRequest forgotPasswordRequest) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    apiClient.getClient(sharedPreferences.get(Util.sessionId));
+
+    var response = await apiClient.dio.post(
+      "loginapi/forgetpassword",
+      data: forgotPasswordRequestToJson(forgotPasswordRequest),
+    );
+    return forgotPasswordResponseFromJson(response.toString());
+  }
+
+  Future<ForgotPasswordResponse> resetPassword(
+      ForgotPasswordRequest forgotPasswordRequest) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    apiClient.getClient(sharedPreferences.get(Util.sessionId));
+
+    var response = await apiClient.dio.post(
+      "loginapi/resetpassword",
+      data: forgotPasswordRequestToJson(forgotPasswordRequest),
+    );
+    return forgotPasswordResponseFromJson(response.toString());
+  }
+
+  Future<ForgotPasswordResponse> logOff(LogOffRequest logOffRequest) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    apiClient.getClient(sharedPreferences.get(Util.sessionId));
+
+    var response = await apiClient.dio.post(
+      "mobileapi/logoff",
+      data: logOffRequestToJson(logOffRequest),
+    );
+    return forgotPasswordResponseFromJson(response.toString());
   }
 
   Future<EmployeeMasterResponse> getEmpData() async {
@@ -682,7 +732,8 @@ class ApiInterface {
 
     var response = await apiClient.dio.post(
       "trainingapi/SubActivity",
-      data: trainingActivitySubformRequestToJson(trainingActivitySubformRequest),
+      data:
+          trainingActivitySubformRequestToJson(trainingActivitySubformRequest),
     );
     return trainingActivitySubformResponseFromJson(response.toString());
   }
@@ -700,7 +751,8 @@ class ApiInterface {
     return passportRetentionResponseFromJson(response.toString());
   }
 
-  Future<PassportRetentionLedgerResponse> passportRetentionLedgerResponseData() async {
+  Future<PassportRetentionLedgerResponse>
+      passportRetentionLedgerResponseData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     apiClient.getClient(sharedPreferences.get(Util.sessionId));
 
