@@ -46,7 +46,7 @@ class PassportApproveListDataSource extends DataTableSource {
         DataCell(Text(passportApproveListModel.senderId)),
         DataCell(Text(passportApproveListModel.employeeApproverId)),
         DataCell(Text(passportApproveListModel.approverId)),
-        DataCell(Text(passportApproveListModel.status)),
+        DataCell(Text(passportApproveListModel.status.toString())),
         DataCell(Text(passportApproveListModel.modifiedBy)),
         DataCell(Text(passportApproveListModel.commentRejection)),
         DataCell(Text(passportApproveListModel.commentCancellation)),

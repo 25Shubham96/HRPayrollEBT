@@ -811,7 +811,7 @@ class _DialogContentState extends State<DialogContent> {
   var formatter = new DateFormat('MM/dd/yyyy');
 
   DateTime fromDate = DateTime.now();
-  DateTime toDate = DateTime.now().subtract(Duration(days: 1));
+  DateTime toDate = DateTime.now();
 
   @override
   void initState() {
@@ -880,8 +880,8 @@ class _DialogContentState extends State<DialogContent> {
   Future<Null> _selectToDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: toDate,
-      firstDate: DateTime(1900),
+      initialDate: toDate.difference(fromDate).inDays < 0 ? fromDate : toDate,
+      firstDate: fromDate,
       lastDate: DateTime(2200),
     );
     if (picked != null)

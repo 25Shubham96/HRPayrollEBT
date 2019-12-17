@@ -504,6 +504,26 @@ class _TrainingRequestState extends State<TrainingRequest> {
                   return alert;
                 },
               );*/
+
+              for (TrainingReqSubformModel trainingReqSubMod
+              in dataSubform) {
+                TrainingReqSubformResponse trainingReqSubformResponse =
+                await _apiInterface6.trainingReqSubformResponseData(
+                        TrainingReqSubformRequest(
+                          action: "2",
+                          requestNo: requestNoController.text,
+                          employeeNo: trainingReqSubMod.employeeNo,
+                          employeeName: trainingReqSubMod.employeeName,
+                          lineNo: trainingReqSubMod.lineNo.toString(),
+                        ));
+                if (!trainingReqSubformResponse.status) {
+                  Fluttertoast.showToast(
+                    msg: "Subform insertion failed",
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.CENTER,
+                  );
+                }
+              }
             }
           },
           child: Text("Submit"),

@@ -45,7 +45,7 @@ class AssetApproveListDataSource extends DataTableSource {
         DataCell(Text(assetApproveListModel.senderId)),
         DataCell(Text(assetApproveListModel.employeeApproverId)),
         DataCell(Text(assetApproveListModel.approverId)),
-        DataCell(Text(assetApproveListModel.status)),
+        DataCell(Text(assetApproveListModel.status.toString())),
         DataCell(Text(assetApproveListModel.modifiedBy)),
         DataCell(Text(assetApproveListModel.commentRejection)),
         DataCell(Text(assetApproveListModel.commentCancellation)),

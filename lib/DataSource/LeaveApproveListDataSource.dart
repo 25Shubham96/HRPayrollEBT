@@ -48,7 +48,7 @@ class LeaveApproveListDataSource extends DataTableSource {
         DataCell(Text(leaveApproveListModel.senderId)),
         DataCell(Text(leaveApproveListModel.employeeApproverId)),
         DataCell(Text(leaveApproveListModel.approverId)),
-        DataCell(Text(leaveApproveListModel.status)),
+        DataCell(Text(leaveApproveListModel.status.toString())),
         DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(leaveApproveListModel.fromDate)))),
         DataCell(Text(dateFormatter.format(DateFormat("yyyy-MM-dd").parse(leaveApproveListModel.toDate)))),
         DataCell(Text(leaveApproveListModel.modifiedBy)),

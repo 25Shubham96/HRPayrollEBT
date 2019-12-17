@@ -1060,7 +1060,7 @@ class _DialogContentState extends State<DialogContent> {
               : _passportRetentionState.requestType[0];
       _PassportRetentionState.selectedTransactionType =
           _PassportRetentionState.editClicked
-              ? PassportRetentionDataSource.selectedRowData.transactionType
+              ? _PassportRetentionState.transactionType[int.parse(PassportRetentionDataSource.selectedRowData.transactionType)]
               : _PassportRetentionState.transactionType[0];
       _PassportRetentionState.selectedEmp = _PassportRetentionState.editClicked
           ? PassportRetentionDataSource.selectedRowData.employeeId
@@ -1142,8 +1142,8 @@ class _DialogContentState extends State<DialogContent> {
   Future<Null> _selectExpReturnDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: expReturnDate,
-      firstDate: DateTime(1900),
+      initialDate: expReturnDate.difference(expCollectionDate).inDays < 0 ? expCollectionDate : expReturnDate,
+      firstDate: expCollectionDate,
       lastDate: DateTime(2200),
     );
     if (picked != null)

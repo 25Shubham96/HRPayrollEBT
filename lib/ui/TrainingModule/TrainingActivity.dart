@@ -757,7 +757,7 @@ class _TrainingActivityState extends State<TrainingActivity> {
                   }
                 }
               },
-              child: Text("Yes"),
+              child: Text("Update"),
             ),
             FlatButton(
               onPressed: () {
@@ -766,7 +766,7 @@ class _TrainingActivityState extends State<TrainingActivity> {
                   editClicked = false;
                 });
               },
-              child: Text("No"),
+              child: Text("Cancel"),
             ),
           ],
         );
@@ -978,6 +978,8 @@ class _DialogContentState extends State<DialogContent> {
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now();
 
+  bool timeValidity = true;
+
   void getRequisitionNo() async {
     NoSeriesResponse activityNoResponse =
         await _apiInterface5.activityNoReasponseData();
@@ -1088,8 +1090,8 @@ class _DialogContentState extends State<DialogContent> {
   Future<Null> _selectEndDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: endDate,
-      firstDate: DateTime(1900),
+      initialDate: endDate.difference(startDate).inDays < 0 ? startDate : endDate,
+      firstDate: startDate,
       lastDate: DateTime(2200),
     );
     if (picked != null)
@@ -1110,11 +1112,25 @@ class _DialogContentState extends State<DialogContent> {
     if (picked != null)
       setState(() {
         startTime = picked;
+        var startTimeVal = (startTime.hour * 60) + startTime.minute;
+        var endTimeVal = (endTime.hour * 60) + endTime.minute;
+
         _TrainingActivityState.courseStartTimeController.text =
             startTime.hour.toString() +
                 ":" +
                 startTime.minute.toString() +
                 ":00";
+
+        if(endDate.difference(startDate) == Duration(days: 0)) {
+          if(endTimeVal < startTimeVal) {
+            _TrainingActivityState.courseEndTimeController.text = "";
+            timeValidity = false;
+          } else {
+            timeValidity = true;
+          }
+        } else {
+          timeValidity = true;
+        }
       });
   }
 
@@ -1128,8 +1144,23 @@ class _DialogContentState extends State<DialogContent> {
     if (picked != null)
       setState(() {
         endTime = picked;
-        _TrainingActivityState.courseEndTimeController.text =
-            endTime.hour.toString() + ":" + endTime.minute.toString() + ":00";
+        var startTimeVal = (startTime.hour * 60) + startTime.minute;
+        var endTimeVal = (endTime.hour * 60) + endTime.minute;
+
+        if(endDate.difference(startDate) == Duration(days: 0)) {
+          if (endTimeVal > startTimeVal) {
+            _TrainingActivityState.courseEndTimeController.text =
+                    endTime.hour.toString() + ":" + endTime.minute.toString() + ":00";
+            timeValidity = true;
+          } else {
+            _TrainingActivityState.courseEndTimeController.text = "";
+            timeValidity = false;
+          }
+        } else {
+          _TrainingActivityState.courseEndTimeController.text =
+                  endTime.hour.toString() + ":" + endTime.minute.toString() + ":00";
+          timeValidity = true;
+        }
       });
   }
 
@@ -1248,6 +1279,7 @@ class _DialogContentState extends State<DialogContent> {
                     controller: _TrainingActivityState.courseEndTimeController,
                     decoration: InputDecoration(
                       labelText: "Course End Time",
+                      errorText: timeValidity ? null : "enter valid time",
                     ),
                     enableInteractiveSelection: false,
                     focusNode: NoKeyboardEditableTextFocusNode(),

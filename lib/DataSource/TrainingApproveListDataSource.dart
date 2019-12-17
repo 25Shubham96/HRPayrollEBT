@@ -45,7 +45,7 @@ class TrainingApproveListDataSource extends DataTableSource {
         DataCell(Text(trainingApproveListModel.senderId)),
         DataCell(Text(trainingApproveListModel.employeeApproverId)),
         DataCell(Text(trainingApproveListModel.approverId)),
-        DataCell(Text(trainingApproveListModel.status)),
+        DataCell(Text(trainingApproveListModel.status.toString())),
         DataCell(Text(trainingApproveListModel.modifiedBy)),
         DataCell(Text(trainingApproveListModel.commentRejection)),
         DataCell(Text(trainingApproveListModel.commentCancellation)),

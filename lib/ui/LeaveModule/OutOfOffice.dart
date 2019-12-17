@@ -802,6 +802,8 @@ class _DialogContentState extends State<DialogContent> {
   TimeOfDay fromTime = TimeOfDay.now();
   TimeOfDay toTime = TimeOfDay.now();
 
+  bool timeValidity = true;
+
   @override
   void initState() {
     super.initState();
@@ -872,8 +874,19 @@ class _DialogContentState extends State<DialogContent> {
     if (picked != null)
       setState(() {
         fromTime = picked;
+        var fromTimeVal = (fromTime.hour * 60) + fromTime.minute;
+        var toTimeVal = (toTime.hour * 60) + toTime.minute;
+
         _OutOfOfficeState.fromTimeController.text =
-            fromTime.hour.toString() + ":" + fromTime.minute.toString() + ":00";
+                fromTime.hour.toString() + ":" +
+                        fromTime.minute.toString() + ":00";
+
+        if(toTimeVal < fromTimeVal) {
+          _OutOfOfficeState.toTimeController.text = "";
+          timeValidity = false;
+        } else {
+          timeValidity = true;
+        }
       });
   }
 
@@ -885,8 +898,17 @@ class _DialogContentState extends State<DialogContent> {
     if (picked != null)
       setState(() {
         toTime = picked;
-        _OutOfOfficeState.toTimeController.text =
-            toTime.hour.toString() + ":" + toTime.minute.toString() + ":00";
+        var fromTimeVal = (fromTime.hour * 60) + fromTime.minute;
+        var toTimeVal = (toTime.hour * 60) + toTime.minute;
+        if(toTimeVal > fromTimeVal) {
+          _OutOfOfficeState.toTimeController.text =
+                  toTime.hour.toString() + ":" +
+                          toTime.minute.toString() + ":00";
+          timeValidity = true;
+        } else {
+          _OutOfOfficeState.toTimeController.text = "";
+          timeValidity = false;
+        }
       });
   }
 
@@ -1080,6 +1102,7 @@ class _DialogContentState extends State<DialogContent> {
             controller: _OutOfOfficeState.toTimeController,
             decoration: InputDecoration(
               labelText: "To Time",
+              errorText: timeValidity ? null : "enter valid time",
             ),
             enableInteractiveSelection: false,
             focusNode: NoKeyboardEditableTextFocusNode(),

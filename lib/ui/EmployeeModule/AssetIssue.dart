@@ -526,24 +526,7 @@ class _AssetIssueState extends State<AssetIssue> {
                   editClicked = false;
                 });
 
-                if (postCheck == 1) {
-                  AssetIssueResponse assetIssueResponse = await _apiInterface2
-                      .assetIssueResponseData(AssetIssueRequest(
-                    action: 4,
-                    issueNo: issueNoController.text,
-                  ));
-
-                  if (assetIssueResponse.status) {
-                    AssetIssueRequest assetIssueRequest = AssetIssueRequest(
-                      action: 1,
-                      issue: 1,
-                    );
-                    setState(() {
-                      updateTableResponse = _apiInterface1
-                          .assetIssueResponseData(assetIssueRequest);
-                    });
-                  }
-                } else {
+                if (postCheck != 1) {
                   AssetIssueResponse assetIssueResponse = await _apiInterface2
                       .assetIssueResponseData(AssetIssueRequest(
                     action: 3,
@@ -615,6 +598,17 @@ class _AssetIssueState extends State<AssetIssue> {
                       lineNo: assetIssueSubformModel.lineNo,
                     ));
 
+                    if (issueReturnLedgerResponse.status) {
+                      AssetIssueRequest assetIssueRequest = AssetIssueRequest(
+                        action: 1,
+                        issue: 1,
+                      );
+                      setState(() {
+                        updateTableResponse = _apiInterface1
+                                .assetIssueResponseData(assetIssueRequest);
+                      });
+                    }
+
                     FixedAssetResponse fixedAssetResponse =
                         await _apiInterface8.getAssetDetailsResponseData(
                             TrainingProviderCourseRequest(
@@ -630,6 +624,8 @@ class _AssetIssueState extends State<AssetIssue> {
                       setState(() {
                         assetIssueStatus = statusData;
                       });
+                      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                      sharedPreferences.setStringList("assetIssueStatus", statusData);
                     }
                   }
                 }
@@ -866,8 +862,9 @@ class _DialogContentState extends State<DialogContent> {
               : _AssetIssueState.empName[_AssetIssueState.empNo
                   .indexOf(_AssetIssueState.selectedIssuedBy)];
 
-      if(_AssetIssueState.editClicked)
-        issueDate = DateFormat("yyyy-MM-dd").parse(_AssetIssueState.issueDateController.text);
+      if (_AssetIssueState.editClicked)
+        issueDate = DateFormat("yyyy-MM-dd")
+            .parse(_AssetIssueState.issueDateController.text);
       getSubformData();
     });
   }
@@ -1509,44 +1506,66 @@ class _SubformDialogContentState extends State<SubformDialogContent> {
   @override
   void initState() {
     super.initState();
+    if(_AssetIssueState.assetIssueStatus[0] == "1") {
+			Fluttertoast.showToast(
+				msg: "Asset is already issued, please select other",
+				toastLength: Toast.LENGTH_LONG,
+				gravity: ToastGravity.CENTER,
+			);
+		}
+
     setState(() {
       _AssetIssueState.selectedAssetNo = _AssetIssueState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.assetNo
           : _AssetIssueState.assetNo[0];
       _AssetIssueState.assetNameController.text = _AssetIssueState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.assetName
-          : _AssetIssueState.assetName[_AssetIssueState.assetNo
-              .indexOf(_AssetIssueState.selectedAssetNo)];
+          : _AssetIssueState.assetIssueStatus[0] == "1"
+              ? ""
+              : _AssetIssueState.assetName[_AssetIssueState.assetNo
+                  .indexOf(_AssetIssueState.selectedAssetNo)];
       _AssetIssueState.assetTypeController.text = _AssetIssueState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.assetType
-          : _AssetIssueState.assetType[_AssetIssueState.assetNo
-              .indexOf(_AssetIssueState.selectedAssetNo)];
+          : _AssetIssueState.assetIssueStatus[0] == "1"
+              ? ""
+              : _AssetIssueState.assetType[_AssetIssueState.assetNo
+                  .indexOf(_AssetIssueState.selectedAssetNo)];
       _AssetIssueState.ownerController.text = _AssetIssueState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.owner
-          : _AssetIssueState.ownerValue[int.parse(_AssetIssueState.owner[
-              _AssetIssueState.assetNo
-                  .indexOf(_AssetIssueState.selectedAssetNo)])];
+          : _AssetIssueState.assetIssueStatus[0] == "1"
+              ? ""
+              : _AssetIssueState.ownerValue[int.parse(_AssetIssueState.owner[
+                  _AssetIssueState.assetNo
+                      .indexOf(_AssetIssueState.selectedAssetNo)])];
       _AssetIssueState.valueController.text = _AssetIssueState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.value
           : "";
       _AssetIssueState.manufacturerController.text =
           _AssetIssueState.editClicked
               ? AssetIssueSubformDataSource.selectedRowData.manufacturar
-              : _AssetIssueState.manufacturar[_AssetIssueState.assetNo
-                  .indexOf(_AssetIssueState.selectedAssetNo)];
+              : _AssetIssueState.assetIssueStatus[0] == "1"
+                  ? ""
+                  : _AssetIssueState.manufacturar[_AssetIssueState.assetNo
+                      .indexOf(_AssetIssueState.selectedAssetNo)];
       _AssetIssueState.modelController.text = _AssetIssueState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.model
-          : _AssetIssueState.model[_AssetIssueState.assetNo
-              .indexOf(_AssetIssueState.selectedAssetNo)];
+          : _AssetIssueState.assetIssueStatus[0] == "1"
+              ? ""
+              : _AssetIssueState.model[_AssetIssueState.assetNo
+                  .indexOf(_AssetIssueState.selectedAssetNo)];
       _AssetIssueState.ownerNameController.text = _AssetIssueState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.ownerName
-          : _AssetIssueState.ownerName[_AssetIssueState.assetNo
-              .indexOf(_AssetIssueState.selectedAssetNo)];
+          : _AssetIssueState.assetIssueStatus[0] == "1"
+              ? ""
+              : _AssetIssueState.ownerName[_AssetIssueState.assetNo
+                  .indexOf(_AssetIssueState.selectedAssetNo)];
       _AssetIssueState.currAssetLocController.text =
           _AssetIssueState.editClicked
               ? AssetIssueSubformDataSource.selectedRowData.currentAssetLocation
-              : _AssetIssueState.currAssetLoc[_AssetIssueState.assetNo
-                  .indexOf(_AssetIssueState.selectedAssetNo)];
+              : _AssetIssueState.assetIssueStatus[0] == "1"
+                  ? ""
+                  : _AssetIssueState.currAssetLoc[_AssetIssueState.assetNo
+                      .indexOf(_AssetIssueState.selectedAssetNo)];
       _AssetIssueState.postedPurOrderNoController.text = _AssetIssueState
               .editClicked
           ? AssetIssueSubformDataSource.selectedRowData.postedPurchaseOrderNo
@@ -1621,7 +1640,7 @@ class _SubformDialogContentState extends State<SubformDialogContent> {
                                           _AssetIssueState.selectedAssetNo)];
                             } else {
                               Fluttertoast.showToast(
-                                msg: "Asset is already issued, select other",
+                                msg: "Asset is already issued, please select other",
                                 toastLength: Toast.LENGTH_LONG,
                                 gravity: ToastGravity.CENTER,
                               );

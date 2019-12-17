@@ -41,6 +41,7 @@ class AssetIssueModel {
   var issuedByName;
   int issue;
   var department;
+  int aReturn;
 
   bool selected = false;
 
@@ -53,6 +54,7 @@ class AssetIssueModel {
     this.issuedByName,
     this.issue,
     this.department,
+    this.aReturn,
   });
 
   factory AssetIssueModel.fromJson(Map<String, dynamic> json) =>
@@ -65,6 +67,7 @@ class AssetIssueModel {
         issuedByName: json["Issued By Name"],
         issue: json["Issue"],
         department: json["DEPARTMENT"],
+        aReturn: json["Return"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -76,5 +79,6 @@ class AssetIssueModel {
         "Issued By Name": issuedByName,
         "Issue": issue,
         "DEPARTMENT": department,
+        "Return": aReturn,
       };
 }

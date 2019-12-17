@@ -9,6 +9,8 @@ import 'package:hrpayroll/response_model/RejectionCancellationPostResponse.dart'
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
 class LeaveApplication extends StatefulWidget {
   @override
   _LeaveApplicationState createState() => _LeaveApplicationState();
@@ -835,6 +837,11 @@ class _LeaveApplicationState extends State<LeaveApplication> {
   void onRemovePress(BuildContext context) {
     var documentNo =
         LeaveApplicationDataSource.selectedRowData.documentNo.toString();
+    var employeeNo =
+        LeaveApplicationDataSource.selectedRowData.employeeNo.toString();
+    var fromDate =
+        LeaveApplicationDataSource.selectedRowData.fromDate.toString();
+
     if (_leaveApplicationDataSource.rowSelect) {
       if (LeaveApplicationDataSource.selectedRowData.status == statusList[0] ||
           LeaveApplicationDataSource.selectedRowData.status == statusList[1]) {
@@ -848,7 +855,9 @@ class _LeaveApplicationState extends State<LeaveApplication> {
                     await _apiInterface2
                         .leaveApplicationResponseData(LeaveApplicationRequest(
                   action: 4,
-                  documentNo: documentNo,
+                  employeeNo: employeeNo,
+                  leaveCode: documentNo,
+                  fromDate: fromDate,
                 ));
 
                 if (leaveApplicationResponse.status) {
@@ -945,7 +954,45 @@ class _DialogContentState extends State<DialogContent> {
   var formatter = new DateFormat('MM/dd/yyyy');
 
   DateTime fromDate = DateTime.now();
-  DateTime toDate = DateTime.now().subtract(Duration(days: 1));
+  DateTime toDate = DateTime.now();
+
+  void selectStartDate() {
+    DatePicker.showDatePicker(
+      context,
+      theme: DatePickerTheme(),
+      showTitleActions: true,
+      minTime: DateTime(1900),
+      maxTime: DateTime(2200),
+      onConfirm: (date) {
+        setState(() {
+          fromDate = date;
+          _LeaveApplicationState.fromDateController.text =
+              formatter.format(fromDate);
+          _LeaveApplicationState.totDaysController.text =
+              (toDate.difference(fromDate).inDays + 1).toString();
+        });
+      },
+    );
+  }
+
+  void selectEndDate() {
+    DatePicker.showDatePicker(
+      context,
+      theme: DatePickerTheme(),
+      showTitleActions: true,
+      minTime: fromDate,
+      maxTime: DateTime(2200),
+      onConfirm: (date) {
+        setState(() {
+          toDate = date;
+          _LeaveApplicationState.toDateController.text =
+              formatter.format(toDate);
+          _LeaveApplicationState.totDaysController.text =
+              (toDate.difference(fromDate).inDays + 1).toString();
+        });
+      },
+    );
+  }
 
   Future<Null> _selectFromDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -967,8 +1014,8 @@ class _DialogContentState extends State<DialogContent> {
   Future<Null> _selectToDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: toDate,
-      firstDate: DateTime(1900),
+      initialDate: toDate.difference(fromDate).inDays < 0 ? fromDate : toDate,
+      firstDate: fromDate,
       lastDate: DateTime(2200),
     );
     if (picked != null)
@@ -985,8 +1032,10 @@ class _DialogContentState extends State<DialogContent> {
   Future<Null> _selectWorkDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: specifyWorkDate,
-      firstDate: DateTime(1900),
+      initialDate: specifyWorkDate.difference(toDate).inDays < 0
+          ? toDate
+          : specifyWorkDate,
+      firstDate: toDate,
       lastDate: DateTime(2200),
     );
     if (picked != null)
@@ -1076,11 +1125,11 @@ class _DialogContentState extends State<DialogContent> {
               ? LeaveApplicationDataSource.selectedRowData.applicationDate
               : formatter.format(applicationDate);
 
-      if(_LeaveApplicationState.editClicked) {
-        fromDate = DateFormat("yyyy-MM-dd").parse(
-                _LeaveApplicationState.fromDateController.text);
-        toDate = DateFormat("yyyy-MM-dd").parse(
-                _LeaveApplicationState.toDateController.text);
+      if (_LeaveApplicationState.editClicked) {
+        fromDate = DateFormat("yyyy-MM-dd")
+            .parse(_LeaveApplicationState.fromDateController.text);
+        toDate = DateFormat("yyyy-MM-dd")
+            .parse(_LeaveApplicationState.toDateController.text);
       }
     });
   }

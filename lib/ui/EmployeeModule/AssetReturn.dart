@@ -6,8 +6,10 @@ import 'package:hrpayroll/Network/ApiInterface.dart';
 import 'package:hrpayroll/request_model/AssetIssueRequest.dart';
 import 'package:hrpayroll/request_model/AssetIssueSubformRequest.dart';
 import 'package:hrpayroll/request_model/IssueReturnLedgerRequest.dart';
+import 'package:hrpayroll/request_model/TrainingProviderCourseRequest.dart';
 import 'package:hrpayroll/response_model/AssetIssueResponse.dart';
 import 'package:hrpayroll/response_model/AssetIssueSubformResponse.dart';
+import 'package:hrpayroll/response_model/FixedAssetResponse.dart';
 import 'package:hrpayroll/response_model/IssueReturnLedgerResponse.dart';
 import 'package:hrpayroll/response_model/RequisitionNoResponse.dart';
 import 'package:intl/intl.dart';
@@ -216,7 +218,7 @@ class _AssetReturnState extends State<AssetReturn> {
 
                   for (AssetIssueModel assetIssueModel
                       in _myResponseData.data) {
-                    if (assetIssueModel.issue == 1)
+                    if (assetIssueModel.aReturn == 1)
                       filterData.add(assetIssueModel);
                   }
 
@@ -524,24 +526,7 @@ class _AssetReturnState extends State<AssetReturn> {
                   editClicked = false;
                 });
 
-                if (postCheck == 1) {
-                  AssetIssueResponse assetIssueResponse = await _apiInterface2
-                      .assetIssueResponseData(AssetIssueRequest(
-                    action: 4,
-                    issueNo: issueNoController.text,
-                  ));
-
-                  if (assetIssueResponse.status) {
-                    AssetIssueRequest assetIssueRequest = AssetIssueRequest(
-                      action: 1,
-                      retun: 1,
-                    );
-                    setState(() {
-                      updateTableResponse = _apiInterface1
-                          .assetIssueResponseData(assetIssueRequest);
-                    });
-                  }
-                } else {
+                if (postCheck != 1) {
                   AssetIssueResponse assetIssueResponse = await _apiInterface2
                       .assetIssueResponseData(AssetIssueRequest(
                     action: 3,
@@ -610,6 +595,36 @@ class _AssetReturnState extends State<AssetReturn> {
                       issueNo: issueNoController.text,
                       lineNo: assetIssueSubformModel.lineNo,
                     ));
+
+                    if (issueReturnLedgerResponse.status) {
+                      AssetIssueRequest assetIssueRequest = AssetIssueRequest(
+                        action: 1,
+                        issue: 1,
+                      );
+                      setState(() {
+                        updateTableResponse = _apiInterface1
+                                .assetIssueResponseData(assetIssueRequest);
+                      });
+                    }
+
+                    FixedAssetResponse fixedAssetResponse =
+                        await _apiInterface8.getAssetDetailsResponseData(
+                            TrainingProviderCourseRequest(
+                      action: 1,
+                    ));
+
+                    if (fixedAssetResponse.status) {
+                      List<String> statusData = List();
+                      for (int i = 0; i < fixedAssetResponse.data.length; i++) {
+                        statusData
+                            .add(fixedAssetResponse.data[i].issued.toString());
+                      }
+                      setState(() {
+                        assetIssueStatus = statusData;
+                      });
+                      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                      sharedPreferences.setStringList("assetIssueStatus", statusData);
+                    }
                   }
                 }
                 for (AssetIssueSubformModel trainingActSubMod
@@ -845,8 +860,9 @@ class _DialogContentState extends State<DialogContent> {
               : _AssetReturnState.empName[_AssetReturnState.empNo
                   .indexOf(_AssetReturnState.selectedIssuedBy)];
 
-      if(_AssetReturnState.editClicked)
-        issueDate = DateFormat("yyyy-MM-dd").parse(_AssetReturnState.issueDateController.text);
+      if (_AssetReturnState.editClicked)
+        issueDate = DateFormat("yyyy-MM-dd")
+            .parse(_AssetReturnState.issueDateController.text);
       getSubformData();
     });
   }
@@ -1035,7 +1051,7 @@ class _DialogContentState extends State<DialogContent> {
                             debugPrint("Comment: " + newValue);
                             setState(() {
                               _AssetReturnState.selectedIssuedBy = newValue;
-                              _AssetReturnState.empNameController.text =
+                              _AssetReturnState.issuedByNameController.text =
                                   _AssetReturnState.empName[
                                       _AssetReturnState.empNo.indexOf(
                                           _AssetReturnState.selectedIssuedBy)];
@@ -1497,44 +1513,66 @@ class _SubformDialogContentState extends State<SubformDialogContent> {
   @override
   void initState() {
     super.initState();
+    if(_AssetReturnState.assetIssueStatus[0] == "0") {
+      Fluttertoast.showToast(
+        msg: "Asset is not issued, please select other",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+      );
+    }
+
     setState(() {
       _AssetReturnState.selectedAssetNo = _AssetReturnState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.assetNo
           : _AssetReturnState.assetNo[0];
       _AssetReturnState.assetNameController.text = _AssetReturnState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.assetName
-          : _AssetReturnState.assetName[_AssetReturnState.assetNo
-              .indexOf(_AssetReturnState.selectedAssetNo)];
+          : _AssetReturnState.assetIssueStatus[0] == "0"
+              ? ""
+              : _AssetReturnState.assetName[_AssetReturnState.assetNo
+                  .indexOf(_AssetReturnState.selectedAssetNo)];
       _AssetReturnState.assetTypeController.text = _AssetReturnState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.assetType
-          : _AssetReturnState.assetType[_AssetReturnState.assetNo
-              .indexOf(_AssetReturnState.selectedAssetNo)];
+          : _AssetReturnState.assetIssueStatus[0] == "0"
+              ? ""
+              : _AssetReturnState.assetType[_AssetReturnState.assetNo
+                  .indexOf(_AssetReturnState.selectedAssetNo)];
       _AssetReturnState.ownerController.text = _AssetReturnState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.owner
-          : _AssetReturnState.ownerValue[int.parse(_AssetReturnState.owner[
-              _AssetReturnState.assetNo
-                  .indexOf(_AssetReturnState.selectedAssetNo)])];
+          : _AssetReturnState.assetIssueStatus[0] == "0"
+              ? ""
+              : _AssetReturnState.ownerValue[int.parse(_AssetReturnState.owner[
+                  _AssetReturnState.assetNo
+                      .indexOf(_AssetReturnState.selectedAssetNo)])];
       _AssetReturnState.valueController.text = _AssetReturnState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.value
           : "";
       _AssetReturnState.manufacturerController.text =
           _AssetReturnState.editClicked
               ? AssetIssueSubformDataSource.selectedRowData.manufacturar
-              : _AssetReturnState.manufacturar[_AssetReturnState.assetNo
-                  .indexOf(_AssetReturnState.selectedAssetNo)];
+              : _AssetReturnState.assetIssueStatus[0] == "0"
+                  ? ""
+                  : _AssetReturnState.manufacturar[_AssetReturnState.assetNo
+                      .indexOf(_AssetReturnState.selectedAssetNo)];
       _AssetReturnState.modelController.text = _AssetReturnState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.model
-          : _AssetReturnState.model[_AssetReturnState.assetNo
-              .indexOf(_AssetReturnState.selectedAssetNo)];
+          : _AssetReturnState.assetIssueStatus[0] == "0"
+              ? ""
+              : _AssetReturnState.model[_AssetReturnState.assetNo
+                  .indexOf(_AssetReturnState.selectedAssetNo)];
       _AssetReturnState.ownerNameController.text = _AssetReturnState.editClicked
           ? AssetIssueSubformDataSource.selectedRowData.ownerName
-          : _AssetReturnState.ownerName[_AssetReturnState.assetNo
-              .indexOf(_AssetReturnState.selectedAssetNo)];
+          : _AssetReturnState.assetIssueStatus[0] == "0"
+              ? ""
+              : _AssetReturnState.ownerName[_AssetReturnState.assetNo
+                  .indexOf(_AssetReturnState.selectedAssetNo)];
       _AssetReturnState.currAssetLocController.text =
           _AssetReturnState.editClicked
               ? AssetIssueSubformDataSource.selectedRowData.currentAssetLocation
-              : _AssetReturnState.currAssetLoc[_AssetReturnState.assetNo
-                  .indexOf(_AssetReturnState.selectedAssetNo)];
+              : _AssetReturnState.assetIssueStatus[0] == "0"
+                  ? ""
+                  : _AssetReturnState.currAssetLoc[_AssetReturnState.assetNo
+                      .indexOf(_AssetReturnState.selectedAssetNo)];
       _AssetReturnState.postedPurOrderNoController.text = _AssetReturnState
               .editClicked
           ? AssetIssueSubformDataSource.selectedRowData.postedPurchaseOrderNo
@@ -1576,7 +1614,7 @@ class _SubformDialogContentState extends State<SubformDialogContent> {
                             i++) {
                           if (_AssetReturnState.assetNo[i] ==
                               _AssetReturnState.selectedAssetNo) {
-                            if (_AssetReturnState.assetIssueStatus[i] == "0") {
+                            if (_AssetReturnState.assetIssueStatus[i] == "1") {
                               _AssetReturnState.assetNameController.text =
                                   _AssetReturnState.assetName[
                                       _AssetReturnState.assetNo.indexOf(
@@ -1609,7 +1647,7 @@ class _SubformDialogContentState extends State<SubformDialogContent> {
                                           _AssetReturnState.selectedAssetNo)];
                             } else {
                               Fluttertoast.showToast(
-                                msg: "Asset is not issued select other",
+                                msg: "Asset is not issued, please select other",
                                 toastLength: Toast.LENGTH_LONG,
                                 gravity: ToastGravity.CENTER,
                               );
